@@ -20,4 +20,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="choose_games">CHOOSE GAMES</string>
+    <string name="games_voting">GAMES VOTING</string>
+    <string name="attendence">ATTENDENCE</string>
+    <string name="i_m_delayed">I\'M DELAYED</string>
+    <string name="host_rating">HOST RATING</string>
 </resources>
