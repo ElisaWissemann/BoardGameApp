@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1025555289375",
+    "firebase_url": "https://boardgameapp-95833-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "boardgameapp-95833",
+    "storage_bucket": "boardgameapp-95833.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025555289375:android:2dbd18be2b1a862d7e0c2a",
+        "android_client_info": {
+          "package_name": "com.example.boardgameapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025555289375-o92hn7ovif8pujge7217qts0u0seucev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2b2s2nCwdpEJT41_YxjzikXl0ts2OC2Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025555289375-o92hn7ovif8pujge7217qts0u0seucev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
