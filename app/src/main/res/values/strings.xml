@@ -25,4 +25,7 @@
     <string name="attendence">ATTENDENCE</string>
     <string name="i_m_delayed">I\'M DELAYED</string>
     <string name="host_rating">HOST RATING</string>
+    <string name="enter_event">ENTER EVENT</string>
+    <string name="attendies">Attendies</string>
+    <string name="game_night">Game Night</string>
 </resources>

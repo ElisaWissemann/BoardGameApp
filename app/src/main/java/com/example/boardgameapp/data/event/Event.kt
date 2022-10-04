@@ -8,5 +8,8 @@ data class Event(
     val id: Int,
     val host: String,
     //only for testint will be changed to Date
-    val date: Int
+    val date: Int,
+    //only for testing will be changed to an array/list
+    val accepted: Int,
+    val cancelled: Int
 )
