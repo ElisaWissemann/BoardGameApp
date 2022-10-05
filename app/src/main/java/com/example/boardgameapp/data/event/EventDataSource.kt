@@ -28,6 +28,12 @@ object EventDataSource {
             "Elisa",
             "22.01.2023",
             listOf("Anna", "Frank", "Dieter", "Steffi"),  listOf()
+        ),
+        Event(
+            5,
+            "Stefan",
+            "22.01.2023",
+            listOf("Anna", "Frank", "Steffi"),  listOf("Frank")
         )
     )
 }
