@@ -7,6 +7,9 @@ import java.util.Date
 data class Event(
     val id: Int,
     val host: String,
-    //only for testint will be changed to Date
-    val date: Int
+    //only for testing will be changed to Date
+    val date: String,
+    //only for testing will be changed to an array/list
+    val accepted: List<String>,
+    val cancelled: List<String>
 )
