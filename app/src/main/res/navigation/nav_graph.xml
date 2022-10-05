@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/eventFragment">
+    app:startDestination="@id/upcomingEventsFragment">
     <fragment
         android:id="@+id/upcomingEventsFragment"
         android:name="com.example.boardgameapp.screens.upcomingevents.UpcomingEventsFragment"
         android:label="fragment_upcoming_events"
-        tools:layout="@layout/fragment_upcoming_events" />
+        tools:layout="@layout/fragment_upcoming_events" >
+        <action
+            android:id="@+id/action_upcomingEventsFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
     <fragment
         android:id="@+id/attendenceFragment"
         android:name="com.example.boardgameapp.screens.attendence.AttendenceFragment"
@@ -23,7 +27,11 @@
         android:id="@+id/eventFragment"
         android:name="com.example.boardgameapp.screens.event.EventFragment"
         android:label="fragment_event"
-        tools:layout="@layout/fragment_event" />
+        tools:layout="@layout/fragment_event" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/foodFragment"
         android:name="com.example.boardgameapp.screens.food.FoodFragment"
