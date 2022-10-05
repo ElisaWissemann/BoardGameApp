@@ -48,7 +48,7 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <navigation android:id="@+id/login_navigation"
-        app:startDestination="@id/registerFragment">
+        app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/registerFragment"
             android:name="com.example.boardgameapp.screens.register.RegisterFragment"
