@@ -3,7 +3,6 @@
 
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
@@ -89,10 +88,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="24dp"
-            android:text="1"
             android:textColor="#F44336"
             android:textSize="16sp"
             android:textStyle="bold"
+            android:text = "1"
             app:layout_constraintBottom_toBottomOf="@+id/ue_slash"
             app:layout_constraintEnd_toEndOf="@+id/attendies"
             app:layout_constraintHorizontal_bias="0.0"
@@ -101,26 +100,13 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/ue_hostet_by"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="20dp"
-            android:text="Hostet by: "
-            app:layout_constraintBottom_toTopOf="@+id/attendies"
-            app:layout_constraintStart_toStartOf="@+id/ue_title"
-            app:layout_constraintTop_toBottomOf="@+id/ue_title"
-            app:layout_constraintVertical_bias="1.0" />
-
-        <TextView
             android:id="@+id/ue_host"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Host"
-            app:layout_constraintBottom_toBottomOf="@+id/ue_hostet_by"
-            app:layout_constraintStart_toEndOf="@+id/ue_hostet_by"
-            app:layout_constraintTop_toTopOf="@+id/ue_hostet_by" />
+            android:text="Hostet by: Julia"
+            app:layout_constraintBottom_toTopOf="@+id/attendies"
+            app:layout_constraintStart_toStartOf="@+id/ue_title"
+            app:layout_constraintTop_toBottomOf="@+id/ue_title" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

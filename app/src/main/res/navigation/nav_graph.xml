@@ -8,7 +8,11 @@
         android:id="@+id/upcomingEventsFragment"
         android:name="com.example.boardgameapp.screens.upcomingevents.UpcomingEventsFragment"
         android:label="fragment_upcoming_events"
-        tools:layout="@layout/fragment_upcoming_events" />
+        tools:layout="@layout/fragment_upcoming_events" >
+        <action
+            android:id="@+id/action_upcomingEventsFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
+    </fragment>
     <fragment
         android:id="@+id/attendenceFragment"
         android:name="com.example.boardgameapp.screens.attendence.AttendenceFragment"
@@ -23,7 +27,12 @@
         android:id="@+id/eventFragment"
         android:name="com.example.boardgameapp.screens.event.EventFragment"
         android:label="fragment_event"
-        tools:layout="@layout/fragment_event" />
+        tools:layout="@layout/fragment_event" >
+        <argument
+            android:name="eventId"
+            app:argType="integer"
+            android:defaultValue="1" />
+    </fragment>
     <fragment
         android:id="@+id/foodFragment"
         android:name="com.example.boardgameapp.screens.food.FoodFragment"

@@ -8,26 +8,26 @@ object EventDataSource {
         Event(
             1,
             "Julia",
-            3,
-            2,3
+            "22.10.2022",
+            listOf("Emma", "Stefan", "Rainhardt"), listOf("Anna")
         ),
         Event(
             2,
             "Christian",
-            3,
-            4,1
+            "22.11.2022",
+            listOf("Anna", "Frank"), listOf("Anna")
         ),
         Event(
             3,
             "Anna",
-            4,
-            1,1
+            "22.12.2022",
+            listOf("Anna"), listOf("Stefanie", "Frank")
         ),
         Event(
             4,
             "Elisa",
-            5,
-            3,1
+            "22.01.2023",
+            listOf("Anna", "Frank", "Dieter", "Steffi"),  listOf()
         )
     )
 }
