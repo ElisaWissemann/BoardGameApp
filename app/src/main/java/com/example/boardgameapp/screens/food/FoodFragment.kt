@@ -20,6 +20,7 @@ class FoodFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val s = "test"
         return inflater.inflate(R.layout.fragment_food, container, false)
     }
 
