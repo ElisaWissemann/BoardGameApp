@@ -11,16 +11,20 @@ import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.UpcomingEventsItemViewBinding
 
 
-class UpcomingEventsAdapter() : RecyclerView.Adapter<UpcomingEventsAdapter.UpcomingEventsViewHolder>() {
+class UpcomingEventsAdapter() :
+    RecyclerView.Adapter<UpcomingEventsAdapter.UpcomingEventsViewHolder>() {
 
     //Initialize Data
     private val eventData = EventDataSource.events
     private val userData = UserDataSource.users
-    private lateinit var binding: UpcomingEventsItemViewBinding
+    private var _binding: UpcomingEventsItemViewBinding? = null
+
+    // only valid between onCreateViewHolder and onDestroyView
     private lateinit var context: Context
 
 
-    class UpcomingEventsViewHolder(val binding: UpcomingEventsItemViewBinding):RecyclerView.ViewHolder(binding.root) {
+    class UpcomingEventsViewHolder(val binding: UpcomingEventsItemViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val hostView = binding.ueHost
         val dateView = binding.ueDate
         val acceptedView = binding.ueAccepted
@@ -29,11 +33,10 @@ class UpcomingEventsAdapter() : RecyclerView.Adapter<UpcomingEventsAdapter.Upcom
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingEventsViewHolder {
-         binding = UpcomingEventsItemViewBinding
+        _binding = UpcomingEventsItemViewBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-        return UpcomingEventsViewHolder(binding)
+        return UpcomingEventsViewHolder(_binding!!)
     }
-
 
 
     override fun getItemCount(): Int = eventData.size
@@ -41,21 +44,24 @@ class UpcomingEventsAdapter() : RecyclerView.Adapter<UpcomingEventsAdapter.Upcom
     override fun onBindViewHolder(holder: UpcomingEventsViewHolder, position: Int) {
         val item = eventData[position]
         val hostData = userData.find { it.id == item.host }
-        val hostName= hostData?.name + " " + hostData?.surname
+        val hostName = hostData?.name + " " + hostData?.surname
 
         holder.hostView?.text = context.getString(R.string.hostet_by, hostName)
         holder.dateView?.text = item.date.toString()
         holder.acceptedView?.text = item.accepted.size.toString()
         holder.cancelledView?.text = item.cancelled.size.toString()
-        holder.enterEventButton.setOnClickListener{
+        holder.enterEventButton.setOnClickListener {
 
-            val action = UpcomingEventsFragmentDirections.actionUpcomingEventsFragmentToEventFragment(eventId = item.id)
+            val action =
+                UpcomingEventsFragmentDirections.actionUpcomingEventsFragmentToEventFragment(eventId = item.id)
             holder.binding.root.findNavController().navigate(action)
         }
+    }
 
-
-        }
-
+    override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView)
+        _binding = null
+    }
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)

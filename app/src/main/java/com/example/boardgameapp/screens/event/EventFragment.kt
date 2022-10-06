@@ -16,6 +16,7 @@ import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 
+//TODO: Add Comments
 class EventFragment : Fragment() {
 
     companion object {
@@ -23,7 +24,11 @@ class EventFragment : Fragment() {
     }
 
     private lateinit var viewModel: EventViewModel
-    private lateinit var binding: FragmentEventBinding
+    private var _binding: FragmentEventBinding? = null
+    // only valid between onCreateView and onDestroyView
+    private val binding get() = _binding!!
+
+    private var host: User? = null
 
 
     override fun onCreateView(
@@ -31,7 +36,7 @@ class EventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentEventBinding.inflate(inflater, container, false)
+        _binding = FragmentEventBinding.inflate(inflater, container, false)
 
         // return view
         return binding.root
@@ -46,28 +51,30 @@ class EventFragment : Fragment() {
         val args: EventFragmentArgs by navArgs()
         //extract the event with the ID passed via Navigation
         val event: Event? = eventData.find{it.id == args.eventId}
-        val host: User? = hostData.find { it.id == event?.host }
+        host = hostData.find { it.id == event?.host }
 
-        binding.date.text = event?.date
+        _binding!!.date.text = event?.date
         val hostName = host?.name + " " + host?.surname
-        Log.i("ELISA", getString(R.string.event_screen_host, hostName))
-        binding.host.text = getString(R.string.event_screen_host, hostName)
+        _binding!!.host.text = getString(R.string.event_screen_host, hostName)
 
     }
 
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
-
-
-        binding.hostRatingButton.setOnClickListener {
-            HostRatingDialog().show(
-                (activity as AppCompatActivity).supportFragmentManager,
-                "HostRatingDialogFragment"
-            )
+        _binding!!.hostRatingButton.setOnClickListener {
+            host?.let { it1 ->
+                HostRatingDialog(it1.id).show(
+                    (activity as AppCompatActivity).supportFragmentManager,
+                    "HostRatingDialogFragment"
+                )
+            }
         }
+    }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

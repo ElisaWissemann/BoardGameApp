@@ -1,7 +1,7 @@
 package com.example.boardgameapp.data.user
 
 import java.time.temporal.JulianFields
-
+//TODO; Read about android repositorys and maybe rename this file
 object UserDataSource {
     val users: List<User> = listOf(
         User(
@@ -12,7 +12,7 @@ object UserDataSource {
             listOf(1),
             "Monopoly",
             "greek",
-            5.0
+            listOf()
         ),
         User(
             2,
@@ -22,7 +22,7 @@ object UserDataSource {
             listOf(2),
             "Siedler von Catan",
             "mexican",
-            3.0
+            listOf(3.0)
         ),
         User(
             3,
@@ -32,7 +32,7 @@ object UserDataSource {
             listOf(3),
             "Chess",
             "asia",
-            4.5
+            listOf(4.5)
         ),
     )
 }
