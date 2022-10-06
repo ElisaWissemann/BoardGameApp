@@ -61,7 +61,4 @@ class EventFragment : Fragment() {
         }
     }
 
-    fun getUserData(){
-
-    }
 }
