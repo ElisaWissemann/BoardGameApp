@@ -8,5 +8,5 @@ data class User(
     val hosting_events: List<Int>,
     val favorite_game: String,
     val favorite_food: String,
-    val rating: Double,
+    val rating: List<Double>
     )
