@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.EventDataSource
 import com.example.boardgameapp.databinding.FragmentEventBinding
+import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 
 class EventFragment : Fragment() {
 
@@ -50,6 +52,13 @@ class EventFragment : Fragment() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
+
+        binding.hostRatingButton.setOnClickListener {
+            HostRatingDialog().show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "HostRatingDialogFragment"
+            )
+        }
     }
 
     fun getUserData(){
