@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.boardgameapp.R
+import com.example.boardgameapp.databinding.FragmentHostRatingDialogBinding
 
 
 /**
@@ -19,11 +20,15 @@ import com.example.boardgameapp.R
  * create an instance of this fragment.
  */
 class HostRatingDialog : DialogFragment() {
+    private lateinit var binding: FragmentHostRatingDialogBinding
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner);
-        return inflater.inflate(R.layout.fragment_host_rating_dialog, container, false)
+        binding = FragmentHostRatingDialogBinding.inflate(inflater, container,false)
+
+            return inflater.inflate(R.layout.fragment_host_rating_dialog, container, false)
+
     }
 
     override fun onStart() {

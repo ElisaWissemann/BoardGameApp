@@ -14,33 +14,35 @@
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/choose_games_button"
+            app:layout_constraintEnd_toEndOf="@+id/host"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/host"
+            app:layout_constraintTop_toBottomOf="@+id/host"
+            app:layout_constraintVertical_bias="0.16000003" />
 
         <TextView
             android:id="@+id/host"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="16dp"
             android:layout_marginTop="16dp"
             android:text="@string/event_screen_host"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/profile_button"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/profile_button"
             app:layout_constraintTop_toBottomOf="@+id/profile_button" />
 
         <ImageButton
             android:id="@+id/profile_button"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/choose_games_button"

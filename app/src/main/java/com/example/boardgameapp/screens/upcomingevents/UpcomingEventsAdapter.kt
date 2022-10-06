@@ -7,13 +7,15 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.EventDataSource
+import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.UpcomingEventsItemViewBinding
 
 
 class UpcomingEventsAdapter() : RecyclerView.Adapter<UpcomingEventsAdapter.UpcomingEventsViewHolder>() {
 
     //Initialize Data
-    private val data = EventDataSource.events
+    private val eventData = EventDataSource.events
+    private val userData = UserDataSource.users
     private lateinit var binding: UpcomingEventsItemViewBinding
     private lateinit var context: Context
 
@@ -34,12 +36,14 @@ class UpcomingEventsAdapter() : RecyclerView.Adapter<UpcomingEventsAdapter.Upcom
 
 
 
-    override fun getItemCount(): Int = data.size
+    override fun getItemCount(): Int = eventData.size
 
     override fun onBindViewHolder(holder: UpcomingEventsViewHolder, position: Int) {
-        val item = data[position]
+        val item = eventData[position]
+        val hostData = userData.find { it.id == item.host }
+        val hostName= hostData?.name + " " + hostData?.surname
 
-        holder.hostView?.text = context.getString(R.string.hostet_by, item.host)
+        holder.hostView?.text = context.getString(R.string.hostet_by, hostName)
         holder.dateView?.text = item.date.toString()
         holder.acceptedView?.text = item.accepted.size.toString()
         holder.cancelledView?.text = item.cancelled.size.toString()

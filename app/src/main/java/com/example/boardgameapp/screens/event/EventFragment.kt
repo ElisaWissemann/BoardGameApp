@@ -1,16 +1,18 @@
 package com.example.boardgameapp.screens.event
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
+import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.event.EventDataSource
+import com.example.boardgameapp.data.user.User
+import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 
@@ -38,14 +40,18 @@ class EventFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //Get Data
-        val data = EventDataSource.events
+        val eventData = EventDataSource.events
+        val hostData = UserDataSource.users
         // Get EventID passed from upcomingEvents Destination
         val args: EventFragmentArgs by navArgs()
-        val event = data.find{it.id == args.eventId}
-
+        //extract the event with the ID passed via Navigation
+        val event: Event? = eventData.find{it.id == args.eventId}
+        val host: User? = hostData.find { it.id == event?.host }
 
         binding.date.text = event?.date
-        binding.host.text = getString(R.string.event_screen_host, event?.host)
+        val hostName = host?.name + " " + host?.surname
+        Log.i("ELISA", getString(R.string.event_screen_host, hostName))
+        binding.host.text = getString(R.string.event_screen_host, hostName)
 
     }
 

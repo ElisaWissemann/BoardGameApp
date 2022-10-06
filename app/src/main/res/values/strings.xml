@@ -24,7 +24,7 @@
     <string name="enter_event">ENTER EVENT</string>
     <string name="attendies">Attendies</string>
     <string name="game_night">Game Night</string>
-    <string name="event_screen_host">Host: %1$s</string>
+    <string name="event_screen_host">Host: %1s</string>
     <string name="food">FOOD</string>
     <string name="hostet_by">Hostet by: %1s</string>
     <string name="yes">YES</string>
