@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.EventDataSource
@@ -59,6 +60,8 @@ class EventFragment : Fragment() {
                 "HostRatingDialogFragment"
             )
         }
+
+
     }
 
 }

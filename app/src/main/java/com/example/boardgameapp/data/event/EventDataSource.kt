@@ -7,31 +7,31 @@ object EventDataSource {
     val events: List<Event> = listOf(
         Event(
             1,
-            "Julia",
+            1,
             "22.10.2022",
             listOf("Emma", "Stefan", "Rainhardt"), listOf("Anna")
         ),
         Event(
             2,
-            "Christian",
+            2,
             "22.11.2022",
             listOf("Anna", "Frank"), listOf("Anna")
         ),
         Event(
             3,
-            "Anna",
+            3,
             "22.12.2022",
             listOf("Anna"), listOf("Stefanie", "Frank")
         ),
         Event(
             4,
-            "Elisa",
+            1,
             "22.01.2023",
             listOf("Anna", "Frank", "Dieter", "Steffi"),  listOf()
         ),
         Event(
             5,
-            "Stefan",
+            2,
             "22.01.2023",
             listOf("Anna", "Frank", "Steffi"),  listOf("Frank")
         )

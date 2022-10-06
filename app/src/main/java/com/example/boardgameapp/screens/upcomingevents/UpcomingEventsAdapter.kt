@@ -48,6 +48,8 @@ class UpcomingEventsAdapter() : RecyclerView.Adapter<UpcomingEventsAdapter.Upcom
             val action = UpcomingEventsFragmentDirections.actionUpcomingEventsFragmentToEventFragment(eventId = item.id)
             holder.binding.root.findNavController().navigate(action)
         }
+
+
         }
 
 
