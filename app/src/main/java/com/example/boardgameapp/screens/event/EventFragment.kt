@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.Event
@@ -26,6 +28,7 @@ class EventFragment : Fragment() {
     private lateinit var binding: FragmentEventBinding
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,6 +38,10 @@ class EventFragment : Fragment() {
 
         // return view
         return binding.root
+
+
+
+
     }
 
 
@@ -66,6 +73,13 @@ class EventFragment : Fragment() {
                 "HostRatingDialogFragment"
             )
         }
+        val imageButton = view?.findViewById<ImageButton>(R.id.profile_button)
+        if (imageButton != null) {
+            imageButton.setOnClickListener {
+                findNavController().navigate(R.id.action_eventFragment_to_profileFragment)
+            }
+        }
+
 
 
     }
