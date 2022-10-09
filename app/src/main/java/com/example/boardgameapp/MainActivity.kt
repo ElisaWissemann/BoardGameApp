@@ -37,16 +37,9 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-
-
         // place view into the activities ViewHirarchy
         setContentView(binding.root)
     }
-
-
-
-
-
 
     /*OptionsMenu implementation
     * documentation https://developer.android.com/develop/ui/views/components/appbar
