@@ -73,8 +73,8 @@ class EventFragment : Fragment() {
                 "HostRatingDialogFragment"
             )
         }
-        val imageButton = view?.findViewById<ImageButton>(R.id.profile_button)
-        if (imageButton != null) {
+        val imageButton= binding.profileButton
+        if ( imageButton != null) {
             imageButton.setOnClickListener {
                 findNavController().navigate(R.id.action_eventFragment_to_profileFragment)
             }
