@@ -15,6 +15,7 @@ class UpcomingEventsAdapter() :
     RecyclerView.Adapter<UpcomingEventsAdapter.UpcomingEventsViewHolder>() {
 
     //Initialize Data
+    ////TODO: Move this to the ViewModel and make it MVVM conform
     private val eventData = EventDataSource.events
     private val userData = UserDataSource.users
     private var _binding: UpcomingEventsItemViewBinding? = null
@@ -43,6 +44,7 @@ class UpcomingEventsAdapter() :
 
     override fun onBindViewHolder(holder: UpcomingEventsViewHolder, position: Int) {
         val item = eventData[position]
+        //TODO: Move this to the ViewModel and make it MVVM conform
         val hostData = userData.find { it.id == item.host }
         val hostName = hostData?.name + " " + hostData?.surname
 

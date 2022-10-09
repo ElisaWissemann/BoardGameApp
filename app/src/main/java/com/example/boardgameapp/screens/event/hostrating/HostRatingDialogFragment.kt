@@ -34,6 +34,7 @@ class HostRatingDialog (userId: Int) : DialogFragment() {
         _binding = FragmentHostRatingDialogBinding.bind(view)
         var ratingBar = _binding!!.ratingBar
 
+        //TODO: Move this to the ViewModel and make it MVVM conform
         // get User rating
         var currentRating = FormatRatingUseCase(userId = userId).getRating()
         ratingBar.rating = currentRating.toFloat()
@@ -41,7 +42,7 @@ class HostRatingDialog (userId: Int) : DialogFragment() {
         //Code to save the RatingBar State
         //var number_of_stars = ratingbar.setOnRatingBarChangeListener { ratingbar, fl, b ->  Log.i("ELISA", ratingbar.rating.toString())}
 
-        //TODO: Add Rating to the UserDataSource Object
+        //TODO: Add Rating to the UserDataSource Object & Move this to the ViewModel and make it MVVM conform
         _binding!!.hrSubmit.setOnClickListener{
             Log.i("ELISA", ratingBar.rating.toString())
         }

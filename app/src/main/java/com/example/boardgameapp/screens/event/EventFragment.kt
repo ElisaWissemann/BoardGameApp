@@ -44,7 +44,8 @@ class EventFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //Get Data
+        //TODO: Move this to the ViewModel and make it MVVM conform
+        // Get Data
         val eventData = EventDataSource.events
         val hostData = UserDataSource.users
         // Get EventID passed from upcomingEvents Destination
@@ -62,6 +63,7 @@ class EventFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
+
         _binding!!.hostRatingButton.setOnClickListener {
             host?.let { it1 ->
                 HostRatingDialog(it1.id).show(
