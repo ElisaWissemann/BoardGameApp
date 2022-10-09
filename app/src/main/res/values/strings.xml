@@ -27,5 +27,7 @@
     <string name="event_screen_host">Host: %1s</string>
     <string name="food">FOOD</string>
     <string name="hostet_by">Hostet by: %1s</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
 
 </resources>
