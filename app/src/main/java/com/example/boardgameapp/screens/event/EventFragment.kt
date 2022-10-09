@@ -27,8 +27,6 @@ class EventFragment : Fragment() {
     private lateinit var viewModel: EventViewModel
     private lateinit var binding: FragmentEventBinding
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,12 +36,7 @@ class EventFragment : Fragment() {
 
         // return view
         return binding.root
-
-
-
-
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         //Get Data
@@ -52,7 +45,7 @@ class EventFragment : Fragment() {
         // Get EventID passed from upcomingEvents Destination
         val args: EventFragmentArgs by navArgs()
         //extract the event with the ID passed via Navigation
-        val event: Event? = eventData.find{it.id == args.eventId}
+        val event: Event? = eventData.find { it.id == args.eventId }
         val host: User? = hostData.find { it.id == event?.host }
 
         binding.date.text = event?.date
@@ -66,22 +59,15 @@ class EventFragment : Fragment() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
-
         binding.hostRatingButton.setOnClickListener {
             HostRatingDialog().show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
         }
-        val imageButton= binding.profileButton
-        if ( imageButton != null) {
-            imageButton.setOnClickListener {
-                findNavController().navigate(R.id.action_eventFragment_to_profileFragment)
-            }
+
+        binding.profileButton.setOnClickListener {
+            findNavController().navigate(R.id.action_eventFragment_to_profileFragment)
         }
-
-
-
     }
-
 }
