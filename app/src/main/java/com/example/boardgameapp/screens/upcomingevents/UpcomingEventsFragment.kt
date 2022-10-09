@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
@@ -42,9 +43,16 @@ class UpcomingEventsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         var recyclerView: RecyclerView = binding.verticalRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
         recyclerView.adapter = UpcomingEventsAdapter()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        (activity as AppCompatActivity).supportActionBar?.title = "Next"
 
     }
 

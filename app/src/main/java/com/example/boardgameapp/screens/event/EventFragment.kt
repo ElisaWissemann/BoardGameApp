@@ -1,7 +1,6 @@
 package com.example.boardgameapp.screens.event
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +17,7 @@ import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 
+//TODO: Add Comments
 class EventFragment : Fragment() {
 
     companion object {
@@ -25,33 +25,38 @@ class EventFragment : Fragment() {
     }
 
     private lateinit var viewModel: EventViewModel
-    private lateinit var binding: FragmentEventBinding
+    private var _binding: FragmentEventBinding? = null
+
+    // only valid between onCreateView and onDestroyView
+    private val binding get() = _binding!!
+
+    private var host: User? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = FragmentEventBinding.inflate(inflater, container, false)
+        _binding = FragmentEventBinding.inflate(inflater, container, false)
 
         // return view
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        //Get Data
+        //TODO: Move this to the ViewModel and make it MVVM conform
+        // Get Data
         val eventData = EventDataSource.events
         val hostData = UserDataSource.users
         // Get EventID passed from upcomingEvents Destination
         val args: EventFragmentArgs by navArgs()
         //extract the event with the ID passed via Navigation
         val event: Event? = eventData.find { it.id == args.eventId }
-        val host: User? = hostData.find { it.id == event?.host }
+        host = hostData.find { it.id == event?.host }
 
-        binding.date.text = event?.date
+        _binding!!.date.text = event?.date
         val hostName = host?.name + " " + host?.surname
-        Log.i("ELISA", getString(R.string.event_screen_host, hostName))
-        binding.host.text = getString(R.string.event_screen_host, hostName)
+        _binding!!.host.text = getString(R.string.event_screen_host, hostName)
 
     }
 
@@ -59,15 +64,23 @@ class EventFragment : Fragment() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
-        binding.hostRatingButton.setOnClickListener {
-            HostRatingDialog().show(
-                (activity as AppCompatActivity).supportFragmentManager,
-                "HostRatingDialogFragment"
-            )
+        _binding!!.hostRatingButton.setOnClickListener {
+            host?.let { it1 ->
+                HostRatingDialog(it1.id).show(
+                    (activity as AppCompatActivity).supportFragmentManager,
+                    "HostRatingDialogFragment"
+                )
+            }
         }
+
 
         binding.profileButton.setOnClickListener {
             findNavController().navigate(R.id.action_eventFragment_to_profileFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
