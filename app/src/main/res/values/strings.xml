@@ -29,5 +29,8 @@
     <string name="hostet_by">Hostet by: %1s</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
+    <string name="rate_the_host">RATE THE HOST</string>
+    <string name="submit">Submit</string>
+    <string name="total_rating_1d">Total rating: (%1s)</string>
 
 </resources>

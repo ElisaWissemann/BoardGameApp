@@ -63,6 +63,8 @@ class EventFragment : Fragment() {
 
         _binding!!.date.text = event?.date
         val hostName = host?.name + " " + host?.surname
+
+        // override host text getString from the res and replace %1s with the hostname
         _binding!!.host.text = getString(R.string.event_screen_host, hostName)
 
     }
