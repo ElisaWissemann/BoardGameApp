@@ -12,6 +12,7 @@ import com.example.boardgameapp.R
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentProfileBinding
+import com.example.boardgameapp.data.user.FormatRatingUseCase
 
 
 class ProfileFragment : Fragment() {
@@ -32,6 +33,8 @@ class ProfileFragment : Fragment() {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         return binding.root
+
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,9 +54,12 @@ class ProfileFragment : Fragment() {
         //_binding!!.eventText.text = getString(R.string.upcoming_hosting_event_text, upcomingEventDate)
         _binding!!.favoriteGameText.text = getString(R.string.favorite_game_text, user.favorite_game)
         _binding!!.favoriteFoodText.text = getString(R.string.favorite_food_text, user.favorite_food)
+
+        val currentRating = FormatRatingUseCase(userId = args.pUserId ).getRating()
+        binding.totalRatingText.text = getString(R.string.total_ratings_text, currentRating.toString())
     }
-    //TODO RatingAsHost und UpcomingHostingEvents
-    //TODO ScrollView
+    //TODO RatingBar und UpcomingHostingEvents
+
     //TODO EditButton DeleteButton
 
 

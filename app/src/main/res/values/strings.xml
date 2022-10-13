@@ -32,7 +32,7 @@
     <string name="rate_the_host">RATE THE HOST</string>
     <string name="submit">Submit</string>
     <string name="total_rating_1d">Total rating: (%1s)</string>
-    <string name="total_ratings_text" />
+    <string name="total_ratings_text">total rating: (%1s)</string>
     <string name="name" >%1s</string>
     <string name="address">%1s</string>
     <string name="upcoming_hosting_event_text">Upcoming hosting Event: %1d</string>
