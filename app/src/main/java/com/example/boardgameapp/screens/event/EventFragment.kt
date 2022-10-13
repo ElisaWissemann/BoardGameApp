@@ -1,25 +1,21 @@
 package com.example.boardgameapp.screens.event
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
-import com.example.boardgameapp.data.event.Event
-import com.example.boardgameapp.data.event.EventDataSource
 import com.example.boardgameapp.data.user.User
-import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
-import com.example.boardgameapp.screens.upcomingevents.UpcomingEventsFragmentDirections
+
 
 //TODO: Add Comments
 class EventFragment : Fragment() {
@@ -29,67 +25,80 @@ class EventFragment : Fragment() {
     }
 
     private lateinit var viewModel: EventViewModel
-    private var _binding: FragmentEventBinding? = null
     private lateinit var navController: NavController
-
-    // only valid between onCreateView and onDestroyView
-    private val binding get() = _binding!!
-
     private lateinit var host: User
+    private lateinit var binding: FragmentEventBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        super.onCreateView(inflater, container, savedInstanceState)
 
-        _binding = FragmentEventBinding.inflate(inflater, container, false)
+        /* DATABINDING
+         * Inflate the view and obtain an instance of the binding class
+         * Documentation: https://developer.android.com/topic/libraries/data-binding
+         * CodeLab: https://developer.android.com/codelabs/android-databinding#2
+         */
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_event,
+            container,
+            false
+        )
+        //binding = FragmentEventBinding.bind(binding.root)
+
+
+        /*VIEWMODEL*/
+        viewModel = ViewModelProvider(this).get(EventViewModel::class.java)
+        binding.eventViewModel = viewModel
+        binding.setLifecycleOwner(this)
         navController = findNavController()
 
         // return view
-        return binding.root
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         //TODO: Move this to the ViewModel and make it MVVM conform
         // Get Data
-        val eventData = EventDataSource.events
-        val hostData = UserDataSource.users
-        // Get EventID passed from upcomingEvents Destination
-        val args: EventFragmentArgs by navArgs()
         //extract the event with the ID passed via Navigation
-        val event: Event? = eventData.find { it.id == args.eventId }
-        // !! tells the system that the host will never be null, will be catched on database
-        host = hostData.find { it.id == event?.host }!!
-
-        _binding!!.date.text = event?.date
-        val hostName = host?.name + " " + host?.surname
-
-        // override host text getString from the res and replace %1s with the hostname
-        _binding!!.host.text = getString(R.string.event_screen_host, hostName)
-
+        //TODO: Pass args to the ViewModel via Hilt
+        val args: EventFragmentArgs by navArgs()
+        if (savedInstanceState != null) {
+            savedInstanceState.putInt("eventId", args.eventId)
+        }
+        host = viewModel.host.value!!
     }
 
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
-        _binding!!.hostRatingButton.setOnClickListener {
+        //TODO Move this to the ViewModel and observe ClickListener in layout_ressource
+        binding!!.hostRatingButton.setOnClickListener {
             HostRatingDialog(host.id).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
         }
-        
-        binding.profileButton.setOnClickListener {
+
+        binding!!.profileButton.setOnClickListener {
             val action =
-                EventFragmentDirections.actionEventFragmentToProfileFragment(pUserId = it.id)
-            navController.navigate(action)
+                viewModel.hostId.value?.let { it1 -> EventFragmentDirections.actionEventFragmentToProfileFragment(pUserId = it1) }
+            if (action != null) {
+                navController.navigate(action)
+            }
 
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+
     }
+
+
 }

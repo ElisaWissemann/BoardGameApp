@@ -15,11 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.databinding.FragmentUpcomingEventsBinding
-import com.example.boardgameapp.databinding.UpcomingEventsItemViewBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
 
 class UpcomingEventsFragment : Fragment() {
 
@@ -27,8 +22,8 @@ class UpcomingEventsFragment : Fragment() {
         fun newInstance() = UpcomingEventsFragment()
     }
 
-    private lateinit var binding: FragmentUpcomingEventsBinding
-    private lateinit var viewModel: UpcomingEventsViewModel
+    lateinit var binding: FragmentUpcomingEventsBinding
+    lateinit var viewModel: UpcomingEventsViewModel
 
 
     override fun onCreateView(

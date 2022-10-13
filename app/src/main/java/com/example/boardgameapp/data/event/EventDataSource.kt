@@ -3,6 +3,7 @@ package com.example.boardgameapp.data.event
 /**
  * An object to generate a static list of events*/
 object EventDataSource {
+    //TODO: Change date to type Date
 
     val events: List<Event> = listOf(
         Event(
