@@ -9,10 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
+import com.example.boardgameapp.data.event.Event
+import com.example.boardgameapp.data.event.EventDataSource
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentProfileBinding
 import com.example.boardgameapp.data.user.FormatRatingUseCase
+import com.example.boardgameapp.data.user.UserDataSource.users
+import java.text.DecimalFormat
+import kotlin.math.roundToInt
+import kotlin.math.roundToLong
 
 
 class ProfileFragment : Fragment() {
@@ -24,6 +30,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var user: User
+    private lateinit var date: Event
     private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
@@ -50,17 +57,42 @@ class ProfileFragment : Fragment() {
         val name = user.name + " " + user.surname
         _binding!!.nameText.text = getString(R.string.name, name)
         _binding!!.adressText.text = getString(R.string.address, user.address)
-        //val upcomingEventDate = users.hosting_events
-        //_binding!!.eventText.text = getString(R.string.upcoming_hosting_event_text, upcomingEventDate)
+
         _binding!!.favoriteGameText.text = getString(R.string.favorite_game_text, user.favorite_game)
         _binding!!.favoriteFoodText.text = getString(R.string.favorite_food_text, user.favorite_food)
 
+        //RatingBar
+        val averageRating = FormatRatingUseCase(userId = args.pUserId ).getRating()
+        binding.totalRatingBar.setRating(averageRating.toFloat())
+        //totalRatingText
         val currentRating = FormatRatingUseCase(userId = args.pUserId ).getRating()
         binding.totalRatingText.text = getString(R.string.total_ratings_text, currentRating.toString())
-    }
-    //TODO RatingBar und UpcomingHostingEvents
+        //Upcoming Hosting Event
+        val eventData = EventDataSource.events
+        date = eventData.find { it.id == args.pUserId }!!
+        _binding!!.eventText.text = getString(R.string.upcoming_hosting_event_text, date.date)
 
-    //TODO EditButton DeleteButton
+    }
+
+//    override fun onStart() {
+//        super.onStart()
+//        //TODO Delete Profile Button
+//        binding!!.deleteProfileButton.setOnClickListener {
+//            val action =
+//        }
+//        //TODO Edit Profile Button
+//        binding!!.editProfileButton.setOnClickListener {
+//            val action =
+//        }
+//    }
+
+
+
+
+
+
+
+
 
 
 
