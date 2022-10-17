@@ -44,10 +44,13 @@
         android:id="@+id/profileFragment"
         android:name="com.example.boardgameapp.screens.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile">
+        tools:layout="@layout/fragment_profile" >
         <argument
             android:name="p_user_id"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_profileFragment_to_eventFragment"
+            app:destination="@id/eventFragment" />
     </fragment>
     <navigation android:id="@+id/login_navigation"
         app:startDestination="@id/loginFragment">
