@@ -8,20 +8,15 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.Event
-import com.example.boardgameapp.data.event.EventDataSource
-import com.example.boardgameapp.data.event.EventDataSource.events
-import com.example.boardgameapp.data.user.FormatRatingUseCase
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
-import com.example.boardgameapp.databinding.FragmentHostRatingDialogBinding
-import com.example.boardgameapp.screens.event.EventFragmentArgs
 
 
-class AttendenceFragment (): DialogFragment() {
+class AttendenceDialogFragment() : DialogFragment() {
 
     private var _binding: FragmentAttendenceDialogBinding? = null
     //This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
-    private lateinit var accepted: Event
+    private lateinit var event: Event
 
 
 
@@ -56,10 +51,11 @@ class AttendenceFragment (): DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         //TODO get eventID
-        val args: EventFragmentArgs by navArgs()
-        val attendies = EventDataSource.events
-        accepted = attendies.find { it.id == args.eventId}!!
-        binding.confirmedText.text = getString(R.string.confirmedAttendence, accepted.toString())
+//        val args: AttendenceDialogFragmentArgs by navArgs()
+//        val attendies = EventDataSource.events
+//        event = attendies.find { it.id == args.eventId}!!
+//
+//        binding.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted)
 //
 //        val cancelled = (eventId = eventId)
 //        binding.cancelledText.text = getString(R.string.cancelledAttendence, cancelled.toString())

@@ -32,5 +32,7 @@
     <string name="rate_the_host">RATE THE HOST</string>
     <string name="submit">Submit</string>
     <string name="total_rating_1d">Total rating: (%1s)</string>
+    <string name="confirmedAttendence">%1s</string>
+    <string name="cancelledAttendence">%1s</string> />
 
 </resources>

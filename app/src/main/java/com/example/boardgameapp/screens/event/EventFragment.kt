@@ -9,12 +9,15 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
+import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.databinding.FragmentEventBinding
-import com.example.boardgameapp.screens.event.attendence.AttendenceFragment
+import com.example.boardgameapp.screens.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 
 
@@ -28,6 +31,7 @@ class EventFragment : Fragment() {
     private lateinit var viewModel: EventViewModel
     private lateinit var navController: NavController
     private lateinit var host: User
+    private lateinit var event: Event
     private lateinit var binding: FragmentEventBinding
 
     override fun onCreateView(
@@ -96,10 +100,9 @@ class EventFragment : Fragment() {
         }
 
         binding!!.attendenceButton.setOnClickListener {
-            AttendenceFragment().show(
-                (activity as AppCompatActivity).supportFragmentManager,
-                "AttendenceFragment"
-            )
+            val action = EventFragmentDirections.actionEventFragmentToAttendenceDialogFragment(eventId = event.id)
+            view?.findNavController()?.navigate(action)
+
         }
     }
 
@@ -110,3 +113,4 @@ class EventFragment : Fragment() {
 
 
 }
+
