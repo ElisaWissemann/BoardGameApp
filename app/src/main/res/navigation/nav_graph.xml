@@ -29,9 +29,6 @@
         <action
             android:id="@+id/action_eventFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
-        <action
-            android:id="@+id/action_eventFragment_to_attendenceDialogFragment"
-            app:destination="@id/attendenceDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
@@ -69,13 +66,4 @@
             tools:layout="@layout/fragment_login" />
     </navigation>
     <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" />
-    <fragment
-        android:id="@+id/attendenceDialogFragment"
-        android:name="com.example.boardgameapp.screens.event.attendence.AttendenceDialogFragment"
-        android:label="fragment_attendence_dialog"
-        tools:layout="@layout/fragment_attendence_dialog">
-        <argument
-            android:name="eventId"
-            app:argType="integer" />
-    </fragment>
 </navigation>

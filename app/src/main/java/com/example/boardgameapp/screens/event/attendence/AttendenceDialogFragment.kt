@@ -8,10 +8,14 @@ import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.Event
+import com.example.boardgameapp.data.event.EventDataSource
+import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
+import com.example.boardgameapp.screens.profile.ProfileFragmentArgs
 
 
-class AttendenceDialogFragment() : DialogFragment() {
+
+class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
 
     private var _binding: FragmentAttendenceDialogBinding? = null
     //This property is only valid between onCreateView and onDestroyView
@@ -32,6 +36,12 @@ class AttendenceDialogFragment() : DialogFragment() {
         //ViewBinding
         _binding = FragmentAttendenceDialogBinding.bind(view)
 
+        //TODO LÖSUNG!!!!
+        val eventData = EventDataSource.events
+        event = eventData.find { it.id == eventId }!!
+        _binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted)
+        _binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled)
+
 
         binding.acceptButton.setOnClickListener {
             //TODO I take part
@@ -47,20 +57,7 @@ class AttendenceDialogFragment() : DialogFragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
-        //TODO get eventID
-//        val args: AttendenceDialogFragmentArgs by navArgs()
-//        val attendies = EventDataSource.events
-//        event = attendies.find { it.id == args.eventId}!!
-//
-//        binding.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted)
-//
-//        val cancelled = (eventId = eventId)
-//        binding.cancelledText.text = getString(R.string.cancelledAttendence, cancelled.toString())
-
-    }
 
 
     override fun onStart() {

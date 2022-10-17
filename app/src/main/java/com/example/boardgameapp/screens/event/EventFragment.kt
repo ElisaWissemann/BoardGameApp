@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -76,6 +75,8 @@ class EventFragment : Fragment() {
             savedInstanceState.putInt("eventId", args.eventId)
         }
         host = viewModel.host.value!!
+        //TODO Chris
+        event = viewModel.event.value!!
     }
 
     override fun onStart() {
@@ -96,13 +97,14 @@ class EventFragment : Fragment() {
             if (action != null) {
                 navController.navigate(action)
             }
-
         }
 
+        //TODO Pass the eventId
         binding!!.attendenceButton.setOnClickListener {
-            val action = EventFragmentDirections.actionEventFragmentToAttendenceDialogFragment(eventId = event.id)
-            view?.findNavController()?.navigate(action)
-
+            AttendenceDialogFragment(event.id).show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "AttendenceDialogFragment"
+            )
         }
     }
 
