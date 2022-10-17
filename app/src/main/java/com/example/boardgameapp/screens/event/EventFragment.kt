@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.databinding.FragmentEventBinding
+import com.example.boardgameapp.screens.event.attendence.AttendenceFragment
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 
 
@@ -92,6 +93,13 @@ class EventFragment : Fragment() {
                 navController.navigate(action)
             }
 
+        }
+
+        binding!!.attendenceButton.setOnClickListener {
+            AttendenceFragment().show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "AttendenceFragment"
+            )
         }
     }
 
