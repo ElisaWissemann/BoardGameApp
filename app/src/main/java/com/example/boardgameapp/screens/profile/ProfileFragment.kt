@@ -1,24 +1,18 @@
 package com.example.boardgameapp.screens.profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.event.EventDataSource
+import com.example.boardgameapp.data.user.FormatRatingUseCase
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.data.user.UserDataSource
 import com.example.boardgameapp.databinding.FragmentProfileBinding
-import com.example.boardgameapp.data.user.FormatRatingUseCase
-import com.example.boardgameapp.data.user.UserDataSource.users
-import java.text.DecimalFormat
-import kotlin.math.roundToInt
-import kotlin.math.roundToLong
 
 
 class ProfileFragment : Fragment() {
@@ -36,12 +30,10 @@ class ProfileFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         return binding.root
-
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -49,9 +41,6 @@ class ProfileFragment : Fragment() {
 
         val userData = UserDataSource.users
         val args: ProfileFragmentArgs by navArgs()
-
-        //Log.i("Chris", args.toString())
-
         user = userData.find { it.id == args.pUserId }!!
         _binding!!.usernameText.text = getString(R.string.username, user.name)
         val name = user.name + " " + user.surname
@@ -63,10 +52,8 @@ class ProfileFragment : Fragment() {
 
         //RatingBar
         val averageRating = FormatRatingUseCase(userId = args.pUserId ).getRating()
-        binding.totalRatingBar.setRating(averageRating.toFloat())
-        //totalRatingText
-        val currentRating = FormatRatingUseCase(userId = args.pUserId ).getRating()
-        binding.totalRatingText.text = getString(R.string.total_ratings_text, currentRating.toString())
+        binding.totalRatingBar.setRating(averageRating)
+        binding.totalRatingText.text = getString(R.string.total_rating_1d, averageRating.toString())
         //Upcoming Hosting Event
         val eventData = EventDataSource.events
         date = eventData.find { it.id == args.pUserId }!!
