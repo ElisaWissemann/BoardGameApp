@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.ui.node.ViewAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -15,9 +16,9 @@ import com.example.boardgameapp.R
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
+import com.example.boardgameapp.screens.upcomingevents.UpcomingEventsAdapter
 
 
-//TODO: Add Comments
 class EventFragment : Fragment() {
 
     companion object {
@@ -27,12 +28,12 @@ class EventFragment : Fragment() {
     private lateinit var viewModel: EventViewModel
     private lateinit var navController: NavController
     private lateinit var host: User
-    private lateinit var binding: FragmentEventBinding
+    private var binding: FragmentEventBinding? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         super.onCreateView(inflater, container, savedInstanceState)
 
         /* DATABINDING
@@ -46,15 +47,12 @@ class EventFragment : Fragment() {
             container,
             false
         )
-        //binding = FragmentEventBinding.bind(binding.root)
-
 
         /*VIEWMODEL*/
         viewModel = ViewModelProvider(this).get(EventViewModel::class.java)
-        binding.eventViewModel = viewModel
-        binding.setLifecycleOwner(this)
+        binding?.eventViewModel = viewModel
+        binding?.lifecycleOwner = this
         navController = findNavController()
-
         // return view
         return binding!!.root
     }
@@ -64,12 +62,12 @@ class EventFragment : Fragment() {
 
         //TODO: Move this to the ViewModel and make it MVVM conform
         // Get Data
-        //extract the event with the ID passed via Navigation
         //TODO: Pass args to the ViewModel via Hilt
+        //extract the event with the ID passed via Navigation
         val args: EventFragmentArgs by navArgs()
-        if (savedInstanceState != null) {
-            savedInstanceState.putInt("eventId", args.eventId)
-        }
+        //save the eventId in the Bundle
+        savedInstanceState?.putInt("eventId", args.eventId)
+        //initialize host
         host = viewModel.host.value!!
     }
 
@@ -77,28 +75,26 @@ class EventFragment : Fragment() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
-        //TODO Move this to the ViewModel and observe ClickListener in layout_ressource
-        binding!!.hostRatingButton.setOnClickListener {
+        //create and show HostRatigDialog
+        binding?.hostRatingButton?.setOnClickListener {
             HostRatingDialog(host.id).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
         }
 
+        //Navigate from EventScreen to ProfileScreen
         binding!!.profileButton.setOnClickListener {
             val action =
                 viewModel.hostId.value?.let { it1 -> EventFragmentDirections.actionEventFragmentToProfileFragment(pUserId = it1) }
             if (action != null) {
                 navController.navigate(action)
             }
-
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-
+        binding = null
     }
-
-
 }

@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -25,8 +24,11 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         navController = navHostFragment.findNavController()
+
+
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
+
 
         // place view into the activities ViewHirarchy
         setContentView(binding.root)
