@@ -21,12 +21,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="24dp"
             android:text="@{eventViewModel.date}"
+            app:layout_constraintBottom_toTopOf="@+id/choose_games_button"
             app:layout_constraintEnd_toEndOf="@+id/profile_button"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/profile_button"
-            app:layout_constraintTop_toBottomOf="@+id/profile_button" />
+            app:layout_constraintTop_toBottomOf="@+id/host" />
 
         <TextView
             android:id="@+id/host"
@@ -34,8 +35,9 @@
             android:layout_height="16dp"
             android:layout_marginTop="20dp"
             android:text="@{eventViewModel.hostName}"
+            app:layout_constraintBottom_toTopOf="@+id/date"
             app:layout_constraintEnd_toEndOf="@+id/profile_button"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/profile_button"
             app:layout_constraintTop_toBottomOf="@+id/profile_button" />
 
@@ -45,8 +47,9 @@
             android:layout_height="39dp"
             android:layout_marginTop="100dp"
             android:background="@drawable/profile"
+            app:layout_constraintBottom_toTopOf="@+id/host"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -58,8 +61,9 @@
             android:text="@string/choose_games"
             app:layout_constraintBottom_toTopOf="@+id/games_voting_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
 
         <Button
             android:id="@+id/games_voting_button"
@@ -69,8 +73,9 @@
             android:text="@string/games_voting"
             app:layout_constraintBottom_toTopOf="@+id/attendence_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/choose_games_button" />
 
         <Button
             android:id="@+id/attendence_button"
@@ -80,7 +85,9 @@
             android:text="@string/attendence"
             app:layout_constraintBottom_toTopOf="@+id/food"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/games_voting_button" />
 
         <Button
             android:id="@+id/food"
@@ -90,7 +97,9 @@
             android:text="@string/food"
             app:layout_constraintBottom_toTopOf="@+id/delayed_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/attendence_button" />
 
         <Button
             android:id="@+id/delayed_button"
@@ -100,7 +109,9 @@
             android:text="@string/i_m_delayed"
             app:layout_constraintBottom_toTopOf="@+id/host_rating_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/food" />
 
         <Button
             android:id="@+id/host_rating_button"
@@ -110,8 +121,9 @@
             android:text="@string/host_rating"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/delayed_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
