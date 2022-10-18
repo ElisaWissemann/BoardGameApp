@@ -75,7 +75,6 @@ class EventFragment : Fragment() {
             savedInstanceState.putInt("eventId", args.eventId)
         }
         host = viewModel.host.value!!
-        //TODO Chris
         event = viewModel.event.value!!
     }
 
@@ -99,7 +98,6 @@ class EventFragment : Fragment() {
             }
         }
 
-        //TODO Pass the eventId
         binding!!.attendenceButton.setOnClickListener {
             AttendenceDialogFragment(event.id).show(
                 (activity as AppCompatActivity).supportFragmentManager,

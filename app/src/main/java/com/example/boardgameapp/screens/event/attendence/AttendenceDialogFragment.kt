@@ -36,11 +36,10 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
         //ViewBinding
         _binding = FragmentAttendenceDialogBinding.bind(view)
 
-        //TODO LÖSUNG!!!!
         val eventData = EventDataSource.events
         event = eventData.find { it.id == eventId }!!
-        _binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted)
-        _binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled)
+        _binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")
+        _binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled).replace("[", "").replace("]", "")
 
 
         binding.acceptButton.setOnClickListener {
