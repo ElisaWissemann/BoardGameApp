@@ -5,8 +5,8 @@ class FormatRatingUseCase(userId: Int) {
     private val user: User? = UserDataSource.users.find { it.id == userId }
     private val rating: List<Double> = user!!.rating
 
-    fun getRating() : Double{
-        return rating.average()
+    fun getRating() : Float{
+        return rating.average().toFloat()
     }
 
 }

@@ -12,7 +12,7 @@ object UserDataSource {
             listOf(1),
             "Monopoly",
             "greek",
-            listOf(4.0)
+            listOf(4.0, 2.0, 2.0)
         ),
         User(
             2,
