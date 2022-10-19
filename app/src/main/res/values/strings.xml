@@ -38,5 +38,7 @@
     <string name="favorite_game_text">Favorite Game: %1s</string>
     <string name="favorite_food_text">Favorite Food: %1s</string>
     <string name="username">%1s</string>
+    <string name="confirmedAttendence">%1s</string>
+    <string name="cancelledAttendence">%1s</string> />
 
 </resources>

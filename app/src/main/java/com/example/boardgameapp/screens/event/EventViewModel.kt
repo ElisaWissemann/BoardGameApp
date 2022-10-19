@@ -24,6 +24,7 @@ class EventViewModel(private val state: SavedStateHandle) : ViewModel() {
     private val _eventData = MutableLiveData<List<Event>>()
     private var _eventId: Int? = null
     private val _event = MutableLiveData<Event>()
+    val event: MutableLiveData<Event> get() = _event
 
     //hand over to layoutRessource
     private val _date = MutableLiveData<String>()
@@ -43,6 +44,7 @@ class EventViewModel(private val state: SavedStateHandle) : ViewModel() {
 
     private val _hostId = MutableLiveData<Int>()
     val hostId: LiveData<Int> get() = _hostId
+
 
 
     //Initialize Block - gets called when the ViewModel is created

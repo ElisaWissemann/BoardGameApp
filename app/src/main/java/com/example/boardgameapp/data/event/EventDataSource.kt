@@ -33,7 +33,7 @@ object EventDataSource {
         Event(
             5,
             2,
-            "22.01.2023",
+            "22.02.2023",
             listOf("Anna", "Frank", "Steffi"),  listOf("Frank")
         )
     )

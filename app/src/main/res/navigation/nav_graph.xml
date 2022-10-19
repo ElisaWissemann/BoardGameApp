@@ -14,11 +14,6 @@
             app:destination="@id/eventFragment" />
     </fragment>
     <fragment
-        android:id="@+id/attendenceFragment"
-        android:name="com.example.boardgameapp.screens.attendence.AttendenceFragment"
-        android:label="fragment_attendence"
-        tools:layout="@layout/fragment_attendence" />
-    <fragment
         android:id="@+id/chooseGamesFragment"
         android:name="com.example.boardgameapp.screens.choosegames.ChooseGamesFragment"
         android:label="fragment_choose_games"
