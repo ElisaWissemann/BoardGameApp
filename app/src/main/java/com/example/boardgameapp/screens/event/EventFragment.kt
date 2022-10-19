@@ -15,6 +15,7 @@ import com.example.boardgameapp.R
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
+import com.example.boardgameapp.screens.profile.ProfileFragmentDirections
 
 
 //TODO: Add Comments
@@ -86,8 +87,8 @@ class EventFragment : Fragment() {
         }
 
         binding!!.profileButton.setOnClickListener {
-            val action =
-                viewModel.hostId.value?.let { it1 -> EventFragmentDirections.actionEventFragmentToProfileFragment(pUserId = it1) }
+             val action =
+                viewModel.hostId.value?.let { it1 -> ProfileFragmentDirections.actionGlobalProfileFragment(pUserId = it1) }
             if (action != null) {
                 navController.navigate(action)
             }
