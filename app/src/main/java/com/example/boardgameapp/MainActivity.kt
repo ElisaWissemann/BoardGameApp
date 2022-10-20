@@ -52,8 +52,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         //This method is called when the up button is pressed. Just the pop back stack.
-        navController.navigateUp()
-                || super.onSupportNavigateUp()
-        return true
+
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

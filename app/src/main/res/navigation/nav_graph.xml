@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/global_profileFragment"
-    app:startDestination="@id/gameFragment">
+    app:startDestination="@id/upcomingEventsFragment">
     <fragment
         android:id="@+id/upcomingEventsFragment"
         android:name="com.example.boardgameapp.screens.upcomingevents.UpcomingEventsFragment"
         android:label="fragment_upcoming_events"
-        tools:layout="@layout/fragment_upcoming_events" >
+        tools:layout="@layout/fragment_upcoming_events">
         <action
             android:id="@+id/action_upcomingEventsFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
@@ -16,19 +16,25 @@
     <fragment
         android:id="@+id/chooseGamesFragment"
         android:name="com.example.boardgameapp.screens.choosegames.ChooseGamesFragment"
-        android:label="fragment_choose_games"
+        android:label="Choose a Game"
         tools:layout="@layout/fragment_choose_games" />
     <fragment
         android:id="@+id/eventFragment"
         android:name="com.example.boardgameapp.screens.event.EventFragment"
         android:label="fragment_event"
-        tools:layout="@layout/fragment_event" >
+        tools:layout="@layout/fragment_event">
         <argument
             android:name="eventId"
             app:argType="integer" />
         <action
             android:id="@+id/action_eventFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_eventFragment_to_gameFragment"
+            app:destination="@id/gameFragment" />
+        <action
+            android:id="@+id/action_eventFragment_to_chooseGamesFragment4"
+            app:destination="@id/chooseGamesFragment" />
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
@@ -44,16 +50,17 @@
         android:id="@+id/profileFragment"
         android:name="com.example.boardgameapp.screens.profile.ProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <argument
             android:name="p_user_id"
             app:argType="integer"
-            android:defaultValue="1"/>
+            android:defaultValue="1" />
         <action
             android:id="@+id/action_profileFragment_to_eventFragment"
             app:destination="@id/eventFragment" />
     </fragment>
-    <navigation android:id="@+id/login_navigation"
+    <navigation
+        android:id="@+id/login_navigation"
         app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/registerFragment"
@@ -66,5 +73,7 @@
             android:label="fragment_login"
             tools:layout="@layout/fragment_login" />
     </navigation>
-    <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" />
+    <action
+        android:id="@+id/action_global_profileFragment"
+        app:destination="@id/profileFragment" />
 </navigation>

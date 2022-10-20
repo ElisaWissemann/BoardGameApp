@@ -16,8 +16,10 @@ import com.example.boardgameapp.R
 import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.databinding.FragmentEventBinding
+import com.example.boardgameapp.screens.choosegames.ChooseGamesFragmentDirections
 import com.example.boardgameapp.screens.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
+import com.example.boardgameapp.screens.game.GameFragmentDirections
 import com.example.boardgameapp.screens.profile.ProfileFragmentDirections
 
 
@@ -89,6 +91,12 @@ class EventFragment : Fragment() {
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
+        }
+
+
+        binding.chooseGamesButton.setOnClickListener {
+                navController.navigate(R.id.action_eventFragment_to_chooseGamesFragment4)
+
         }
 
         binding!!.profileButton.setOnClickListener {

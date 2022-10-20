@@ -42,6 +42,7 @@
     <string name="cancelledAttendence">%1s</string>
     <string name="please_select_two_games">Please select two games</string>
     <string name="confirm">Confirm</string>
+    <string name="what_do_you_want_to_play">What_do_you_want_to_play</string>
     />
 
 </resources>
