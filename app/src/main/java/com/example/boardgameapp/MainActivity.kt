@@ -1,6 +1,7 @@
 package com.example.boardgameapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.boardgameapp.databinding.ActivityMainBinding
+import com.example.boardgameapp.screens.profile.ProfileFragmentDirections
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -45,8 +47,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        //this will trigger the click on the menu item if the id of the destination matches the id in dem menu item in menu_main.xml
-        // if it returns null then call super constructor
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
@@ -54,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         //This method is called when the up button is pressed. Just the pop back stack.
         navController.navigateUp()
                 || super.onSupportNavigateUp()
-        supportFragmentManager.popBackStack()
         return true
     }
 }

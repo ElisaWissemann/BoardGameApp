@@ -31,6 +31,14 @@
     <string name="logout">Logout</string>
     <string name="rate_the_host">RATE THE HOST</string>
     <string name="submit">Submit</string>
-    <string name="total_rating_1d">Total rating: (%1s)</string>
+    <string name="total_rating_1d">Total rating: (%.3s)</string>
+    <string name="name" >%1s</string>
+    <string name="address">%1s</string>
+    <string name="upcoming_hosting_event_text">Upcoming hosting Event: %1s</string>
+    <string name="favorite_game_text">Favorite Game: %1s</string>
+    <string name="favorite_food_text">Favorite Food: %1s</string>
+    <string name="username">%1s</string>
+    <string name="confirmedAttendence">%1s</string>
+    <string name="cancelledAttendence">%1s</string> />
 
 </resources>
