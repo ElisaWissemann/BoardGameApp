@@ -1,6 +1,7 @@
 package com.example.boardgameapp.screens.game
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,9 +25,12 @@ class GameFragment : Fragment(), OnItemSelectedListener {
     private var binding: FragmentGameBinding? = null
     private lateinit var viewModel: GameViewModel
     var games : Array<String> = arrayOf()
-    private lateinit var spinner1: Spinner
-
-    private lateinit var spinner2: Spinner
+    var courses = arrayOf<String?>(
+        "C", "Data structures",
+        "Interview prep", "Algorithms",
+        "DSA with java", "OS"
+    )
+    private lateinit var spinner: Spinner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,43 +44,40 @@ class GameFragment : Fragment(), OnItemSelectedListener {
             false
         )
 
-        spinner1 = binding!!.gSpinner1
-        spinner1.onItemSelectedListener = this
-        spinner2 = binding!!.gSpinner2
-        spinner2.onItemSelectedListener = this
-        games = loadGameData()
+        spinner = binding!!.gSpinner1
+        spinner.onItemSelectedListener = this
+        loadGameData()
 
         val ad: ArrayAdapter<*> = ArrayAdapter<Any?>(
             requireContext(),
             android.R.layout.simple_spinner_item,
-            games
+            courses
         )
 
         ad.setDropDownViewResource(
             android.R.layout.simple_spinner_dropdown_item
         )
-        val ad2: ArrayAdapter<*> = ArrayAdapter<Any?>(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            games
-        )
+        spinner.adapter = ad
 
-        ad2.setDropDownViewResource(
-            android.R.layout.simple_spinner_dropdown_item
-        )
-        spinner1.adapter = ad
-        spinner2.adapter = ad2
 
+        //setupSpinner1()
         return binding!!.root
     }
 
-    private fun loadGameData() = GameDataSource.games.map { it.name }.toTypedArray()
+    private fun loadGameData() {
+        var gamesDataSource = GameDataSource.games
+        val gameIterator = gamesDataSource.iterator()
 
+        while(gameIterator.hasNext()){
+                Log.i("ELISA", gameIterator.)
+        }
 
-    override fun onItemSelected(p0: AdapterView<*>?, vw: View?, pos: Int, id: Long) {
+    }
+
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         Toast.makeText(
             context,
-            games[pos],
+            courses[1],
             Toast.LENGTH_LONG
         )
             .show()
