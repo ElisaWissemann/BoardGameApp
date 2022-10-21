@@ -1,6 +1,5 @@
 package com.example.boardgameapp.data.event
 
-import java.util.Date
 
 /**
  * A data class to represent the information presented in the Event Screen*/
