@@ -1,14 +1,18 @@
 package com.example.boardgameapp.data.event
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity (tableName = "events")
 /**
  * A data class to represent the information presented in the Event Screen*/
 data class Event(
-    val id: Int,
-    val host: Int,
+    @PrimaryKey @ColumnInfo(name = "rowid") val id: Int,
+    @ColumnInfo(name = "host") val host: Int,
     //only for testing will be changed to Date
-    val date: String,
+    @ColumnInfo(name = "date") val date: String,
     //only for testing will be changed to an array/list
-    val accepted: List<String>,
-    val cancelled: List<String>
+    @ColumnInfo(name = "accepted") val accepted: List<String>,
+    @ColumnInfo(name = "cancelled") val cancelled: List<String>
 )

@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.gms.google-services'
     id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
 }
@@ -61,6 +60,7 @@ dependencies {
     // Lifecycle dependencies
     //implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
     //ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$version_lifecycle_extensions"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$version_lifecycle_extensions"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle_extensions"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$version_lifecycle_extensions"
@@ -83,6 +83,7 @@ dependencies {
     kapt "androidx.room:room-compiler:$version_room"
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$version_room"
+    implementation "androidx.room:room-rxjava2:$version_room"
 
     // Coroutines dependencies
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"

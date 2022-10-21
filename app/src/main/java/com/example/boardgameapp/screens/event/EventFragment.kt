@@ -13,6 +13,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
+import com.example.boardgameapp.data.BoardGameRepository
+import com.example.boardgameapp.data.event.BoardGameDao
+import com.example.boardgameapp.data.event.BoardGameDatabase
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
@@ -25,10 +28,12 @@ class EventFragment : Fragment() {
         fun newInstance() = EventFragment()
     }
 
-    private lateinit var viewModel: EventViewModel
+   // private lateinit var viewModel: EventViewModel
     private lateinit var navController: NavController
     private lateinit var host: User
     private var binding: FragmentEventBinding? = null
+    private lateinit var dao: BoardGameDao
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,10 +54,18 @@ class EventFragment : Fragment() {
         )
 
         /*VIEWMODEL*/
-        viewModel = ViewModelProvider(this).get(EventViewModel::class.java)
-        binding?.eventViewModel = viewModel
-        binding?.lifecycleOwner = this
+        /*viewModel = ViewModelProvider(this).get(EventViewModel::class.java)*/
+        //binding?.eventViewModel = viewModel
+        //binding?.lifecycleOwner = this
         navController = findNavController()
+
+        val db = BoardGameDatabase
+        val dao = db.getInstance(requireActivity().application).boardGameDao
+        val repository = BoardGameRepository(dao)
+        // TODO check this viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
+        val factory = EventViewModelFactory(repository)
+        binding?.eventViewModel = ViewModelProvider(this,factory).get(EventViewModel::class.java)
+        binding?.lifecycleOwner = this
         // return view
         return binding!!.root
     }
@@ -66,9 +79,9 @@ class EventFragment : Fragment() {
         //extract the event with the ID passed via Navigation
         val args: EventFragmentArgs by navArgs()
         //save the eventId in the Bundle
-        savedInstanceState?.putInt("eventId", args.eventId)
+        //savedInstanceState?.putInt("eventId", args.eventId)
         //initialize host
-        host = viewModel.host.value!!
+       // host = viewModel.host.value!!
     }
 
     override fun onStart() {
@@ -85,11 +98,11 @@ class EventFragment : Fragment() {
 
         //Navigate from EventScreen to ProfileScreen
         binding!!.profileButton.setOnClickListener {
-            val action =
-                viewModel.hostId.value?.let { it1 -> EventFragmentDirections.actionEventFragmentToProfileFragment(pUserId = it1) }
-            if (action != null) {
-                navController.navigate(action)
-            }
+//            val action =
+//                viewModel.hostId.value?.let { it1 -> EventFragmentDirections.actionEventFragmentToProfileFragment(pUserId = it1) }
+//            if (action != null) {
+//                navController.navigate(action)
+//            }
         }
 
         binding!!.chooseGamesButton.setOnClickListener {

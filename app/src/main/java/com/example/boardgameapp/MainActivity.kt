@@ -5,35 +5,45 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.room.Room
+import com.example.boardgameapp.data.BoardGameRepository
+import com.example.boardgameapp.data.event.BoardGameDao
+import com.example.boardgameapp.data.event.BoardGameDatabase
+import com.example.boardgameapp.data.game.Game
+import com.example.boardgameapp.data.game.GameDao
 import com.example.boardgameapp.databinding.ActivityMainBinding
-import com.example.boardgameapp.screens.profile.ProfileFragmentDirections
+import com.example.boardgameapp.screens.event.EventViewModel
+import com.example.boardgameapp.screens.event.EventViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.withIndex
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         /*Initialize*/
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         navController = navHostFragment.findNavController()
-
-
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
-
-
+        
         // place view into the activities ViewHirarchy
         setContentView(binding.root)
+
     }
 
     /*OptionsMenu implementation
@@ -55,4 +65,6 @@ class MainActivity : AppCompatActivity() {
 
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
+
 }

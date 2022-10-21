@@ -1,9 +1,7 @@
 package com.example.boardgameapp.screens.upcomingevents
 
-import android.content.Context
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,8 +56,6 @@ class UpcomingEventsFragment : Fragment() {
             adapter.setHostData(data)
         })
         recyclerView.adapter = adapter
-
-
 
     }
 
