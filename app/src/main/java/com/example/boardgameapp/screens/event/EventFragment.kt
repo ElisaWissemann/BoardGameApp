@@ -63,7 +63,8 @@ class EventFragment : Fragment() {
         val dao = db.getInstance(requireActivity().application).boardGameDao
         val repository = BoardGameRepository(dao)
         // TODO check this viewModelFactory = ScoreViewModelFactory(ScoreFragmentArgs.fromBundle(arguments!!).score)
-        val factory = EventViewModelFactory(repository)
+        val args: EventFragmentArgs by navArgs()
+        val factory = EventViewModelFactory(repository, args.eventId)
         binding?.eventViewModel = ViewModelProvider(this,factory).get(EventViewModel::class.java)
         binding?.lifecycleOwner = this
         // return view
@@ -77,7 +78,6 @@ class EventFragment : Fragment() {
         // Get Data
         //TODO: Pass args to the ViewModel via Hilt
         //extract the event with the ID passed via Navigation
-        val args: EventFragmentArgs by navArgs()
         //save the eventId in the Bundle
         //savedInstanceState?.putInt("eventId", args.eventId)
         //initialize host
@@ -87,10 +87,10 @@ class EventFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
-
+        var hostId = binding?.eventViewModel?.hostId?.value
         //create and show HostRatigDialog
         binding?.hostRatingButton?.setOnClickListener {
-            HostRatingDialog(host.id).show(
+            HostRatingDialog(hostId!!).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
