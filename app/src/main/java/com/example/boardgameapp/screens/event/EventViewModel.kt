@@ -53,6 +53,7 @@ class EventViewModel( private val repository: BoardGameRepository, private val e
         _hostId.value = _host.value?.id
         _hostName.value = "Host: " + _host.value?.name + " " + _host.value?.surname
 
+
     }
 
     private fun insertGame(game: Game) = viewModelScope.launch {

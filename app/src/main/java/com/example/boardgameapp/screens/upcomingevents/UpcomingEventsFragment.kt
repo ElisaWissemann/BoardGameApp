@@ -2,6 +2,7 @@ package com.example.boardgameapp.screens.upcomingevents
 
 import android.os.Bundle
 import android.provider.CalendarContract
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.boardgameapp.data.BoardGameDatabase
+import com.example.boardgameapp.data.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentUpcomingEventsBinding
 
 
@@ -34,9 +37,18 @@ class UpcomingEventsFragment : Fragment() {
         /*DataBinding*/
         binding = FragmentUpcomingEventsBinding
             .inflate(inflater, container, false)
+        Log.i("ELISA", "here")
+        /*DB*/
+        val db = BoardGameDatabase
+        val dao = db.getInstance(requireActivity().application).boardGameDao
+        val repository = BoardGameRepository(dao)
+
+
 
         /*ViewModel*/
-        viewModel = ViewModelProvider(this).get(UpcomingEventsViewModel::class.java)
+        val factory = UpcomingEventViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
+        //viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
         binding.upcomingEventsViewModel = viewModel
         binding.lifecycleOwner = this
 
@@ -50,6 +62,8 @@ class UpcomingEventsFragment : Fragment() {
         //create recyclerView
         var recyclerView: RecyclerView = binding.verticalRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
+
 
         //trigger adapter to get Data from ViewModel when it is available
         viewModel.eventData.observe(viewLifecycleOwner, Observer{ data ->
@@ -58,7 +72,6 @@ class UpcomingEventsFragment : Fragment() {
         viewModel.hostData.observe(viewLifecycleOwner, Observer{ data ->
             adapter.setHostData(data)
         })
-        recyclerView.adapter = adapter
 
     }
 

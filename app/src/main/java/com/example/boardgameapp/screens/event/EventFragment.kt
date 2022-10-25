@@ -58,7 +58,6 @@ class EventFragment : Fragment() {
         //TODO add Hilt dependency injection to acces NavArgs in ViewModel
         val factory = EventViewModelFactory(repository, args.eventId)
         binding?.eventViewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
-
         binding?.lifecycleOwner = this
 
         // return view

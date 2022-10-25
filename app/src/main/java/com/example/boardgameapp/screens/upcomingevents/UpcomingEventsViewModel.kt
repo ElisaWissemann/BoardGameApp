@@ -3,12 +3,16 @@ package com.example.boardgameapp.screens.upcomingevents
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.boardgameapp.data.BoardGameRepository
 import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.event.EventDataSource
+import com.example.boardgameapp.data.game.Game
 import com.example.boardgameapp.data.user.User
 import com.example.boardgameapp.data.user.UserDataSource
+import kotlinx.coroutines.launch
 
-class UpcomingEventsViewModel : ViewModel() {
+class UpcomingEventsViewModel(private val repository: BoardGameRepository) : ViewModel() {
 
     private var _eventData = MutableLiveData<List<Event>>()
     val eventData: LiveData<List<Event>>  get() = _eventData
@@ -19,5 +23,8 @@ class UpcomingEventsViewModel : ViewModel() {
     init{
         _eventData.value = EventDataSource.events
         _hostData.value =  UserDataSource.users
+    }
+    private fun insertGame(game: Game) = viewModelScope.launch {
+        repository.insertGame(game)
     }
 }

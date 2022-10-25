@@ -66,7 +66,6 @@ class GameFragment : Fragment(), OnItemSelectedListener {
 
     private fun loadGameData() {
         var gamesDataSource = GameDataSource.games
-        val gameIterator = gamesDataSource.iterator()
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
