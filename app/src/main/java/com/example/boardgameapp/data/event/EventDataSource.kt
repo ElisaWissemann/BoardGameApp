@@ -10,31 +10,31 @@ object EventDataSource {
             1,
             1,
             "22.10.2022",
-            listOf("Emma", "Stefan", "Rainhardt"), listOf("Anna")
+            mutableListOf("Emma", "Stefan", "Rainhardt"), mutableListOf("Anna")
         ),
         Event(
             2,
             2,
             "22.11.2022",
-            listOf("Anna", "Frank"), listOf("Anna")
+            mutableListOf("Anna", "Frank"), mutableListOf("Anna")
         ),
         Event(
             3,
             3,
             "22.12.2022",
-            listOf("Anna"), listOf("Stefanie", "Frank")
+            mutableListOf("Anna"), mutableListOf("Stefanie", "Frank")
         ),
         Event(
             4,
             1,
             "22.01.2023",
-            listOf("Anna", "Frank", "Dieter", "Steffi"),  listOf()
+            mutableListOf("Anna", "Frank", "Dieter", "Steffi"),  mutableListOf()
         ),
         Event(
             5,
             2,
             "22.02.2023",
-            listOf("Anna", "Frank", "Steffi"),  listOf("Frank")
+            mutableListOf("Anna", "Frank", "Steffi"),  mutableListOf("Frank")
         )
     )
 }

@@ -31,9 +31,11 @@ class UpcomingEventsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        /*DataBinding*/
         binding = FragmentUpcomingEventsBinding
             .inflate(inflater, container, false)
 
+        /*ViewModel*/
         viewModel = ViewModelProvider(this).get(UpcomingEventsViewModel::class.java)
         binding.upcomingEventsViewModel = viewModel
         binding.lifecycleOwner = this
@@ -49,6 +51,7 @@ class UpcomingEventsFragment : Fragment() {
         var recyclerView: RecyclerView = binding.verticalRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context)
 
+        //trigger adapter to get Data from ViewModel when it is available
         viewModel.eventData.observe(viewLifecycleOwner, Observer{ data ->
             adapter.setEventData(data)
         })

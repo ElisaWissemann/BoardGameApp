@@ -56,6 +56,10 @@ class EventViewModel( private val repository: BoardGameRepository, private val e
     }
 
     private fun insertGame(game: Game) = viewModelScope.launch {
-        repository.insert(game)
+        repository.insertGame(game)
     }
+
+//    private fun insertEvent(event:Event) = viewModelScope.launch {
+//        repository.insert(event)
+//    }
 }

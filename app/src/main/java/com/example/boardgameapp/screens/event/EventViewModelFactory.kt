@@ -9,7 +9,6 @@ class EventViewModelFactory (private val repository: BoardGameRepository, privat
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(EventViewModel::class.java)){
-            Log.i("ELISA", "ViewModelFactory created")
             return EventViewModel(repository, eventId) as T
         }
         throw IllegalArgumentException("Unknown View Model class")

@@ -1,6 +1,5 @@
 package com.example.boardgameapp.screens.upcomingevents
 
-import androidx.core.content.PackageManagerCompat.UnusedAppRestrictionsStatus
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

@@ -1,29 +1,17 @@
 package com.example.boardgameapp
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.room.Room
 import com.example.boardgameapp.data.BoardGameRepository
-import com.example.boardgameapp.data.event.BoardGameDao
-import com.example.boardgameapp.data.event.BoardGameDatabase
-import com.example.boardgameapp.data.game.Game
-import com.example.boardgameapp.data.game.GameDao
+import com.example.boardgameapp.data.BoardGameDatabase
 import com.example.boardgameapp.databinding.ActivityMainBinding
-import com.example.boardgameapp.screens.event.EventViewModel
-import com.example.boardgameapp.screens.event.EventViewModelFactory
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.withIndex
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -40,7 +28,16 @@ class MainActivity : AppCompatActivity() {
         navController = navHostFragment.findNavController()
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
-        
+
+        //TODO delete at the end
+        //get DB available for debugging
+        val db = BoardGameDatabase
+        val dao = db.getInstance(application).boardGameDao
+        val repository = BoardGameRepository(dao)
+
+
+
+
         // place view into the activities ViewHirarchy
         setContentView(binding.root)
 

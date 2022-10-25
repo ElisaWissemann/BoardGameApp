@@ -24,6 +24,7 @@ class UpcomingEventsAdapter :
     // only valid between onCreateViewHolder and onDestroyView
     private lateinit var context: Context
 
+
     class UpcomingEventsViewHolder(val binding: UpcomingEventsItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val hostView = binding.ueHost
