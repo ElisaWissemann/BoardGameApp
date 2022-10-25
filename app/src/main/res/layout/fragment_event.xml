@@ -1,130 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"  >
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <data> <variable
-        name="eventViewModel"
-        type="com.example.boardgameapp.screens.event.EventViewModel" /></data>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screens.event.EventFragment">
+    <data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+        <variable
+            name="eventViewModel"
+            type="com.example.boardgameapp.screens.event.EventViewModel" />
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="24dp"
-            android:text="@{eventViewModel.date}"
-            app:layout_constraintBottom_toTopOf="@+id/choose_games_button"
-            app:layout_constraintEnd_toEndOf="@+id/profile_button"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/profile_button"
-            app:layout_constraintTop_toBottomOf="@+id/host" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".screens.event.EventFragment">
 
-        <TextView
-            android:id="@+id/host"
-            android:layout_width="wrap_content"
-            android:layout_height="16dp"
-            android:layout_marginTop="20dp"
-            android:text="@{eventViewModel.hostName}"
-            app:layout_constraintBottom_toTopOf="@+id/date"
-            app:layout_constraintEnd_toEndOf="@+id/profile_button"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/profile_button"
-            app:layout_constraintTop_toBottomOf="@+id/profile_button" />
 
-        <ImageButton
-            android:id="@+id/profile_button"
-            android:layout_width="52dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/profile"
-            app:layout_constraintBottom_toTopOf="@+id/host"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageButton
+                android:id="@+id/profile_button"
+                android:layout_width="52dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="50dp"
+                android:background="@drawable/profile"
+                android:contentDescription="@string/go_to_profile_button"
+                app:layout_constraintBottom_toTopOf="@+id/host"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/choose_games_button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/choose_games"
-            app:layout_constraintBottom_toTopOf="@+id/games_voting_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                android:text="@{eventViewModel.date}"
+                app:layout_constraintBottom_toTopOf="@+id/choose_games_button"
+                app:layout_constraintEnd_toEndOf="@+id/profile_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/host" />
 
-        <Button
-            android:id="@+id/games_voting_button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/games_voting"
-            app:layout_constraintBottom_toTopOf="@+id/attendence_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/choose_games_button" />
+            <TextView
+                android:id="@+id/host"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginTop="20dp"
+                android:text="@{eventViewModel.hostName}"
+                app:layout_constraintBottom_toTopOf="@+id/date"
+                app:layout_constraintEnd_toEndOf="@+id/profile_button"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/profile_button"
+                app:layout_constraintTop_toBottomOf="@+id/profile_button" />
 
-        <Button
-            android:id="@+id/attendence_button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/attendence"
-            app:layout_constraintBottom_toTopOf="@+id/food"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/games_voting_button" />
+            <Button
+                android:id="@+id/choose_games_button"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/choose_games"
+                app:layout_constraintBottom_toTopOf="@+id/games_voting_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/date" />
 
-        <Button
-            android:id="@+id/food"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/food"
-            app:layout_constraintBottom_toTopOf="@+id/delayed_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/attendence_button" />
+            <Button
+                android:id="@+id/games_voting_button"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/games_voting"
+                app:layout_constraintBottom_toTopOf="@+id/attendence_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/choose_games_button" />
 
-        <Button
-            android:id="@+id/delayed_button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/i_m_delayed"
-            app:layout_constraintBottom_toTopOf="@+id/host_rating_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/food" />
+            <Button
+                android:id="@+id/attendence_button"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/attendence"
+                app:layout_constraintBottom_toTopOf="@+id/food"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/games_voting_button" />
 
-        <Button
-            android:id="@+id/host_rating_button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="100dp"
-            android:text="@string/host_rating"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/delayed_button" />
+            <Button
+                android:id="@+id/food"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/food"
+                app:layout_constraintBottom_toTopOf="@+id/delayed_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/attendence_button" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+            <Button
+                android:id="@+id/delayed_button"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:text="@string/i_m_delayed"
+                app:layout_constraintBottom_toTopOf="@+id/host_rating_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/food" />
+
+            <Button
+                android:id="@+id/host_rating_button"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="100dp"
+                android:text="@string/host_rating"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/delayed_button" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </layout>

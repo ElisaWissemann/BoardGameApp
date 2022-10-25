@@ -11,8 +11,8 @@
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:windowActionBarOverlay = "false"
         android:theme="@style/Theme.BoardGameApp.AppBarOverlay">
-
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -23,11 +23,7 @@
             app:layout_anchorGravity="left"
             app:popupTheme="@style/Theme.BoardGameApp.PopupOverlay">
         </androidx.appcompat.widget.Toolbar>
-
-
     </com.google.android.material.appbar.AppBarLayout>
-
     <include layout="@layout/content_main" />
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -16,7 +16,7 @@
             android:id="@+id/g_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:text="@string/what_do_you_want_to_play"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -40,16 +40,16 @@
             android:id="@+id/g_spinner1"
             android:layout_width="250dp"
             android:layout_height="25dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintStart_toStartOf="@+id/g_tv"
-            app:layout_constraintTop_toBottomOf="@+id/g_tv"
+            app:layout_constraintTop_toBottomOf="@+id/g_tv2"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <Spinner
             android:id="@+id/g_spinner2"
             android:layout_width="250dp"
             android:layout_height="24dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             app:layout_constraintStart_toStartOf="@+id/g_spinner1"
             app:layout_constraintTop_toBottomOf="@+id/g_spinner1"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -58,7 +58,7 @@
             android:id="@+id/g_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
             android:text="@string/confirm"
             app:layout_constraintEnd_toEndOf="@+id/g_spinner2"
             app:layout_constraintStart_toStartOf="@+id/g_spinner2"

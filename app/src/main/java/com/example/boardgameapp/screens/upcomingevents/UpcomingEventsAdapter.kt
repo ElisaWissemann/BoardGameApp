@@ -18,10 +18,8 @@ class UpcomingEventsAdapter :
     ////TODO: Move this to the ViewModel and make it MVVM conform
     private var _eventData: List<Event>? = null
     private var _hostData: List<User>? = null
-    //private val userData = UserDataSource.users
+    //binding for upcoming_events_item.xml
     private var binding: UpcomingEventsItemViewBinding? = null
-
-    // only valid between onCreateViewHolder and onDestroyView
     private lateinit var context: Context
 
 
@@ -45,7 +43,6 @@ class UpcomingEventsAdapter :
 
     override fun onBindViewHolder(holder: UpcomingEventsViewHolder, position: Int) {
         val item = _eventData!![position]
-        //TODO: Move this to the ViewModel and make it MVVM conform
         val hostData = _hostData?.find { it.id == item.host }
         val hostName = hostData?.name + " " + hostData?.surname
 
