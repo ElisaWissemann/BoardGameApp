@@ -5,13 +5,14 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.game.Game
 
 // Tutorials: https://appdevnotes.com/android-mvvm-project-example/
 //https://www.youtube.com/watch?v=iTdzBM1zErA
 
-@Database(entities = [Game::class], version = 1)
-@TypeConverters(StringArrayConverter::class)
+@Database(entities = [Game::class, Event::class], version = 1)
+//@TypeConverters(StringArrayConverter::class)
 abstract class BoardGameDatabase : RoomDatabase() {
     abstract val boardGameDao: BoardGameDao
 

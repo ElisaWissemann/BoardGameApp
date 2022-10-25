@@ -12,11 +12,11 @@ import kotlinx.coroutines.flow.Flow
 interface BoardGameDao {
 
     /*-----------------Event-----------------*/
-   // @Insert
-  //  suspend fun insertEvent(event: Event): Long
+    @Insert
+    suspend fun insertEvent(event: Event): Long
 
-    //@Delete
-    //fun deleteEvent(event: Event): Int
+    @Delete
+    fun deleteEvent(event: Event): Int
 
     //@Query("SELECT * FROM events")
     //TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
@@ -30,8 +30,8 @@ interface BoardGameDao {
     @Delete
     fun deleteGame(game: Game): Int
 
-    @Query("SELECT * FROM games")
-    //TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
-    // passing back Lists can cause errors
-    fun getAllGames(): List<Game>
+//    @Query("SELECT * FROM games")
+//    //TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
+//    // passing back Lists can cause errors
+//    fun getAllGames(): List<Game>
 }

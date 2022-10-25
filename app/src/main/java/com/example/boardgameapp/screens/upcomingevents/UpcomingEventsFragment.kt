@@ -1,5 +1,6 @@
 package com.example.boardgameapp.screens.upcomingevents
 
+import android.R
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.util.Log
@@ -35,22 +36,23 @@ class UpcomingEventsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         /*DataBinding*/
-        binding = FragmentUpcomingEventsBinding
-            .inflate(inflater, container, false)
-        Log.i("ELISA", "here")
-        /*DB*/
-        val db = BoardGameDatabase
-        val dao = db.getInstance(requireActivity().application).boardGameDao
-        val repository = BoardGameRepository(dao)
 
 
+            binding = FragmentUpcomingEventsBinding
+                .inflate(inflater, container, false)
 
-        /*ViewModel*/
-        val factory = UpcomingEventViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
-        //viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
-        binding.upcomingEventsViewModel = viewModel
-        binding.lifecycleOwner = this
+            /*DB*/
+            val db = BoardGameDatabase
+            val dao = db.getInstance(requireActivity().application).boardGameDao
+            val repository = BoardGameRepository(dao)
+
+            /*ViewModel*/
+            val factory = UpcomingEventViewModelFactory(repository)
+            viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
+            //viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
+            binding.upcomingEventsViewModel = viewModel
+            binding.lifecycleOwner = this
+
 
         //return view
         return binding.root

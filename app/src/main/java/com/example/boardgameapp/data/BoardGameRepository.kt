@@ -5,7 +5,7 @@ import com.example.boardgameapp.data.game.Game
 
 class BoardGameRepository (private val dao: BoardGameDao)  {
 
-    val games = dao.getAllGames()
+    //val games = dao.getAllGames()
 
     suspend fun insertGame(game: Game): Long {
         return dao.insertGame(game)
@@ -16,12 +16,12 @@ class BoardGameRepository (private val dao: BoardGameDao)  {
     }
 
 //    val events = dao.getAllEvents()
-//
-//    suspend fun insertEvent(event: Event): Long{
-//        return dao.insertEvent(event)
-//    }
-//    suspend fun deleteEvent(event: Event):Int{
-//        return dao.deleteEvent(event)
-//    }
+
+    suspend fun insertEvent(event: Event): Long{
+        return dao.insertEvent(event)
+    }
+    suspend fun deleteEvent(event: Event):Int{
+        return dao.deleteEvent(event)
+    }
 
 }

@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         val dao = db.getInstance(application).boardGameDao
         val repository = BoardGameRepository(dao)
 
+
         // place view into the activities ViewHirarchy
         setContentView(binding.root)
 

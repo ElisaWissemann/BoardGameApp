@@ -48,8 +48,8 @@ class UpcomingEventsAdapter :
 
         holder.hostView.text = context.getString(R.string.hostet_by, hostName)
         holder.dateView.text = item.date
-        holder.acceptedView.text = item.accepted.size.toString()
-        holder.cancelledView.text = item.cancelled.size.toString()
+        //holder.acceptedView.text = item.accepted.size.toString()
+        //holder.cancelledView.text = item.cancelled.size.toString()
         holder.enterEventButton.setOnClickListener {
 
             val action =

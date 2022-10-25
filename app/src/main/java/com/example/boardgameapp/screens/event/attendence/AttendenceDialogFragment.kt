@@ -38,8 +38,9 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
 
         val eventData = EventDataSource.events
         event = eventData.find { it.id == eventId }!!
-        _binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")
-        _binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled).replace("[", "").replace("]", "")
+        //TODO: Get back in after Event Data are added to Room
+        //_binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")
+        //_binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled).replace("[", "").replace("]", "")
 
 
         binding.acceptButton.setOnClickListener {

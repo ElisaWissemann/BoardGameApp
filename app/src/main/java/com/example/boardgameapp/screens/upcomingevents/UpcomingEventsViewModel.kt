@@ -23,8 +23,10 @@ class UpcomingEventsViewModel(private val repository: BoardGameRepository) : Vie
     init{
         _eventData.value = EventDataSource.events
         _hostData.value =  UserDataSource.users
+
+        insertEvent(Event(0, 1,"25.01.2022"))
     }
-    private fun insertGame(game: Game) = viewModelScope.launch {
-        repository.insertGame(game)
+        private fun insertEvent(event:Event) = viewModelScope.launch {
+        repository.insertEvent(event)
     }
 }

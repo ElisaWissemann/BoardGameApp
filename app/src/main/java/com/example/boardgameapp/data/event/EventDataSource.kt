@@ -10,31 +10,31 @@ object EventDataSource {
             1,
             1,
             "22.10.2022",
-            arrayListOf("Emma", "Stefan", "Rainhardt"), arrayListOf("Anna")
+            //arrayListOf("Emma", "Stefan", "Rainhardt"), arrayListOf("Anna")
         ),
         Event(
             2,
             2,
             "22.11.2022",
-            arrayListOf("Anna", "Frank"), arrayListOf("Anna")
+           // arrayListOf("Anna", "Frank"), arrayListOf("Anna")
         ),
         Event(
             3,
             3,
             "22.12.2022",
-            arrayListOf("Anna"), arrayListOf("Stefanie", "Frank")
+           // arrayListOf("Anna"), arrayListOf("Stefanie", "Frank")
         ),
         Event(
             4,
             1,
             "22.01.2023",
-            arrayListOf("Anna", "Frank", "Dieter", "Steffi"),  arrayListOf()
+           // arrayListOf("Anna", "Frank", "Dieter", "Steffi"),  arrayListOf()
         ),
         Event(
             5,
             2,
             "22.02.2023",
-            arrayListOf("Anna", "Frank", "Steffi"),  arrayListOf("Frank")
+            //arrayListOf("Anna", "Frank", "Steffi"),  arrayListOf("Frank")
         )
     )
 }
