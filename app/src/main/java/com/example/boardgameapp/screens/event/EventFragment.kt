@@ -1,5 +1,6 @@
 package com.example.boardgameapp.screens.event
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -88,6 +89,15 @@ class EventFragment : Fragment() {
             HostRatingDialog(host.id).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
+            )
+
+        }
+
+        //create delayed Dialog
+        binding?.delayedButton?.setOnClickListener{
+            DelayedDialogFragment(host.id).show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "DelayedDialogFragment"
             )
         }
 

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/hr_submit"
+        android:id="@+id/hrSubmit"
         android:layout_width="250dp"
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
