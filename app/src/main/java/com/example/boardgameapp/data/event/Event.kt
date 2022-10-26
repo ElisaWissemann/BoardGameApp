@@ -12,4 +12,5 @@ data class Event(
     //only for testing will be changed to an array/list
     val accepted: List<String>,
     val cancelled: List<String>
+
 )
