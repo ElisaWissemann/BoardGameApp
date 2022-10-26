@@ -11,8 +11,8 @@ import com.example.boardgameapp.data.game.Game
 // Tutorials: https://appdevnotes.com/android-mvvm-project-example/
 //https://www.youtube.com/watch?v=iTdzBM1zErA
 
-@Database(entities = [Game::class, Event::class], version = 1)
-//@TypeConverters(StringArrayConverter::class)
+@Database(entities = [Game::class, Event::class], version = 1, exportSchema = false)
+@TypeConverters(StringArrayConverter::class)
 abstract class BoardGameDatabase : RoomDatabase() {
     abstract val boardGameDao: BoardGameDao
 

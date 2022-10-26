@@ -15,6 +15,7 @@ data class Event(
     //only for testing will be changed to Date
     @ColumnInfo(name = "date") val date: String,
     //only for testing will be changed to an array/list
-   // @ColumnInfo(name = "accepted") val accepted: ArrayList<String>,
+    @TypeConverters(StringArrayConverter::class)
+    @ColumnInfo(name = "accepted") val accepted: ArrayList<String>,
    // @ColumnInfo(name = "cancelled") val cancelled: ArrayList<String>
 )

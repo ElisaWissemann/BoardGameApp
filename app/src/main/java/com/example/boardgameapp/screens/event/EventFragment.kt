@@ -86,7 +86,6 @@ class EventFragment : Fragment() {
 
         }
 
-
         //Navigate from EventScreen to ProfileScreen
         binding!!.profileButton.setOnClickListener {
             navController.navigate(

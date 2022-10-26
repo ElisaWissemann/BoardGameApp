@@ -7,7 +7,6 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-@ProvidedTypeConverter
 class StringArrayConverter {
 
     companion object{
@@ -20,7 +19,6 @@ class StringArrayConverter {
 
     @TypeConverter
     fun fromStringArrayList(value: ArrayList<String>): String {
-
         return Gson().toJson(value)
     }
 
