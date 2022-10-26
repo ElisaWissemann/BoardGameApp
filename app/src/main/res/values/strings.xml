@@ -32,7 +32,7 @@
     <string name="rate_the_host">RATE THE HOST</string>
     <string name="submit">Submit</string>
     <string name="total_rating_1d">Total rating: (%.3s)</string>
-    <string name="name" >%1s</string>
+    <string name="name">%1s</string>
     <string name="address">%1s</string>
     <string name="upcoming_hosting_event_text">Upcoming hosting Event: %1s</string>
     <string name="favorite_game_text">Favorite Game: %1s</string>
@@ -43,6 +43,14 @@
     <string name="please_select_two_games">Please select two games</string>
     <string name="confirm">Confirm</string>
     <string name="what_do_you_want_to_play">What_do_you_want_to_play</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="refuse_event">refuse event</string>
+    <string name="close_dialog">Close Dialog</string>
+    <string name="_15min">15min</string>
+    <string name="_30min">30min</string>
+    <string name="_45min">45min</string>
+    <string name="_1h">1h</string>
     />
 
 </resources>

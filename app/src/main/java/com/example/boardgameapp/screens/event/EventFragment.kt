@@ -95,6 +95,13 @@ class EventFragment : Fragment() {
                 "HostRatingDialogFragment"
             )
         }
+        binding?.delayedButton?.setOnClickListener{
+            DelayedDialogFragment(hostId!!).show(
+                (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
+            )
+
+        }
+
 
         //Navigate from EventScreen to ProfileScreen
         binding!!.profileButton.setOnClickListener {
