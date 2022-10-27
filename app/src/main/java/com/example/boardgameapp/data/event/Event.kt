@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.example.boardgameapp.data.StringArrayConverter
+import com.example.boardgameapp.data.IntArrayListConverter
 
 /**
  * A data class to represent the information presented in the Event Screen*/
@@ -15,7 +15,8 @@ data class Event(
     //only for testing will be changed to Date
     @ColumnInfo(name = "date") val date: String,
     //only for testing will be changed to an array/list
-    @TypeConverters(StringArrayConverter::class)
-    @ColumnInfo(name = "accepted") val accepted: ArrayList<String>,
-   // @ColumnInfo(name = "cancelled") val cancelled: ArrayList<String>
+    @TypeConverters(IntArrayListConverter::class)
+    @ColumnInfo(name = "accepted") val accepted: ArrayList<Int>,
+    @TypeConverters(IntArrayListConverter::class)
+    @ColumnInfo(name = "cancelled") val cancelled: ArrayList<Int>
 )

@@ -3,6 +3,8 @@ package com.example.boardgameapp.screens.upcomingevents
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.asLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
@@ -16,12 +18,11 @@ class UpcomingEventsAdapter :
 
     //Initialize Data
     ////TODO: Move this to the ViewModel and make it MVVM conform
-    private var _eventData: List<Event>? = null
+    private var _eventData: MutableList<Event>? = null
     private var _hostData: List<User>? = null
     //binding for upcoming_events_item.xml
     private var binding: UpcomingEventsItemViewBinding? = null
     private lateinit var context: Context
-
 
     class UpcomingEventsViewHolder(val binding: UpcomingEventsItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -48,8 +49,8 @@ class UpcomingEventsAdapter :
 
         holder.hostView.text = context.getString(R.string.hostet_by, hostName)
         holder.dateView.text = item.date
-        //holder.acceptedView.text = item.accepted.size.toString()
-        //holder.cancelledView.text = item.cancelled.size.toString()
+        holder.acceptedView.text = item.accepted.size.toString()
+        holder.cancelledView.text = item.cancelled.size.toString()
         holder.enterEventButton.setOnClickListener {
 
             val action =
@@ -68,7 +69,7 @@ class UpcomingEventsAdapter :
         context = recyclerView.context
     }
 
-    fun setEventData(eventData: List<Event>){
+    fun setEventData(eventData: MutableList<Event>){
         _eventData = eventData
         this.notifyDataSetChanged()
     }

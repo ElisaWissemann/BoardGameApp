@@ -1,9 +1,11 @@
 package com.example.boardgameapp.data
 
+import android.util.Log
 import com.example.boardgameapp.data.event.Event
 import com.example.boardgameapp.data.game.Game
+import kotlinx.coroutines.flow.Flow
 
-class BoardGameRepository (private val dao: BoardGameDao)  {
+class BoardGameRepository(private val dao: BoardGameDao) {
 
     //val games = dao.getAllGames()
 
@@ -11,17 +13,19 @@ class BoardGameRepository (private val dao: BoardGameDao)  {
         return dao.insertGame(game)
     }
 
-    suspend fun deleteGame(game:Game):Int{
+    suspend fun deleteGame(game: Game): Int {
         return dao.deleteGame(game)
     }
 
-//    val events = dao.getAllEvents()
-
-    suspend fun insertEvent(event: Event): Long{
+    suspend fun insertEvent(event: Event): Long {
         return dao.insertEvent(event)
     }
-    suspend fun deleteEvent(event: Event):Int{
+
+    suspend fun deleteEvent(event: Event): Int {
         return dao.deleteEvent(event)
     }
+
+    val events: Flow<MutableList<Event>> = dao.getAllEvents()
+
 
 }

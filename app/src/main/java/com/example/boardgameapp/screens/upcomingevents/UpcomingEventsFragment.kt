@@ -49,7 +49,6 @@ class UpcomingEventsFragment : Fragment() {
             /*ViewModel*/
             val factory = UpcomingEventViewModelFactory(repository)
             viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
-            //viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
             binding.upcomingEventsViewModel = viewModel
             binding.lifecycleOwner = this
 

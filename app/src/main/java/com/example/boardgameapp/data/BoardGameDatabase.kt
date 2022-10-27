@@ -12,11 +12,12 @@ import com.example.boardgameapp.data.game.Game
 //https://www.youtube.com/watch?v=iTdzBM1zErA
 
 @Database(entities = [Game::class, Event::class], version = 1, exportSchema = false)
-@TypeConverters(StringArrayConverter::class)
+@TypeConverters(IntArrayListConverter::class)
 abstract class BoardGameDatabase : RoomDatabase() {
     abstract val boardGameDao: BoardGameDao
 
     companion object {
+        //Add Default data https://medium.com/@hrithik481/roomdb-in-android-with-kotlin-coroutines-bdb11ae37acb
         @Volatile
         private var INSTANCE: BoardGameDatabase? = null
         fun getInstance(context: Context): BoardGameDatabase {
