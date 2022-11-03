@@ -2,7 +2,7 @@ package com.example.boardgameapp.screens.upcomingevents
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.boardgameapp.data.BoardGameRepository
+import com.example.boardgameapp.database.BoardGameRepository
 
 class UpcomingEventViewModelFactory (private val repository: BoardGameRepository): ViewModelProvider.Factory{
     @Suppress("unchecked_cast")

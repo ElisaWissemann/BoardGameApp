@@ -1,13 +1,11 @@
 package com.example.boardgameapp.screens.event
 
-import android.util.Log
 import androidx.lifecycle.*
-import com.example.boardgameapp.data.BoardGameRepository
-import com.example.boardgameapp.data.event.Event
-import com.example.boardgameapp.data.event.EventDataSource
-import com.example.boardgameapp.data.game.Game
-import com.example.boardgameapp.data.user.User
-import com.example.boardgameapp.data.user.UserDataSource
+import com.example.boardgameapp.database.BoardGameRepository
+import com.example.boardgameapp.database.event.EventDataSource
+import com.example.boardgameapp.database.game.Game
+import com.example.boardgameapp.database.entities.User
+import com.example.boardgameapp.database.user.UserDataSource
 import kotlinx.coroutines.launch
 
 /**

@@ -1,4 +1,4 @@
-package com.example.boardgameapp.data
+package com.example.boardgameapp.database.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
@@ -15,12 +15,12 @@ class IntArrayListConverter {
 
 
     @TypeConverter
-    fun fromStringArrayList(value: ArrayList<Int>): String {
+    fun fromIntArrayList(value: ArrayList<Int>): String {
         return Gson().toJson(value)
     }
 
     @TypeConverter
-    fun toStringArrayList(value: String): ArrayList<Int> {
+    fun toIntArrayList(value: String): ArrayList<Int> {
         return try {
             Gson().fromJson<ArrayList<Int>>(value) //using extension function
         } catch (e: Exception) {

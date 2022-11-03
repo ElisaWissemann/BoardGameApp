@@ -3,13 +3,11 @@ package com.example.boardgameapp.screens.upcomingevents
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
-import com.example.boardgameapp.data.event.Event
-import com.example.boardgameapp.data.user.User
+import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.databinding.UpcomingEventsItemViewBinding
 
 
@@ -49,8 +47,8 @@ class UpcomingEventsAdapter :
 
         holder.hostView.text = context.getString(R.string.hostet_by, hostName)
         holder.dateView.text = item.date
-        holder.acceptedView.text = item.accepted.size.toString()
-        holder.cancelledView.text = item.cancelled.size.toString()
+        holder.acceptedView.text = item.accepted?.size.toString()
+        holder.cancelledView.text = item.cancelled?.size.toString()
         holder.enterEventButton.setOnClickListener {
 
             val action =

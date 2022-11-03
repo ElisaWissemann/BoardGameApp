@@ -1,9 +1,7 @@
 package com.example.boardgameapp.screens.upcomingevents
 
-import android.R
 import android.os.Bundle
 import android.provider.CalendarContract
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +11,15 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.boardgameapp.data.BoardGameDatabase
-import com.example.boardgameapp.data.BoardGameRepository
+import com.example.boardgameapp.database.BoardGameDatabase
+import com.example.boardgameapp.database.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentUpcomingEventsBinding
 
 
 class UpcomingEventsFragment : Fragment() {
+
+    //TODO: Change Adapter to ListAdapter for automatical updates if data from database changes
+    //see: https://developer.android.com/codelabs/basic-android-kotlin-training-intro-room-flow?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-5-pathway-1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-intro-room-flow#8
 
     companion object {
         fun newInstance() = UpcomingEventsFragment()

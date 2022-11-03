@@ -1,4 +1,4 @@
-package com.example.boardgameapp.data.game
+package com.example.boardgameapp.database.game
 
 object GameDataSource {
 

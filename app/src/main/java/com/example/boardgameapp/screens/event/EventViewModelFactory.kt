@@ -1,9 +1,8 @@
 package com.example.boardgameapp.screens.event
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.boardgameapp.data.BoardGameRepository
+import com.example.boardgameapp.database.BoardGameRepository
 
 class EventViewModelFactory (private val repository: BoardGameRepository, private val eventId: Int): ViewModelProvider.Factory{
     @Suppress("unchecked_cast")

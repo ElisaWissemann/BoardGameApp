@@ -1,4 +1,4 @@
-package com.example.boardgameapp.data.food
+package com.example.boardgameapp.database.food
 
 object FoodDataSource {
     val foods: List<Food> = listOf(

@@ -1,6 +1,7 @@
-package com.example.boardgameapp.data.user
+package com.example.boardgameapp.database.user
 
-import java.time.temporal.JulianFields
+import com.example.boardgameapp.database.entities.User
+
 //TODO; Read about android repositorys and maybe rename this file
 object UserDataSource {
     val users: List<User> = listOf(
@@ -9,30 +10,30 @@ object UserDataSource {
             "Julia",
             "Schmidt",
             "Musterstraße 4, 27404 Musterstadt",
-            listOf(1),
+            arrayListOf(1),
             "Monopoly",
             "greek",
-            listOf(4.0, 2.0, 2.0)
+            arrayListOf(4.0, 2.0, 2.0)
         ),
         User(
             2,
             "Christian",
             "Fritz",
             "Hauptstraße 1, 12345 Hauptstadt",
-            listOf(2),
+            arrayListOf(2),
             "Siedler von Catan",
             "mexican",
-            listOf(3.0)
+            arrayListOf(3.0)
         ),
         User(
             3,
             "Elisa",
             "Wissemann",
             "Musterstraße 6, 56789 Musterhausen",
-            listOf(3),
+            arrayListOf(3),
             "Chess",
             "asia",
-            listOf(4.5)
+            arrayListOf(4.5)
         ),
     )
 }

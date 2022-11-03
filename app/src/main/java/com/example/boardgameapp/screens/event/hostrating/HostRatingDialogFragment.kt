@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.boardgameapp.R
-import com.example.boardgameapp.data.user.FormatRatingUseCase
+import com.example.boardgameapp.database.FormatRatingUseCase
 import com.example.boardgameapp.databinding.FragmentHostRatingDialogBinding
 
 //TODO: Add Comments

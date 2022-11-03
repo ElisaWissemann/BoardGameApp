@@ -5,14 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
-import com.example.boardgameapp.data.event.Event
-import com.example.boardgameapp.data.event.EventDataSource
-import com.example.boardgameapp.data.user.UserDataSource
+import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.database.event.EventDataSource
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
-import com.example.boardgameapp.screens.profile.ProfileFragmentArgs
-
 
 
 class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {

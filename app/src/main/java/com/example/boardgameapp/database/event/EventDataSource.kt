@@ -1,4 +1,6 @@
-package com.example.boardgameapp.data.event
+package com.example.boardgameapp.database.event
+
+import com.example.boardgameapp.database.entities.Event
 
 /**
  * An object to generate a static list of events*/

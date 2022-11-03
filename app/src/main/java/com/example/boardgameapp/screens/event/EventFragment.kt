@@ -12,8 +12,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
-import com.example.boardgameapp.data.BoardGameDatabase
-import com.example.boardgameapp.data.BoardGameRepository
+import com.example.boardgameapp.database.BoardGameDatabase
+import com.example.boardgameapp.database.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.screens.event.hostrating.HostRatingDialog
 

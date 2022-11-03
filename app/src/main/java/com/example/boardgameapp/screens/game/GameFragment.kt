@@ -1,7 +1,6 @@
 package com.example.boardgameapp.screens.game
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.boardgameapp.R
-import com.example.boardgameapp.data.game.GameDataSource
+import com.example.boardgameapp.database.game.GameDataSource
 import com.example.boardgameapp.databinding.FragmentGameBinding
 
 class GameFragment : Fragment(), OnItemSelectedListener {
