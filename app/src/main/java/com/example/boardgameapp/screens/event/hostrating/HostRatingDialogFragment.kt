@@ -6,13 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.boardgameapp.R
+import com.example.boardgameapp.database.BoardGameDatabase
+import com.example.boardgameapp.database.BoardGameRepository
 import com.example.boardgameapp.database.FormatRatingUseCase
 import com.example.boardgameapp.databinding.FragmentHostRatingDialogBinding
 
 //TODO: Add Comments
-class HostRatingDialog(private var userId: Int) : DialogFragment() {
+class HostRatingDialog(private var rating: ArrayList<Double>?) : DialogFragment() {
 
     private var _binding: FragmentHostRatingDialogBinding? = null
+    private var currentRating: Float? = null
+
     //This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
 
@@ -30,9 +34,16 @@ class HostRatingDialog(private var userId: Int) : DialogFragment() {
         // get the ratingBar reference
         val ratingBar = _binding!!.ratingBar
 
+
         // TODO: make it MVVM conform
         //get the current rating of the host from the DB
-        val currentRating = FormatRatingUseCase(userId = userId).getRating()
+        if (rating != null) {
+            currentRating = FormatRatingUseCase(rating = rating).getRating()
+        } else {
+            //TODO: Set initial Value for Rating to 0 and make it nonNullable
+            currentRating = 0.00f
+        }
+
         binding.hrTotalRating.text = getString(R.string.total_rating_1d, currentRating.toString())
 
         //submit button clickListener to send the vote to the DB
@@ -57,8 +68,8 @@ class HostRatingDialog(private var userId: Int) : DialogFragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(userId: Int) =
-            HostRatingDialog(userId).apply {
+        fun newInstance(rating: ArrayList<Double>) =
+            HostRatingDialog(rating).apply {
 
             }
     }

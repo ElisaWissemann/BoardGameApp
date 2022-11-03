@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
+import com.example.boardgameapp.database.BoardGameDatabase
+import com.example.boardgameapp.database.BoardGameRepository
 import com.example.boardgameapp.database.entities.Event
-import com.example.boardgameapp.database.event.EventDataSource
 import com.example.boardgameapp.database.FormatRatingUseCase
 import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.database.user.UserDataSource
@@ -38,24 +39,30 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //TODO extract to ViewModel and add dependency injection
+        /*DB*/
+        val db = BoardGameDatabase
+        val dao = db.getInstance(requireActivity().application).boardGameDao
+        val repository = BoardGameRepository(dao)
 
-        val userData = UserDataSource.users
+        val userData = repository.users
         val args: ProfileFragmentArgs by navArgs()
         user = userData.find { it.id == args.pUserId }!!
         _binding!!.usernameText.text = getString(R.string.username, user.name)
         val name = user.name + " " + user.surname
         _binding!!.nameText.text = getString(R.string.name, name)
         _binding!!.adressText.text = getString(R.string.address, user.address)
+        var userRating = user.rating
 
         _binding!!.favoriteGameText.text = getString(R.string.favorite_game_text, user.favorite_game)
         _binding!!.favoriteFoodText.text = getString(R.string.favorite_food_text, user.favorite_food)
 
         //RatingBar
-        val averageRating = FormatRatingUseCase(userId = args.pUserId ).getRating()
+        val averageRating = FormatRatingUseCase(userRating).getRating()
         binding.totalRatingBar.setRating(averageRating)
         binding.totalRatingText.text = getString(R.string.total_rating_1d, averageRating.toString())
         //Upcoming Hosting Event
-        val eventData = EventDataSource.events
+        val eventData = repository.events
         date = eventData.find { it.id == args.pUserId }!!
         _binding!!.eventText.text = getString(R.string.upcoming_hosting_event_text, date.date)
 

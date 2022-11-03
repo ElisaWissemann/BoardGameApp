@@ -49,6 +49,7 @@ class EventFragment : Fragment() {
         navController = findNavController()
         val args: EventFragmentArgs by navArgs()
 
+        //TODO: Handle via depenency Injection
         /*DB*/
         val db = BoardGameDatabase
         val dao = db.getInstance(requireActivity().application).boardGameDao
@@ -71,16 +72,17 @@ class EventFragment : Fragment() {
 
         //get current HostId from ViewModel
         val hostId = binding?.eventViewModel?.hostId?.value!!
+        val hostRating = binding?.eventViewModel!!.hostRating
 
         //create and show HostRatingDialog
         binding?.hostRatingButton?.setOnClickListener {
-            HostRatingDialog(hostId).show(
+            HostRatingDialog(hostRating.value).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
         }
         binding?.delayedButton?.setOnClickListener{
-            DelayedDialogFragment(hostId!!).show(
+            DelayedDialogFragment(hostId).show(
                 (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
             )
 

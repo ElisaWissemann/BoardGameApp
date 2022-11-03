@@ -18,7 +18,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.insertEvent(event)
     }
 
-    suspend fun deleteEvent(event: Event): Int {
+     fun deleteEvent(event: Event): Int {
         return dao.deleteEvent(event)
     }
 
@@ -27,7 +27,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.insertGame(game)
     }
 
-    suspend fun deleteGame(game: Game): Int {
+     fun deleteGame(game: Game): Int {
         return dao.deleteGame(game)
     }
 

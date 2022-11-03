@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.boardgameapp.R
+import com.example.boardgameapp.database.BoardGameDatabase
+import com.example.boardgameapp.database.BoardGameRepository
 import com.example.boardgameapp.database.entities.Event
-import com.example.boardgameapp.database.event.EventDataSource
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
 
 
@@ -32,7 +33,13 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
         //ViewBinding
         _binding = FragmentAttendenceDialogBinding.bind(view)
 
-        val eventData = EventDataSource.events
+        //TODO: Handle via depenency Injection & extract to ViewModel
+        /*DB*/
+        val db = BoardGameDatabase
+        val dao = db.getInstance(requireActivity().application).boardGameDao
+        val repository = BoardGameRepository(dao)
+
+        val eventData = repository.events
         event = eventData.find { it.id == eventId }!!
         //TODO: Get back in after Event Data are added to Room
         //_binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")
