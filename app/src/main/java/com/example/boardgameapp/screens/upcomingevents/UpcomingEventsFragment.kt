@@ -1,19 +1,17 @@
 package com.example.boardgameapp.screens.upcomingevents
 
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.boardgameapp.database.BoardGameDatabase
-import com.example.boardgameapp.database.BoardGameRepository
+import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.databinding.FragmentUpcomingEventsBinding
+import com.example.inventory.UpcomingEventsListAdapter
 
 
 class UpcomingEventsFragment : Fragment() {
@@ -25,35 +23,24 @@ class UpcomingEventsFragment : Fragment() {
         fun newInstance() = UpcomingEventsFragment()
     }
 
-    lateinit var binding: FragmentUpcomingEventsBinding
-    lateinit var viewModel: UpcomingEventsViewModel
-    private lateinit var eventData: List<CalendarContract.Events>
-    var adapter = UpcomingEventsAdapter()
+    private val viewModel: UpcomingEventsViewModel by activityViewModels {
+        UpcomingEventsViewModelFactory(
 
-
+//        UpcomingEventsItemViewModelFactory(
+            (activity?.application as BoardGameApplication).database.boardGameDao
+        )
+    }
+    private var _binding: FragmentUpcomingEventsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         /*DataBinding*/
-
-
-            binding = FragmentUpcomingEventsBinding
+            _binding = FragmentUpcomingEventsBinding
                 .inflate(inflater, container, false)
-
-            /*DB*/
-            val db = BoardGameDatabase
-            val dao = db.getInstance(requireActivity().application).boardGameDao
-            val repository = BoardGameRepository(dao)
-
-            /*ViewModel*/
-            val factory = UpcomingEventViewModelFactory(repository)
-            viewModel = ViewModelProvider(this, factory).get(UpcomingEventsViewModel::class.java)
-            binding.upcomingEventsViewModel = viewModel
-            binding.lifecycleOwner = this
-
-
         //return view
         return binding.root
     }
@@ -61,20 +48,16 @@ class UpcomingEventsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val adapter = UpcomingEventsListAdapter()
         //create recyclerView
-        var recyclerView: RecyclerView = binding.verticalRecyclerView
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+        binding.verticalRecyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.verticalRecyclerView.adapter = adapter
 
-
-        //trigger adapter to get Data from ViewModel when it is available
-        viewModel.eventData.observe(viewLifecycleOwner, Observer{ data ->
-            adapter.setEventData(data)
-        })
-        viewModel.hostData.observe(viewLifecycleOwner, Observer{ data ->
-            adapter.setHostData(data)
-        })
-
+        viewModel.eventData.observe(this.viewLifecycleOwner) { items ->
+            items.let {
+                adapter.submitList(it)
+            }
+        }
     }
 
     override fun onStart() {

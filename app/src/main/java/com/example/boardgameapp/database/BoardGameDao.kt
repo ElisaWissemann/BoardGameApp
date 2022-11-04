@@ -4,10 +4,10 @@ import androidx.room.*
 import com.example.boardgameapp.database.entities.Event
 import com.example.boardgameapp.database.game.Game
 import com.example.boardgameapp.database.entities.User
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface BoardGameDao {
-
 
     /*-----------------Users-----------------*/
     /*GET*/
@@ -20,7 +20,12 @@ interface BoardGameDao {
     @Query("SELECT * FROM events")
     //    TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
     //     passing back Lists can cause errors
-    fun getAllEvents(): MutableList<Event>
+    fun getAllEvents(): Flow<List<Event>>
+
+    @Query("SELECT * FROM events")
+    //    TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
+    //     passing back Lists can cause errors
+    fun getAllEventsNoFlow(): List<Event>
 
     /*Insert*/
     @Insert(onConflict = OnConflictStrategy.IGNORE)

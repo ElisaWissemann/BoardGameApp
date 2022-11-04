@@ -42,7 +42,7 @@ class EventViewModel(private val repository: BoardGameRepository, private val ev
     //Initialize Block - gets called when the ViewModel is created
     init {
         /*Event*/
-        var eventData = getAllEvents()
+        var eventData = getAllEventsNoFlow()
         var event = eventData.find { it.id == eventId }!!
         _date.value = event.date
         /*Host*/
@@ -55,6 +55,6 @@ class EventViewModel(private val repository: BoardGameRepository, private val ev
 
     }
 
-    private fun getAllEvents() = repository.events
+    private fun getAllEventsNoFlow() = repository.getAllEventsNoFlow()
     private fun getAllUsers() = repository.users
 }

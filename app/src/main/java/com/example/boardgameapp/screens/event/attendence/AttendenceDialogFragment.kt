@@ -39,7 +39,7 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
         val dao = db.getInstance(requireActivity().application).boardGameDao
         val repository = BoardGameRepository(dao)
 
-        val eventData = repository.events
+        val eventData = repository.getAllEventsNoFlow()
         event = eventData.find { it.id == eventId }!!
         //TODO: Get back in after Event Data are added to Room
         //_binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")

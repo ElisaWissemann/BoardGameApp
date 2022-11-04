@@ -1,21 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="upcomingEventsViewModel"
             type="com.example.boardgameapp.screens.upcomingevents.UpcomingEventsItemViewModel" />
     </data>
 
-    <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:minWidth="400dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:minWidth="400dp"
             android:padding="16dp">
 
             <TextView

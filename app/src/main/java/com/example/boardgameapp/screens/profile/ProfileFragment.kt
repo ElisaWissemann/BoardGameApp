@@ -62,7 +62,7 @@ class ProfileFragment : Fragment() {
         binding.totalRatingBar.setRating(averageRating)
         binding.totalRatingText.text = getString(R.string.total_rating_1d, averageRating.toString())
         //Upcoming Hosting Event
-        val eventData = repository.events
+        val eventData = repository.getAllEventsNoFlow()
         date = eventData.find { it.id == args.pUserId }!!
         _binding!!.eventText.text = getString(R.string.upcoming_hosting_event_text, date.date)
 

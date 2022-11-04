@@ -52,6 +52,7 @@
     <string name="_30min">30min</string>
     <string name="_45min">45min</string>
     <string name="_1h">1h</string>
+    <string name="add_new_event">Add new Event</string>
     />
 
 </resources>
