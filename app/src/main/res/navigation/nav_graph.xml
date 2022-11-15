@@ -6,7 +6,7 @@
     app:startDestination="@id/upcomingEventsFragment">
     <fragment
         android:id="@+id/upcomingEventsFragment"
-        android:name="com.example.boardgameapp.screens.upcomingevents.UpcomingEventsFragment"
+        android:name="com.example.boardgameapp.ui.upcomingevents.UpcomingEventsFragment"
         android:label="fragment_upcoming_events"
         tools:layout="@layout/fragment_upcoming_events">
         <action
@@ -15,12 +15,12 @@
     </fragment>
     <fragment
         android:id="@+id/chooseGamesFragment"
-        android:name="com.example.boardgameapp.screens.choosegames.ChooseGamesFragment"
+        android:name="com.example.boardgameapp.ui.choosegames.ChooseGamesFragment"
         android:label="Choose a Game"
         tools:layout="@layout/fragment_choose_games" />
     <fragment
         android:id="@+id/eventFragment"
-        android:name="com.example.boardgameapp.screens.event.EventFragment"
+        android:name="com.example.boardgameapp.ui.event.EventFragment"
         android:label="fragment_event"
         tools:layout="@layout/fragment_event">
         <argument
@@ -38,17 +38,17 @@
     </fragment>
     <fragment
         android:id="@+id/foodFragment"
-        android:name="com.example.boardgameapp.screens.food.FoodFragment"
+        android:name="com.example.boardgameapp.ui.food.FoodFragment"
         android:label="fragment_food"
         tools:layout="@layout/fragment_food" />
     <fragment
         android:id="@+id/gameFragment"
-        android:name="com.example.boardgameapp.screens.game.GameFragment"
+        android:name="com.example.boardgameapp.ui.game.GameFragment"
         android:label="fragment_game"
         tools:layout="@layout/fragment_game" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.boardgameapp.screens.profile.ProfileFragment"
+        android:name="com.example.boardgameapp.ui.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <argument
@@ -64,12 +64,12 @@
         app:startDestination="@id/loginFragment">
         <fragment
             android:id="@+id/registerFragment"
-            android:name="com.example.boardgameapp.screens.register.RegisterFragment"
+            android:name="com.example.boardgameapp.ui.register.RegisterFragment"
             android:label="fragment_register"
             tools:layout="@layout/fragment_register" />
         <fragment
             android:id="@+id/loginFragment"
-            android:name="com.example.boardgameapp.screens.login.ui.login.LoginFragment"
+            android:name="com.example.boardgameapp.ui.login.ui.login.LoginFragment"
             android:label="fragment_login"
             tools:layout="@layout/fragment_login" />
     </navigation>

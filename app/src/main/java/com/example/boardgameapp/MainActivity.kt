@@ -9,14 +9,13 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.boardgameapp.database.BoardGameRepository
 import com.example.boardgameapp.database.BoardGameDatabase
+import com.example.boardgameapp.model.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         //TODO delete at the end
         //get DB available for debugging
-        val db = BoardGameDatabase
-        val dao = db.getInstance(application).boardGameDao
-        val repository = BoardGameRepository(dao)
-
+        val repository = BoardGameRepository(BoardGameDatabase.getInstance(application).boardGameDao)
 
         // place view into the activities ViewHirarchy
         setContentView(binding.root)

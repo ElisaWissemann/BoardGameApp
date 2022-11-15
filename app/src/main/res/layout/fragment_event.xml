@@ -7,7 +7,7 @@
 
         <variable
             name="eventViewModel"
-            type="com.example.boardgameapp.screens.event.EventViewModel" />
+            type="com.example.boardgameapp.ui.event.EventViewModel" />
     </data>
 
     <ScrollView
@@ -17,7 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".screens.event.EventFragment">
+            tools:context=".ui.event.EventFragment">
 
 
             <ImageButton

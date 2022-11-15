@@ -5,12 +5,12 @@
     <data>
         <variable
             name="chooseGamesViewModel"
-            type="com.example.boardgameapp.screens.choosegames.ChooseGamesViewModel" />
+            type="com.example.boardgameapp.ui.choosegames.ChooseGamesViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.game.GameFragment">
+        tools:context=".ui.game.GameFragment">
 
         <TextView
             android:id="@+id/g_tv"

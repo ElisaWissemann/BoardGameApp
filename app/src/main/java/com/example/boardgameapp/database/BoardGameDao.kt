@@ -12,19 +12,23 @@ interface BoardGameDao {
     /*-----------------Users-----------------*/
     /*GET*/
     @Query("SELECT * FROM users")
-    //    TODO: change to Flows
-    fun getAllUsers(): MutableList<User>
+    fun getAllUsers(): Flow<List<User>>
+
+    @Query("SELECT * FROM users")
+    fun getAllUsersNoFlow(): List<User>
+
+//    @Query("SELECT * FROM users")
+//    fun getAllUsers(): Flow<List<User>>
+
+    @Query("SELECT * FROM users WHERE id= :id")
+    fun getUser(id:Int): Flow<User>
 
     /*-----------------Events-----------------*/
     /*GET*/
     @Query("SELECT * FROM events")
-    //    TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
-    //     passing back Lists can cause errors
     fun getAllEvents(): Flow<List<Event>>
 
     @Query("SELECT * FROM events")
-    //    TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
-    //     passing back Lists can cause errors
     fun getAllEventsNoFlow(): List<Event>
 
     /*Insert*/

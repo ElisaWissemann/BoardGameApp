@@ -3,7 +3,7 @@
     <data>
         <variable
             name="upcomingEventsViewModel"
-            type="com.example.boardgameapp.screens.upcomingevents.UpcomingEventsViewModel" />
+            type="com.example.boardgameapp.ui.upcomingevents.UpcomingEventsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,7 +12,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".screens.upcomingevents.UpcomingEventsFragment">
+        tools:context=".ui.upcomingevents.UpcomingEventsFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vertical_recycler_view"
