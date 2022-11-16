@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import com.example.boardgameapp.R
-import com.example.boardgameapp.database.BoardGameDatabase
-import com.example.boardgameapp.model.repositories.BoardGameRepository
-import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.db.BoardGameDatabase
+import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.db.entities.Event
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
 
 

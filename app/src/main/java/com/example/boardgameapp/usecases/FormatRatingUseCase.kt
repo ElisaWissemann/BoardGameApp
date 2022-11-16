@@ -1,6 +1,5 @@
 package com.example.boardgameapp.usecases
 
-//TODO; Read further about Data and Domain Layer!
 class FormatRatingUseCase(var rating: ArrayList<Double>?) {
 //class FormatRatingUseCase(userId: Int) {
   //  private val user: User? = UserDataSource.users.find { it.id == userId }

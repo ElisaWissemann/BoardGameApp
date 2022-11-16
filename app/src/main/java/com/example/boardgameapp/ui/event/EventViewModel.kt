@@ -1,61 +1,35 @@
 package com.example.boardgameapp.ui.event
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.boardgameapp.model.repositories.BoardGameRepository
-import com.example.boardgameapp.database.entities.User
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.repositories.dto.GameNight
+
+/*** EventViewModel - business logic for the EventScreen*/
+
+class EventViewModel(private val repository: BoardGameRepository) : ViewModel() {
+
+    /**
+     * Retrieve a specific gameNight from the repository.
+     */
+    fun retrieveGameNight(eventId: Int, hostId: Int): LiveData<GameNight> {
+        return repository.retriveGameNight(eventId, hostId).asLiveData()
+    }
+}
 
 /**
- * EventViewModel - business logic for the EventScreen
- * it should hold all the data for the EventScreen*/
-//TODO: STOPPED @ try to fix ViewModelFactory Issue -> compare to SleepTrackerViewModel!
-
-class EventViewModel(private val repository: BoardGameRepository, private val eventId: Int) :
-    ViewModel() {
-
-    // Data encapsulation, variables with _ are Mutable and private result will be passed to variable
-    // without an _ to ensure that the value can't be changed from outside
-    /*Event*/
-
-    //hand over to layoutRessource
-    private val _date = MutableLiveData<String>()
-    val date: LiveData<String> get() = _date
-
-    /*Host*/
-    //local
-    private var hostData = listOf<User>()
-
-    //hand over to layoutRessource
-    private val _hostId = MutableLiveData<Int>()
-    val hostId: LiveData<Int> get() = _hostId
-
-    private val _host = MutableLiveData<User>()
-    val host: LiveData<User> get() = _host
-
-    private val _hostName = MutableLiveData<String>()
-    val hostName: LiveData<String> get() = _hostName
-
-    private val _hostRating = MutableLiveData<ArrayList<Double>?>()
-    val hostRating: LiveData<ArrayList<Double>?> get() = _hostRating
-
-    //Initialize Block - gets called when the ViewModel is created
-    init {
-        /*Event*/
-        var eventData = getAllEvents()
-//        var event = eventData.find { it.id == eventId }!!
-//        _date.value = event.date
-//        /*Host*/
-//        hostData = getAllUsers()
-//        _host.value = hostData.find { it.id == event.host }!!
-//        _hostId.value = _host.value?.id
-//        _hostName.value = "Host: " + _host.value?.name + " " + _host.value?.surname
-//        _hostRating.value = _host.value!!.rating
-
-
+ * ViewModelFactory for EventScreen
+ */
+class EventViewModelFactory(
+    private val repository: BoardGameRepository
+) : ViewModelProvider.Factory {
+    @Suppress("unchecked_cast")
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(EventViewModel::class.java)) {
+            return EventViewModel(repository) as T
+        }
+        throw IllegalArgumentException("Unknown View Model class")
     }
-
-  //  private fun getAllEventsNoFlow() = repository.getAllEventsNoFlow()
-    private fun getAllEvents() = repository.getAllEvents()
-    //private fun getAllUsers() = repository.users
 }

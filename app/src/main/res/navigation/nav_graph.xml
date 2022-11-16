@@ -35,6 +35,8 @@
         <action
             android:id="@+id/action_eventFragment_to_chooseGamesFragment4"
             app:destination="@id/chooseGamesFragment" />
+        <argument android:name="hostId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/foodFragment"

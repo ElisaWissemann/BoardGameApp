@@ -9,8 +9,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.example.boardgameapp.database.BoardGameDatabase
-import com.example.boardgameapp.model.repositories.BoardGameRepository
+import com.example.boardgameapp.db.BoardGameDatabase
+import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

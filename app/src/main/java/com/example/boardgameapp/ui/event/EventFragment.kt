@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
-import com.example.boardgameapp.database.BoardGameDatabase
-import com.example.boardgameapp.model.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentEventBinding
+import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.repositories.dto.GameNight
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
 
 
@@ -24,8 +24,19 @@ class EventFragment : Fragment() {
         fun newInstance() = EventFragment()
     }
 
+    private val args: EventFragmentArgs by navArgs()
+    lateinit var gameNight: GameNight
+
+    private val viewModel: EventViewModel by activityViewModels {
+        EventViewModelFactory(
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
+    }
+
     private lateinit var navController: NavController
-    private var binding: FragmentEventBinding? = null
+
+    private var _binding: FragmentEventBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,31 +49,31 @@ class EventFragment : Fragment() {
          * Documentation: https://developer.android.com/topic/libraries/data-binding
          * CodeLab: https://developer.android.com/codelabs/android-databinding#2
          */
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_event,
-            container,
-            false
-        )
+        _binding = FragmentEventBinding.inflate(inflater, container, false)
 
         /*Navigation*/
         navController = findNavController()
-        val args: EventFragmentArgs by navArgs()
 
-        //TODO: Handle via depenency Injection
-        /*DB*/
-        val db = BoardGameDatabase
-        val dao = db.getInstance(requireActivity().application).boardGameDao
-        val repository = BoardGameRepository(dao)
+        return binding.root
+    }
 
-        /*ViewModel*/
-        //TODO add Hilt dependency injection to acces NavArgs in ViewModel
-        val factory = EventViewModelFactory(repository, args.eventId)
-        binding?.eventViewModel = ViewModelProvider(this, factory).get(EventViewModel::class.java)
-        binding?.lifecycleOwner = this
 
-        // return view
-        return binding!!.root
+    private fun bind(gameNight: GameNight) {
+        binding.apply {
+            date.text = gameNight.date
+            host.text = getString(R.string.hostet_by, gameNight.host)
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        /**Retrieves an GameNight Object with the given eventId and hostIde*/
+        viewModel.retrieveGameNight(args.eventId, args.hostId)
+            .observe(this.viewLifecycleOwner) { thisGameNight ->
+                gameNight = thisGameNight
+                bind(gameNight)
+            }
     }
 
     override fun onStart() {
@@ -70,41 +81,52 @@ class EventFragment : Fragment() {
         //Set AppBarTitle
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
-        //get current HostId from ViewModel
-        val hostId = binding?.eventViewModel?.hostId?.value!!
-        val hostRating = binding?.eventViewModel!!.hostRating
-
-        //create and show HostRatingDialog
+        /**
+         * Opens the HostRatingDialog
+         * */
+        //TODO: Fix if there is no value in the DB
         binding?.hostRatingButton?.setOnClickListener {
-            HostRatingDialog(hostRating.value).show(
+            HostRatingDialog(gameNight.hostRating).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
         }
-        binding?.delayedButton?.setOnClickListener{
-            DelayedDialogFragment(hostId).show(
+
+        /**
+         * Opens the DelayedDialog
+         * */
+        binding?.delayedButton?.setOnClickListener {
+            DelayedDialogFragment(gameNight.hostId).show(
                 (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
             )
 
         }
 
-        //Navigate from EventScreen to ProfileScreen
-        binding!!.profileButton.setOnClickListener {
+        /**
+         * Navigates to the ProfileScreen of the Host
+         * */
+        binding.profileButton.setOnClickListener {
             navController.navigate(
                 EventFragmentDirections.actionEventFragmentToProfileFragment(
-                    pUserId = hostId
+                    pUserId = gameNight.hostId
                 )
             )
         }
 
-        binding!!.chooseGamesButton.setOnClickListener {
+        /**
+         * Navigates to the ChooseGamesFragment
+         * */
+        binding.chooseGamesButton.setOnClickListener {
             navController.navigate(R.id.action_eventFragment_to_chooseGamesFragment4)
         }
     }
 
+    /**
+     * Called when fragment is destroyed.
+     */
     override fun onDestroyView() {
         super.onDestroyView()
         //destroy Binding
-        binding = null
+        _binding = null
     }
 }

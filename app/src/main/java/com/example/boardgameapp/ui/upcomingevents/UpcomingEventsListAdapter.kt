@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.UpcomingEventsItemViewBinding
-import com.example.boardgameapp.model.data.UpcomingGameNight
+import com.example.boardgameapp.repositories.dto.UpcomingGameNight
 import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsFragmentDirections
 
 
@@ -38,20 +38,21 @@ class UpcomingEventsListAdapter() :
     private var binding: UpcomingEventsItemViewBinding? = null
 
 
-
     class ItemViewHolder(var binding: UpcomingEventsItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(upcomingGameNight: UpcomingGameNight) {
             binding.apply {
-                ueHost.text = binding.root.context.getString(R.string.hostet_by, upcomingGameNight.host)
+                ueHost.text =
+                    binding.root.context.getString(R.string.hostet_by, upcomingGameNight.host)
                 ueDate.text = upcomingGameNight.date
                 ueAccepted.text = upcomingGameNight.accepted?.size.toString()
                 ueCancelled.text = upcomingGameNight.cancelled?.size.toString()
                 ueEnterEventButton.setOnClickListener {
                     val action =
                         UpcomingEventsFragmentDirections.actionUpcomingEventsFragmentToEventFragment(
-                            eventId = upcomingGameNight.gameNightId
+                            eventId = upcomingGameNight.gameNightId,
+                            hostId = upcomingGameNight.hostId
                         )
                     root.findNavController().navigate(action)
                 }
@@ -60,16 +61,21 @@ class UpcomingEventsListAdapter() :
     }
 
 
-    class DiffCallback: DiffUtil.ItemCallback<UpcomingGameNight>() {
-        override fun areItemsTheSame(oldItem: UpcomingGameNight, newItem: UpcomingGameNight): Boolean {
+    class DiffCallback : DiffUtil.ItemCallback<UpcomingGameNight>() {
+        override fun areItemsTheSame(
+            oldItem: UpcomingGameNight,
+            newItem: UpcomingGameNight
+        ): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: UpcomingGameNight, newItem: UpcomingGameNight): Boolean {
+        override fun areContentsTheSame(
+            oldItem: UpcomingGameNight,
+            newItem: UpcomingGameNight
+        ): Boolean {
             return oldItem == newItem
         }
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         return ItemViewHolder(

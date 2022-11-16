@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.example.boardgameapp.R
-import com.example.boardgameapp.database.game.GameDataSource
+import com.example.boardgameapp.db.game.GameDataSource
 import com.example.boardgameapp.databinding.FragmentChooseGamesBinding
 
 

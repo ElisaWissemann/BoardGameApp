@@ -10,6 +10,7 @@ import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.usecases.FormatRatingUseCase
 import com.example.boardgameapp.databinding.FragmentHostRatingDialogBinding
+import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsViewModel
 import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsViewModelFactory
 
@@ -21,7 +22,7 @@ class HostRatingDialog(private var rating: ArrayList<Double>?) : DialogFragment(
     private val binding get() = _binding!!
     private val viewModel: UpcomingEventsViewModel by activityViewModels {
         UpcomingEventsViewModelFactory(
-            (activity?.application as BoardGameApplication).database.boardGameDao
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
         )
     }
     private var currentRating: Float? = null
