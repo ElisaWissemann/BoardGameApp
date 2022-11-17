@@ -2,7 +2,6 @@ package com.example.boardgameapp.db
 
 import androidx.room.*
 import com.example.boardgameapp.db.entities.Event
-import com.example.boardgameapp.db.game.Game
 import com.example.boardgameapp.db.entities.User
 import kotlinx.coroutines.flow.Flow
 
@@ -10,7 +9,8 @@ import kotlinx.coroutines.flow.Flow
 interface BoardGameDao {
 
     /*-----------------Users-----------------*/
-    /*GET*/
+
+
     @Query("SELECT * FROM users")
     fun getUsersStream(): Flow<List<User>>
 
@@ -20,10 +20,14 @@ interface BoardGameDao {
     @Query("SELECT * FROM users WHERE id= :id")
     fun getUser(id:Int): Flow<User>
 
-    @Query("SELECT rating FROM users WHERE id = :id")
-    fun getUserRating(id:Int): Flow<String>
+    @Update
+    suspend fun updateUser(user: User)
+
+
 
     /*-----------------Events-----------------*/
+
+
     /*GET*/
     @Query("SELECT * FROM events")
     fun getAllEventsStream(): Flow<List<Event>>

@@ -58,7 +58,9 @@ class ProfileFragment : Fragment() {
 
         //RatingBar
         val averageRating = FormatRatingUseCase(userRating).getRating()
-        binding.totalRatingBar.setRating(averageRating)
+        if (averageRating != null) {
+            binding.totalRatingBar.rating = averageRating
+        }
         binding.totalRatingText.text = getString(R.string.total_rating_1d, averageRating.toString())
         //Upcoming Hosting Event
         val eventData = repository.getAllEventsNoFlow()

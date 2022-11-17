@@ -1,6 +1,7 @@
 package com.example.boardgameapp.repositories
 
 import android.util.Log
+import androidx.room.Update
 import com.example.boardgameapp.db.BoardGameDao
 import com.example.boardgameapp.db.converters.DoubleArrayListConverter
 import com.example.boardgameapp.db.entities.Event
@@ -11,7 +12,6 @@ import kotlinx.coroutines.flow.*
 
 class BoardGameRepository(private val dao: BoardGameDao) {
 
-
     /*------Users ------*/
     fun getUsersStream(): Flow<List<User>> {
         return dao.getUsersStream()
@@ -21,21 +21,18 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.getAllUsersNoFlow()
     }
 
+    /**
+     * Function to get an existing User from the DB
+     **/
     fun getUserStream(id: Int): Flow<User> {
         return dao.getUser(id)
     }
-
-    fun getUserRating(id: Int): ArrayList<Double> {
-        var rating = dao.getUserRating(id)
-        val newRating = arrayListOf<Double>()
-        var converter = DoubleArrayListConverter.newInstance()
-        rating.map {
-            Log.i("ELISA", rating.toString())
-            var newRating = converter.toDoubleArrayList(it)
-        }
-        return newRating
+    /**
+     * Function to update the existing User in the DB
+     * */
+    suspend fun updateUser(user: User) {
+        return dao.updateUser(user)
     }
-
 
     /*------Events------*/
     fun getEventsStream(): Flow<List<Event>> {
@@ -50,14 +47,6 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.getAllEventsNoFlow()
     }
 
-    suspend fun insertEvent(event: Event): Long {
-        return dao.insertEvent(event)
-    }
-
-    fun deleteEvent(event: Event): Int {
-        return dao.deleteEvent(event)
-    }
-
     /**
      * Function that combines events and user to a specific GameNight Object
      * */
@@ -66,19 +55,19 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         val event = dao.getEvent(eventId)
         val user = dao.getUser(userId)
 
-        val gameNight = event.combine(user){event, user -> GameNight(
-            gameNightId = event.id,
-            hostId = user.id,
-            host = user.name,
-            date = event.date,
-            hostRating = user.rating
-        )}
+        val gameNight = event.combine(user) { event, user ->
+            GameNight(
+                gameNightId = event.id,
+                hostId = user.id,
+                host = user.name,
+                date = event.date,
+                hostRating = user.rating
+            )
+        }
 
         return gameNight
     }
 
-
-    /*------Upcoming Events------*/
     /**
      * Function that combines events and user to a UpcomingGameNight Object
      * */
@@ -100,19 +89,26 @@ class BoardGameRepository(private val dao: BoardGameDao) {
                 }
             }
         }
-
         return upcomingGameNightsList
     }
+}
+//    fun getUserRating(id: Int): ArrayList<Double> {
+//        var rating = dao.getUserRating(id)
+//        val newRating = arrayListOf<Double>()
+//        var converter = DoubleArrayListConverter.newInstance()
+//        rating.map {
+//            Log.i("ELISA", rating.toString())
+//            var newRating = converter.toDoubleArrayList(it)
+//        }
+//        return newRating
+//    }
 
 
-    /*Games*/
-//    suspend fun insertGame(game: Game): Long {
-//        return dao.insertGame(game)
+
+//    suspend fun insertEvent(event: Event): Long {
+//        return dao.insertEvent(event)
 //    }
 //
-//    fun deleteGame(game: Game): Int {
-//        return dao.deleteGame(game)
+//    fun deleteEvent(event: Event): Int {
+//        return dao.deleteEvent(event)
 //    }
-
-
-}

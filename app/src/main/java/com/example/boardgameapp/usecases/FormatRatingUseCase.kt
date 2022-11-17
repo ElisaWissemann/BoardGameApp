@@ -1,12 +1,16 @@
 package com.example.boardgameapp.usecases
 
-class FormatRatingUseCase(var rating: ArrayList<Double>?) {
-//class FormatRatingUseCase(userId: Int) {
-  //  private val user: User? = UserDataSource.users.find { it.id == userId }
-    //private val rating: ArrayList<Double>? = user!!.rating
+import android.util.Log
 
-    fun getRating() : Float{
-        return rating?.average()?.toFloat() ?: 0.0f
+class FormatRatingUseCase(var rating: ArrayList<Double>?) {
+    /**Calculates the average of the given Ratings, if there are no ratings yet, 0.0f is passed*/
+    fun getRating(): Float? {
+
+        return if (!rating.isNullOrEmpty()) {
+            rating?.average()?.toFloat()
+        } else {
+            0.0f
+        }
     }
 
 }

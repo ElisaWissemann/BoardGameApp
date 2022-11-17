@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.db.BoardGameDatabase
 import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.db.entities.Event
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
+import com.example.boardgameapp.ui.event.EventViewModel
+import com.example.boardgameapp.ui.event.EventViewModelFactory
 
 
 class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
@@ -17,8 +21,13 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
     private var _binding: FragmentAttendenceDialogBinding? = null
     //This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
-    private lateinit var event: Event
+    //private lateinit var event: Event
 
+    private val viewModel: EventViewModel by activityViewModels {
+        EventViewModelFactory(
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
+    }
 
 
     override fun onCreateView(
@@ -28,20 +37,8 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
     ): View? {
         //Set a Background with rounded corners for the Dialog
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
-        //inflate the Layout
-        val view = inflater.inflate(R.layout.fragment_attendence_dialog, container, false)
-        //ViewBinding
-        _binding = FragmentAttendenceDialogBinding.bind(view)
+        _binding = FragmentAttendenceDialogBinding.bind(inflater.inflate(R.layout.fragment_attendence_dialog, container, false))
 
-        //TODO: Handle via depenency Injection & extract to ViewModel
-        /*DB*/
-        val db = BoardGameDatabase
-        val dao = db.getInstance(requireActivity().application).boardGameDao
-        val repository = BoardGameRepository(dao)
-
-        val eventData = repository.getAllEventsNoFlow()
-        event = eventData.find { it.id == eventId }!!
-        //TODO: Get back in after Event Data are added to Room
         //_binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")
         //_binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled).replace("[", "").replace("]", "")
 

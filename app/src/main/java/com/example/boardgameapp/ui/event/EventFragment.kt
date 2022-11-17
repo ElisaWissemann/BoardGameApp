@@ -1,6 +1,7 @@
 package com.example.boardgameapp.ui.event
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,8 +86,9 @@ class EventFragment : Fragment() {
          * Opens the HostRatingDialog
          * */
         //TODO: Fix if there is no value in the DB
-        binding?.hostRatingButton?.setOnClickListener {
-            HostRatingDialog(gameNight.hostRating).show(
+        binding.hostRatingButton.setOnClickListener {
+            Log.i("ELISA", "HostID from EventFragment + ${gameNight.hostId.toString()}")
+            HostRatingDialog(gameNight.hostRating, gameNight.hostId).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
             )
