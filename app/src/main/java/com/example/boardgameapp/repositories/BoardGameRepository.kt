@@ -1,14 +1,13 @@
 package com.example.boardgameapp.repositories
 
-import android.util.Log
-import androidx.room.Update
 import com.example.boardgameapp.db.BoardGameDao
-import com.example.boardgameapp.db.converters.DoubleArrayListConverter
 import com.example.boardgameapp.db.entities.Event
+import com.example.boardgameapp.db.entities.LoggedInUser
 import com.example.boardgameapp.db.entities.User
 import com.example.boardgameapp.repositories.dto.GameNight
 import com.example.boardgameapp.repositories.dto.UpcomingGameNight
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
 
 class BoardGameRepository(private val dao: BoardGameDao) {
 
@@ -27,6 +26,13 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     fun getUserStream(id: Int): Flow<User> {
         return dao.getUser(id)
     }
+
+    /**
+     * Function to get UserName
+     * */
+    fun getUserName(id:Int):String{
+        return dao.getUserName(id)
+    }
     /**
      * Function to update the existing User in the DB
      * */
@@ -39,12 +45,24 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.getAllEventsStream()
     }
 
-    fun getEventStream(id: Int): Flow<Event> {
+     fun getEventStream(id: Int): Flow<Event> {
         return dao.getEvent(id)
     }
 
     fun getAllEventsNoFlow(): List<Event> {
         return dao.getAllEventsNoFlow()
+    }
+
+    /**
+     * Function to update the existing Event in the DB
+     * */
+    suspend fun updateEvent(event:Event) {
+        return dao.updateEvent(event)
+    }
+
+    /*---------LoggedIn-------------*/
+    fun loggedInUser(): LoggedInUser {
+        return dao.loggedInUser(0)
     }
 
     /**
@@ -92,23 +110,3 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return upcomingGameNightsList
     }
 }
-//    fun getUserRating(id: Int): ArrayList<Double> {
-//        var rating = dao.getUserRating(id)
-//        val newRating = arrayListOf<Double>()
-//        var converter = DoubleArrayListConverter.newInstance()
-//        rating.map {
-//            Log.i("ELISA", rating.toString())
-//            var newRating = converter.toDoubleArrayList(it)
-//        }
-//        return newRating
-//    }
-
-
-
-//    suspend fun insertEvent(event: Event): Long {
-//        return dao.insertEvent(event)
-//    }
-//
-//    fun deleteEvent(event: Event): Int {
-//        return dao.deleteEvent(event)
-//    }

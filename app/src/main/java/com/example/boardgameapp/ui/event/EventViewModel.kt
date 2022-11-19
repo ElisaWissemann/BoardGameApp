@@ -1,12 +1,13 @@
 package com.example.boardgameapp.ui.event
 
 import android.util.Log
+import androidx.databinding.Observable.OnPropertyChangedCallback
 import androidx.lifecycle.*
+import com.example.boardgameapp.db.entities.Event
+import com.example.boardgameapp.db.entities.LoggedInUser
 import com.example.boardgameapp.db.entities.User
 import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.repositories.dto.GameNight
-import kotlinx.coroutines.launch
-import java.util.*
 import kotlin.collections.ArrayList
 
 /*** EventViewModel - business logic for the EventScreen*/
@@ -20,12 +21,15 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
         return repository.retriveGameNight(eventId, hostId).asLiveData()
     }
 
-    /**Creates a new Event object with the updated attendence information*/
 
-    suspend fun buildEventWithUpdatedAttendence(){
 
+/*---------------Update User---------------------*/
+    /**
+     * Launching a new coroutine to update an item in a non-blocking way
+     */
+    private suspend fun updateUser(user: User) {
+        repository.updateUser(user)
     }
-
 
 
     /**
@@ -53,15 +57,8 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
     }
 
     /**
-     * Launching a new coroutine to update an item in a non-blocking way
-     */
-    private suspend fun updateUser(user: User) {
-            repository.updateUser(user)
-    }
-
-    /**
-     * Called to update an existing entry in the Inventory database.
-     * Returns an instance of the [Item] entity class with the item info updated by the user.
+     * Called to update an existing entry in the BoardGame database.
+     * Returns an instance of the [User] entity class with the user info updated with rating by the user.
      */
     private fun getUpdatedItemEntry(
         userId: Int,

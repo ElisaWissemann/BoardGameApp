@@ -2,6 +2,7 @@ package com.example.boardgameapp.db
 
 import androidx.room.*
 import com.example.boardgameapp.db.entities.Event
+import com.example.boardgameapp.db.entities.LoggedInUser
 import com.example.boardgameapp.db.entities.User
 import kotlinx.coroutines.flow.Flow
 
@@ -19,6 +20,9 @@ interface BoardGameDao {
 
     @Query("SELECT * FROM users WHERE id= :id")
     fun getUser(id:Int): Flow<User>
+
+    @Query("SELECT name FROM users WHERE id= :id")
+    fun getUserName(id:Int): String
 
     @Update
     suspend fun updateUser(user: User)
@@ -38,6 +42,9 @@ interface BoardGameDao {
     @Query("SELECT * FROM events WHERE id= :id")
     fun getEvent(id:Int): Flow<Event>
 
+    @Update
+    suspend fun updateEvent(event: Event)
+
 
     /*Insert*/
     @Insert(onConflict = OnConflictStrategy.IGNORE)
@@ -47,6 +54,10 @@ interface BoardGameDao {
     @Delete
     fun deleteEvent(event: Event): Int
 
+    /*-----------------LoggedInUser-----------------*/
+
+    @Query("SELECT * FROM loggedInUser WHERE rowId= :id")
+    fun loggedInUser(id: Int): LoggedInUser
 
     /*-----------------Games-----------------*/
 //    @Insert(onConflict = OnConflictStrategy.IGNORE)

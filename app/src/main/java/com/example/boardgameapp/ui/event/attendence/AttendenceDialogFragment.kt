@@ -1,34 +1,33 @@
 package com.example.boardgameapp.ui.event.attendence
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
-import com.example.boardgameapp.db.BoardGameDatabase
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.db.entities.Event
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
-import com.example.boardgameapp.ui.event.EventViewModel
-import com.example.boardgameapp.ui.event.EventViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
 
     private var _binding: FragmentAttendenceDialogBinding? = null
+
     //This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
-    //private lateinit var event: Event
 
-    private val viewModel: EventViewModel by activityViewModels {
-        EventViewModelFactory(
+    private val viewModel: AttendenceViewModel by activityViewModels {
+        AttendenceViewModelFactory(
             BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
         )
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,27 +36,47 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
     ): View? {
         //Set a Background with rounded corners for the Dialog
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
-        _binding = FragmentAttendenceDialogBinding.bind(inflater.inflate(R.layout.fragment_attendence_dialog, container, false))
+        _binding = FragmentAttendenceDialogBinding.bind(
+            inflater.inflate(
+                R.layout.fragment_attendence_dialog,
+                container,
+                false
+            )
+        )
 
-        //_binding!!.confirmedText.text = getString(R.string.confirmedAttendence, event.accepted).replace("[", "").replace("]", "")
-        //_binding!!.cancelledText.text = getString(R.string.cancelledAttendence, event.cancelled).replace("[", "").replace("]", "")
+        lifecycleScope.launch { viewModel.setAttendies(eventId) }
 
+        viewModel.accepted.observe(this.viewLifecycleOwner) { data ->
+            _binding!!.acceptedText.text =
+                getString(R.string.acceptedAttendence, data).replace("[", "").replace("]", "")
+        }
+        viewModel.cancelled.observe(this.viewLifecycleOwner) { data ->
+            _binding!!.cancelledText.text =
+                getString(R.string.cancelledAttendence, data).replace("[", "").replace("]", "")
+        }
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.acceptButton.setOnClickListener {
-            //TODO I take part
-            //TODO close dialog
+            //execute the corouting on I/O Thread
+            lifecycleScope.launch (Dispatchers.IO){
+                viewModel.updatedEventWithAttendence(0, eventId)
+            }
+
+            dialog?.dismiss()
         }
 
         binding.refuseButton.setOnClickListener {
-            //TODO I don't take part
-            //TODO close dialog
+            lifecycleScope.launch (Dispatchers.IO){
+                viewModel.updatedEventWithAttendence(1, eventId)
+            }
+            dialog?.dismiss()
         }
-
-
-        return view
     }
-
-
 
 
     override fun onStart() {

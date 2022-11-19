@@ -8,6 +8,7 @@ import androidx.room.TypeConverters
 import com.example.boardgameapp.db.converters.DoubleArrayListConverter
 import com.example.boardgameapp.db.converters.IntArrayListConverter
 import com.example.boardgameapp.db.entities.Event
+import com.example.boardgameapp.db.entities.LoggedInUser
 import com.example.boardgameapp.db.entities.User
 import com.example.boardgameapp.db.game.Game
 
@@ -16,7 +17,7 @@ import com.example.boardgameapp.db.game.Game
 //Codelab:
 //https://developer.android.com/codelabs/basic-android-kotlin-training-intro-room-flow?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-5-pathway-1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-intro-room-flow#8
 
-@Database(entities = [User::class, Event::class,Game::class], version = 1, exportSchema = true)
+@Database(entities = [User::class, Event::class,Game::class, LoggedInUser::class], version = 1, exportSchema = true)
 @TypeConverters(IntArrayListConverter::class, DoubleArrayListConverter::class)
 abstract class BoardGameDatabase : RoomDatabase() {
 

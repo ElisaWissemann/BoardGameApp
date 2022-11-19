@@ -16,6 +16,7 @@ import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.repositories.dto.GameNight
+import com.example.boardgameapp.ui.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
 
 
@@ -44,12 +45,6 @@ class EventFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-
-        /* DATABINDING
-         * Inflate the view and obtain an instance of the binding class
-         * Documentation: https://developer.android.com/topic/libraries/data-binding
-         * CodeLab: https://developer.android.com/codelabs/android-databinding#2
-         */
         _binding = FragmentEventBinding.inflate(inflater, container, false)
 
         /*Navigation*/
@@ -57,7 +52,6 @@ class EventFragment : Fragment() {
 
         return binding.root
     }
-
 
     private fun bind(gameNight: GameNight) {
         binding.apply {
@@ -85,9 +79,7 @@ class EventFragment : Fragment() {
         /**
          * Opens the HostRatingDialog
          * */
-        //TODO: Fix if there is no value in the DB
         binding.hostRatingButton.setOnClickListener {
-            Log.i("ELISA", "HostID from EventFragment + ${gameNight.hostId.toString()}")
             HostRatingDialog(gameNight.hostRating, gameNight.hostId).show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "HostRatingDialogFragment"
@@ -95,13 +87,20 @@ class EventFragment : Fragment() {
         }
 
         /**
+         * Opens the AttendenceDialog
+         * */
+        binding.attendenceButton.setOnClickListener {
+            AttendenceDialogFragment(args.eventId).show(
+                (activity as AppCompatActivity).supportFragmentManager, "AttendenceDialogFragment"
+            )
+        }
+        /**
          * Opens the DelayedDialog
          * */
-        binding?.delayedButton?.setOnClickListener {
+        binding.delayedButton.setOnClickListener {
             DelayedDialogFragment(gameNight.hostId).show(
                 (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
             )
-
         }
 
         /**

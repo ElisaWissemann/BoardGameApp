@@ -12,8 +12,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.boardgameapp.db.BoardGameDatabase
 import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.ActivityMainBinding
+import com.example.boardgameapp.db.entities.LoggedInUser
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
 
@@ -28,16 +30,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController)
 
-        //TODO delete at the end
-        //get DB available for debugging
-        val repository = BoardGameRepository(BoardGameDatabase.getInstance(application).boardGameDao)
-
         // place view into the activities ViewHirarchy
         setContentView(binding.root)
-
     }
 
-    /*OptionsMenu implementation
+    /**OptionsMenu implementation
     * documentation https://developer.android.com/develop/ui/views/components/appbar
     * Tutorial https://www.youtube.com/watch?v=yLOsaR_nDrU&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=5
     * */
@@ -56,6 +53,4 @@ class MainActivity : AppCompatActivity() {
 
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
-
 }

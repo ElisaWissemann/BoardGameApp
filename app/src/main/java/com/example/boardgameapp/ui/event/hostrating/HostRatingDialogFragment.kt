@@ -56,7 +56,8 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
          * start coroutine to update the rating in the user
          * */
         binding.hrSubmit.setOnClickListener {
-            lifecycleScope.launch{
+            //execute the corouting on I/O Thread
+            lifecycleScope.launch {
                 viewModel.buildUserWithNewRating(binding.ratingBar.rating,hostId)
 
             }

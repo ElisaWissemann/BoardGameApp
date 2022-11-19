@@ -18,6 +18,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/cancelled_view"
         app:layout_constraintTop_toBottomOf="@+id/cancelled_view"
+        app:layout_constraintVertical_bias="0.0"
         tools:text="Name4, Name5, Name6" />
 
     <TextView
@@ -30,14 +31,14 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/confirmed_text"
-        app:layout_constraintTop_toBottomOf="@+id/confirmed_text" />
+        app:layout_constraintStart_toStartOf="@+id/accepted_text"
+        app:layout_constraintTop_toBottomOf="@+id/accepted_text" />
 
     <TextView
-        android:id="@+id/confirmed_text"
+        android:id="@+id/accepted_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/confirmedAttendence"
+        android:text="@string/acceptedAttendence"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/confirmed_view"
@@ -55,32 +56,27 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/accept_button"
-        app:layout_constraintTop_toBottomOf="@+id/accept_button" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/accept_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
+        android:layout_marginTop="30dp"
         android:text="Accept"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/refuse_button"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.223"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175" />
+        app:layout_constraintTop_toBottomOf="@+id/cancelled_text"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/refuse_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="25dp"
         android:text="Refuse"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/accept_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.175" />
+        tools:layout_editor_absoluteX="246dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

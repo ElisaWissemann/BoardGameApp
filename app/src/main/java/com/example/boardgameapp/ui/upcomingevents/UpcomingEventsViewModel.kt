@@ -15,10 +15,6 @@ class UpcomingEventsViewModel(private val repository: BoardGameRepository) : Vie
 
     val upcomingGameNights: LiveData<List<UpcomingGameNight?>> = repository.getUpcomingEventsStream().asLiveData()
 
-//    private fun getUpcomingEvents() = viewModelScope.launch {
-//        repository.getUpcomingEventsStream()
-//    }
-
 }
 
 /**
