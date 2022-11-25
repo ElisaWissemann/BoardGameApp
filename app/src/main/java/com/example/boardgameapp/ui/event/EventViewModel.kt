@@ -1,14 +1,12 @@
 package com.example.boardgameapp.ui.event
 
-import android.util.Log
-import androidx.databinding.Observable.OnPropertyChangedCallback
-import androidx.lifecycle.*
-import com.example.boardgameapp.db.entities.Event
-import com.example.boardgameapp.db.entities.LoggedInUser
-import com.example.boardgameapp.db.entities.User
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.asLiveData
+import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.repositories.dto.GameNight
-import kotlin.collections.ArrayList
 
 /*** EventViewModel - business logic for the EventScreen*/
 
@@ -20,8 +18,6 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
     fun retrieveGameNight(eventId: Int, hostId: Int): LiveData<GameNight> {
         return repository.retriveGameNight(eventId, hostId).asLiveData()
     }
-
-
 
 /*---------------Update User---------------------*/
     /**

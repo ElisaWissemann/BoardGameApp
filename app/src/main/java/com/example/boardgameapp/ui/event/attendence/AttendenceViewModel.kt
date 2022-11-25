@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.boardgameapp.db.entities.Event
-import com.example.boardgameapp.db.entities.LoggedInUser
+import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.database.entities.LoggedInUser
 import com.example.boardgameapp.repositories.BoardGameRepository
 
 class AttendenceViewModel(private val repository: BoardGameRepository) : ViewModel() {

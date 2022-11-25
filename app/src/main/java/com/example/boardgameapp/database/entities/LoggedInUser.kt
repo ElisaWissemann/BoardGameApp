@@ -1,4 +1,4 @@
-package com.example.boardgameapp.db.entities
+package com.example.boardgameapp.database.entities
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo

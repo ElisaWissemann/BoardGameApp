@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.R
-import com.example.boardgameapp.db.BoardGameDatabase
+import com.example.boardgameapp.database.BoardGameDatabase
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.db.entities.Event
+import com.example.boardgameapp.database.entities.Event
 import com.example.boardgameapp.usecases.FormatRatingUseCase
-import com.example.boardgameapp.db.entities.User
+import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.databinding.FragmentProfileBinding
 
 

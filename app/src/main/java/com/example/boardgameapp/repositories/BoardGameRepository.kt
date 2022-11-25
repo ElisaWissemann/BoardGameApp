@@ -1,9 +1,9 @@
 package com.example.boardgameapp.repositories
 
-import com.example.boardgameapp.db.BoardGameDao
-import com.example.boardgameapp.db.entities.Event
-import com.example.boardgameapp.db.entities.LoggedInUser
-import com.example.boardgameapp.db.entities.User
+import com.example.boardgameapp.database.BoardGameDao
+import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.database.entities.LoggedInUser
+import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.repositories.dto.GameNight
 import com.example.boardgameapp.repositories.dto.UpcomingGameNight
 import kotlinx.coroutines.flow.Flow
@@ -13,7 +13,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*------Users ------*/
     fun getUsersStream(): Flow<List<User>> {
-        return dao.getUsersStream()
+        return dao.getUsers()
     }
 
     fun getAllUsersNoFlow(): List<User> {
@@ -42,7 +42,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*------Events------*/
     fun getEventsStream(): Flow<List<Event>> {
-        return dao.getAllEventsStream()
+        return dao.getEvents()
     }
 
      fun getEventStream(id: Int): Flow<Event> {
@@ -92,7 +92,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     fun getUpcomingEventsStream(): Flow<List<UpcomingGameNight?>> {
 
         val upcomingGameNightsList = combine(
-            dao.getAllEventsStream(), dao.getUsersStream()
+            dao.getEvents(), dao.getUsers()
         ) { gameNights, users ->
             gameNights.map { gameNight ->
                 users.find { it.id == gameNight.host }?.let {

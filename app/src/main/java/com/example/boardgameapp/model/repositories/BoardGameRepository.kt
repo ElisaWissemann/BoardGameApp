@@ -13,7 +13,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*------Users ------*/
     fun getAllUsers(): Flow<List<User>> {
-        return dao.getAllUsers()
+        return dao.getUsers()
     }
 
     fun getAllUsersNoFlow(): List<User> {
@@ -27,11 +27,11 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     /*------Upcoming Events------*/
      fun getUpcomingEventFlow(): Flow<List<UpcomingGameNight?>> {
 
-        val events = dao.getAllEvents()
-        val users = dao.getAllUsers()
+        val events = dao.getEvents()
+        val users = dao.getUsers()
 
         val upcomingGameNightsList = combine(
-                dao.getAllEvents(), dao.getAllUsers()){
+                dao.getEvents(), dao.getUsers()){
             gameNights, users ->
             gameNights.map { gameNight ->
                 users.find { it.id == gameNight.host }?.name?.let {
@@ -51,7 +51,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*------Events------*/
     fun getAllEvents(): Flow<List<Event>> {
-        return dao.getAllEvents()
+        return dao.getEvents()
     }
 
     fun getAllEventsNoFlow(): List<Event> {
@@ -66,14 +66,14 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.deleteEvent(event)
     }
 
-    /*Games*/
-    suspend fun insertGame(game: Game): Long {
-        return dao.insertGame(game)
-    }
-
-    fun deleteGame(game: Game): Int {
-        return dao.deleteGame(game)
-    }
+//    /*Games*/
+//    suspend fun insertGame(game: Game): Long {
+//        return dao.insertGame(game)
+//    }
+//
+//    fun deleteGame(game: Game): Int {
+//        return dao.deleteGame(game)
+//    }
 
 
 }

@@ -1,10 +1,10 @@
 package com.example.boardgameapp.ui.upcomingevents
 
 import androidx.lifecycle.*
-import com.example.boardgameapp.db.BoardGameDao
+import com.example.boardgameapp.database.BoardGameDao
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.db.entities.Event
-import com.example.boardgameapp.db.entities.User
+import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.repositories.dto.UpcomingGameNight
 import kotlinx.coroutines.launch
 
@@ -16,7 +16,6 @@ class UpcomingEventsItemViewModelFactory(private val repository: BoardGameReposi
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        //TODO Change to UpcomingEventsItemViewModel
         if(modelClass.isAssignableFrom(UpcomingEventsItemViewModel::class.java)){
             return UpcomingEventsViewModel(repository) as T
         }
