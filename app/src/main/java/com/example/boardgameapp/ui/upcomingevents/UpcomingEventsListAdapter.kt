@@ -24,7 +24,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.UpcomingEventsItemViewBinding
-import com.example.boardgameapp.database.dto.UpcomingGameNight
+import com.example.boardgameapp.data.dto.UpcomingGameNight
 import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsFragmentDirections
 
 

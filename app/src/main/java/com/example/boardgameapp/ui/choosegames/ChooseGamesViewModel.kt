@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.data.repositories.BoardGameRepository
 
 class ChooseGamesViewModel(private val repository: BoardGameRepository) : ViewModel() {
 

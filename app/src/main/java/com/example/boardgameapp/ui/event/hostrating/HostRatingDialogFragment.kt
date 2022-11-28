@@ -10,10 +10,10 @@ import androidx.lifecycle.lifecycleScope
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentHostRatingDialogBinding
-import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.ui.event.EventViewModel
 import com.example.boardgameapp.ui.event.EventViewModelFactory
-import com.example.boardgameapp.usecases.FormatRatingUseCase
+import com.example.boardgameapp.data.usecases.FormatRatingUseCase
 import kotlinx.coroutines.launch
 
 class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,private var hostId: Int) : DialogFragment() {

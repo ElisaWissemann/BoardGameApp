@@ -8,17 +8,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentEventBinding
-import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.database.dto.GameNight
+import com.example.boardgameapp.data.repositories.BoardGameRepository
+import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.ui.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
-import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsFragmentDirections
 
 
 class EventFragment : Fragment() {

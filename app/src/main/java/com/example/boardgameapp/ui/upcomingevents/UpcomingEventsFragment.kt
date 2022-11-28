@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.databinding.FragmentUpcomingEventsBinding
-import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.inventory.UpcomingEventsListAdapter
 
 
@@ -23,7 +23,8 @@ class UpcomingEventsFragment : Fragment() {
 
     private val viewModel: UpcomingEventsViewModel by activityViewModels {
         UpcomingEventsViewModelFactory(
-            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao))
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
     }
     private var _binding: FragmentUpcomingEventsBinding? = null
     private val binding get() = _binding!!

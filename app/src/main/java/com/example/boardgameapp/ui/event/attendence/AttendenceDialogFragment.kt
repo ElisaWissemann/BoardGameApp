@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
-import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

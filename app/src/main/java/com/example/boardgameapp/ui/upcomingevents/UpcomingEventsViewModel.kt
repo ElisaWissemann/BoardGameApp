@@ -1,12 +1,11 @@
 package com.example.boardgameapp.ui.upcomingevents
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.database.dto.UpcomingGameNight
+import com.example.boardgameapp.data.repositories.BoardGameRepository
+import com.example.boardgameapp.data.dto.UpcomingGameNight
 
 /**
  * View Model to keep a reference to the Inventory repository and an up-to-date list of all items.

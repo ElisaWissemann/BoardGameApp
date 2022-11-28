@@ -16,7 +16,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentChooseGamesBinding
-import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.data.repositories.BoardGameRepository
 
 
 class ChooseGamesFragment : Fragment(), OnItemSelectedListener {

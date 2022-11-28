@@ -1,12 +1,7 @@
 package com.example.boardgameapp.ui.upcomingevents
 
 import androidx.lifecycle.*
-import com.example.boardgameapp.database.BoardGameDao
-import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.database.entities.Event
-import com.example.boardgameapp.database.entities.User
-import com.example.boardgameapp.database.dto.UpcomingGameNight
-import kotlinx.coroutines.launch
+import com.example.boardgameapp.data.repositories.BoardGameRepository
 
 class UpcomingEventsItemViewModel(private val repository: BoardGameRepository): ViewModel() {
 

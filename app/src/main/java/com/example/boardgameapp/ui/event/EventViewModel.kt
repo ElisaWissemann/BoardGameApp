@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
-import com.example.boardgameapp.database.entities.User
-import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.database.dto.GameNight
+import com.example.boardgameapp.data.entities.User
+import com.example.boardgameapp.data.repositories.BoardGameRepository
+import com.example.boardgameapp.data.dto.GameNight
 
 /*** EventViewModel - business logic for the EventScreen*/
 
