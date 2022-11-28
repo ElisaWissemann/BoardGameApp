@@ -17,7 +17,6 @@ import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentChooseGamesBinding
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.ui.event.EventFragmentArgs
 
 
 class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
@@ -82,7 +81,6 @@ class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
             spinner.adapter = adapter
         }
 
-
         binding.chGConfirm.setOnClickListener {
             if(selectedItem1 !== ""){
                 //TODO: add selected game to DB
@@ -91,7 +89,6 @@ class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
         }
         }
     }
-
 
     override fun onItemSelected(p0: AdapterView<*>?, vw: View?, pos: Int, id: Long) {
       selectedItem1 = games[pos]

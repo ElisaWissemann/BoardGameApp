@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.repositories.dto.UpcomingGameNight
+import com.example.boardgameapp.database.dto.UpcomingGameNight
 
 /**
  * View Model to keep a reference to the Inventory repository and an up-to-date list of all items.

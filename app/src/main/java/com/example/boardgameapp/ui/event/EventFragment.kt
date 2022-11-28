@@ -15,7 +15,7 @@ import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.repositories.dto.GameNight
+import com.example.boardgameapp.database.dto.GameNight
 import com.example.boardgameapp.ui.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
 import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsFragmentDirections

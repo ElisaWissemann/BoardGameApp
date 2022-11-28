@@ -1,4 +1,4 @@
-package com.example.boardgameapp.repositories.dto
+package com.example.boardgameapp.database.dto
 
 data class GameNight(
     val gameNightId: Int,

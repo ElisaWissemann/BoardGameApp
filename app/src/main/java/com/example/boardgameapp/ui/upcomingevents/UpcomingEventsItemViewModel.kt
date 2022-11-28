@@ -5,7 +5,7 @@ import com.example.boardgameapp.database.BoardGameDao
 import com.example.boardgameapp.repositories.BoardGameRepository
 import com.example.boardgameapp.database.entities.Event
 import com.example.boardgameapp.database.entities.User
-import com.example.boardgameapp.repositories.dto.UpcomingGameNight
+import com.example.boardgameapp.database.dto.UpcomingGameNight
 import kotlinx.coroutines.launch
 
 class UpcomingEventsItemViewModel(private val repository: BoardGameRepository): ViewModel() {

@@ -9,7 +9,7 @@ import com.example.boardgameapp.database.converters.DoubleArrayListConverter
 import com.example.boardgameapp.database.converters.IntArrayListConverter
 import com.example.boardgameapp.database.entities.Event
 import com.example.boardgameapp.database.entities.User
-import com.example.boardgameapp.database.game.Game
+import com.example.boardgameapp.database.entities.Game
 import com.example.boardgameapp.database.entities.LoggedInUser
 
 // Tutorials: https://appdevnotes.com/android-mvvm-project-example/

@@ -1,4 +1,4 @@
-package com.example.boardgameapp.repositories.dto
+package com.example.boardgameapp.database.dto
 
 import java.sql.RowId
 

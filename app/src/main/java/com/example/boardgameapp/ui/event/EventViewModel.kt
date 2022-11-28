@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.repositories.BoardGameRepository
-import com.example.boardgameapp.repositories.dto.GameNight
+import com.example.boardgameapp.database.dto.GameNight
 
 /*** EventViewModel - business logic for the EventScreen*/
 

@@ -6,8 +6,8 @@ import com.example.boardgameapp.database.entities.Event
 import com.example.boardgameapp.database.entities.Game
 import com.example.boardgameapp.database.entities.LoggedInUser
 import com.example.boardgameapp.database.entities.User
-import com.example.boardgameapp.repositories.dto.GameNight
-import com.example.boardgameapp.repositories.dto.UpcomingGameNight
+import com.example.boardgameapp.database.dto.GameNight
+import com.example.boardgameapp.database.dto.UpcomingGameNight
 import kotlinx.coroutines.flow.*
 
 class BoardGameRepository(private val dao: BoardGameDao) {
