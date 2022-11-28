@@ -1,13 +1,14 @@
 package com.example.boardgameapp.repositories
 
+import android.util.Log
 import com.example.boardgameapp.database.BoardGameDao
 import com.example.boardgameapp.database.entities.Event
+import com.example.boardgameapp.database.entities.Game
 import com.example.boardgameapp.database.entities.LoggedInUser
 import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.repositories.dto.GameNight
 import com.example.boardgameapp.repositories.dto.UpcomingGameNight
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.*
 
 class BoardGameRepository(private val dao: BoardGameDao) {
 
@@ -89,7 +90,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     /**
      * Function that combines events and user to a UpcomingGameNight Object
      * */
-    fun getUpcomingEventsStream(): Flow<List<UpcomingGameNight?>> {
+    fun getUpcomingEvents(): Flow<List<UpcomingGameNight?>> {
 
         val upcomingGameNightsList = combine(
             dao.getEvents(), dao.getUsers()
@@ -109,4 +110,30 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         }
         return upcomingGameNightsList
     }
+
+    /*------------Games-----------------*/
+
+     fun getGamesArray(): Flow<Array<String>>{
+         return  dao.getGamesArray()
+     }
+//
+//    suspend inline fun <reified T> Flow<List<T>>.flattenToArrayList() =
+//        flatMapConcat { it.asFlow() }.toList().toTypedArray()
+//
+//    suspend fun getGamesArrayList(): ArrayList<Game>{
+//        val games = dao.getGames()
+//        val new =  games.flattenToArrayList()
+//        val array = arrayListOf<String>()
+//        new.onEach { array.plus(it.name)
+//
+//        }
+//    }
+//    suspend fun getGamesArrayList(): ArrayList<Game>{
+//       val games =  dao.getGames()
+//        games
+//       val newGames = games.collect{ game ->
+//            game.map { it.name }.toTypedArray()
+//        }
+//        return newGames
+//    }
 }

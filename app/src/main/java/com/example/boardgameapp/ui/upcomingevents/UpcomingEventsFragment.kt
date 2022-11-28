@@ -41,8 +41,6 @@ class UpcomingEventsFragment : Fragment() {
         return binding.root
     }
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -57,7 +55,8 @@ class UpcomingEventsFragment : Fragment() {
                 adapter.submitList(it)
             }
         }
-        //TODO implement this
+
+        //TODO: implementation
         binding.floatingActionButton.setOnClickListener {
             //viewModel.addNewEvent()
             Toast.makeText(getView()?.context, "Coming Soon", Toast.LENGTH_LONG).show()

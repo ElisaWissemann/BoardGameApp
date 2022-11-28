@@ -17,7 +17,7 @@ import com.example.boardgameapp.database.entities.LoggedInUser
 //Codelab:
 //https://developer.android.com/codelabs/basic-android-kotlin-training-intro-room-flow?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-5-pathway-1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-intro-room-flow#8
 
-@Database(entities = [User::class, Event::class, LoggedInUser::class], version = 1, exportSchema = true)
+@Database(entities = [User::class, Event::class, LoggedInUser::class, Game::class], version = 1, exportSchema = true)
 @TypeConverters(IntArrayListConverter::class, DoubleArrayListConverter::class)
 abstract class BoardGameDatabase : RoomDatabase() {
     abstract val boardGameDao: BoardGameDao

@@ -1,4 +1,4 @@
-package com.example.boardgameapp.database.game
+package com.example.boardgameapp.database.entities
 
 import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 /** A data class that represents the GamesList*/
 @Entity(tableName = "games")
 data class Game(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") @NonNull val id: Int,
     @ColumnInfo(name = "name") @NonNull val name: String
 )

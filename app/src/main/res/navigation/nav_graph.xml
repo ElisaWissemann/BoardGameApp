@@ -17,7 +17,11 @@
         android:id="@+id/chooseGamesFragment"
         android:name="com.example.boardgameapp.ui.choosegames.ChooseGamesFragment"
         android:label="Choose a Game"
-        tools:layout="@layout/fragment_choose_games" />
+        tools:layout="@layout/fragment_choose_games" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/eventFragment"
         android:name="com.example.boardgameapp.ui.event.EventFragment"

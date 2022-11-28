@@ -13,7 +13,7 @@
         tools:context=".ui.game.GameFragment">
 
         <TextView
-            android:id="@+id/g_tv"
+            android:id="@+id/chG_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
@@ -25,44 +25,36 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/g_tv2"
+            android:id="@+id/chG_subtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/please_select_two_games"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/g_tv"
-            app:layout_constraintTop_toBottomOf="@+id/g_tv" />
+            app:layout_constraintStart_toStartOf="@+id/chG_title"
+            app:layout_constraintTop_toBottomOf="@+id/chG_title" />
 
 
         <Spinner
-            android:id="@+id/g_spinner1"
+            android:id="@+id/chG_spinner"
             android:layout_width="250dp"
             android:layout_height="25dp"
             android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="@+id/g_tv"
-            app:layout_constraintTop_toBottomOf="@+id/g_tv2"
+            app:layout_constraintStart_toStartOf="@+id/chG_title"
+            app:layout_constraintTop_toBottomOf="@+id/chG_subtitle"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
-        <Spinner
-            android:id="@+id/g_spinner2"
-            android:layout_width="250dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="50dp"
-            app:layout_constraintStart_toStartOf="@+id/g_spinner1"
-            app:layout_constraintTop_toBottomOf="@+id/g_spinner1"
-            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <Button
-            android:id="@+id/g_confirm"
+            android:id="@+id/chG_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:text="@string/confirm"
-            app:layout_constraintEnd_toEndOf="@+id/g_spinner2"
-            app:layout_constraintStart_toStartOf="@+id/g_spinner2"
-            app:layout_constraintTop_toBottomOf="@+id/g_spinner2" />
+            app:layout_constraintEnd_toEndOf="@+id/chG_spinner"
+            app:layout_constraintStart_toStartOf="@+id/chG_spinner"
+            app:layout_constraintTop_toBottomOf="@+id/chG_spinner" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

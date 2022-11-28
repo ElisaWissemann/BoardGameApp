@@ -2,7 +2,7 @@ package com.example.boardgameapp.database
 
 import androidx.room.*
 import com.example.boardgameapp.database.entities.Event
-import com.example.boardgameapp.database.game.Game
+import com.example.boardgameapp.database.entities.Game
 import com.example.boardgameapp.database.entities.User
 import com.example.boardgameapp.database.entities.LoggedInUser
 import kotlinx.coroutines.flow.Flow
@@ -60,14 +60,17 @@ interface BoardGameDao {
     fun loggedInUser(id: Int): LoggedInUser
 
     /*-----------------Games-----------------*/
+
+    @Query("SELECT * FROM games")
+    fun getGames(): Flow<List<Game>>
+
+    @Query("SELECT name FROM games")
+    fun getGamesArray(): Flow<Array<String>>
+
 //    @Insert(onConflict = OnConflictStrategy.IGNORE)
 //    suspend fun insertGame(game: Game): Long
 //
 //    @Delete
 //    fun deleteGame(game: Game): Int
 
-//    @Query("SELECT * FROM games")
-//    //TODO: change to Flows in the future fun getAllGames(): Flow<List<Game>>
-//    // passing back Lists can cause errors
-//    fun getAllGames(): List<Game>
 }

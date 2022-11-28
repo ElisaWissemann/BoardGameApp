@@ -1,4 +1,3 @@
-
 package com.example.boardgameapp.ui.choosegames
 
 import android.os.Bundle
@@ -12,9 +11,13 @@ import android.widget.Spinner
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
+import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
-import com.example.boardgameapp.database.game.GameDataSource
 import com.example.boardgameapp.databinding.FragmentChooseGamesBinding
+import com.example.boardgameapp.repositories.BoardGameRepository
+import com.example.boardgameapp.ui.event.EventFragmentArgs
 
 
 class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
@@ -23,66 +26,77 @@ class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
         fun newInstance() = ChooseGamesFragment()
     }
 
-    private var binding: FragmentChooseGamesBinding? = null
-    private lateinit var viewModel: ChooseGamesViewModel
-    var games : Array<String> = arrayOf()
-    private lateinit var spinner1: Spinner
+    private var _binding: FragmentChooseGamesBinding? = null
+    private val binding get() = _binding!!
 
-    private lateinit var spinner2: Spinner
+    private val args: ChooseGamesFragmentArgs by navArgs()
+
+    private val viewModel: ChooseGamesViewModel by activityViewModels {
+        ChooseGamesViewModelFactory(
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
+    }
+
+    var games = arrayOf<String>()
+    private lateinit var spinner: Spinner
+    private var selectedItem1 = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        binding = DataBindingUtil.inflate(
+        _binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_choose_games,
             container,
             false
         )
-
-        spinner1 = binding!!.gSpinner1
-        spinner1.onItemSelectedListener = this
-        spinner2 = binding!!.gSpinner2
-        spinner2.onItemSelectedListener = this
-        games = loadGameData()
-
-        val ad: ArrayAdapter<*> = ArrayAdapter<Any?>(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            games
-        )
-
-        ad.setDropDownViewResource(
-            android.R.layout.simple_spinner_dropdown_item
-        )
-        val ad2: ArrayAdapter<*> = ArrayAdapter<Any?>(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            games
-        )
-
-        ad2.setDropDownViewResource(
-            android.R.layout.simple_spinner_dropdown_item
-        )
-        spinner1.adapter = ad
-        spinner2.adapter = ad2
-
-        return binding!!.root
+        return binding.root
     }
 
-    private fun loadGameData() = GameDataSource.games.map { it.name }.toTypedArray()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        spinner = binding.chGSpinner
+        spinner.onItemSelectedListener = this
+
+        viewModel.games.observe(this.viewLifecycleOwner) {
+            games = it
+
+            val adapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                games
+            )
+
+            adapter.setDropDownViewResource(
+                android.R.layout.simple_spinner_dropdown_item
+            )
+            val ad2: ArrayAdapter<*> = ArrayAdapter<Any?>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                games
+            )
+
+            spinner.adapter = adapter
+        }
+
+
+        binding.chGConfirm.setOnClickListener {
+            if(selectedItem1 !== ""){
+                //TODO: add selected game to DB
+            }else{
+                Toast.makeText(context, "please select a game",Toast.LENGTH_LONG).show()
+        }
+        }
+    }
 
 
     override fun onItemSelected(p0: AdapterView<*>?, vw: View?, pos: Int, id: Long) {
-        Toast.makeText(
-            context,
-            games[pos],
-            Toast.LENGTH_LONG
-        )
-            .show()
+      selectedItem1 = games[pos]
     }
+
     override fun onNothingSelected(parent: AdapterView<*>?) {}
 
 }

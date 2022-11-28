@@ -1,5 +1,6 @@
 package com.example.boardgameapp.ui.upcomingevents
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -13,14 +14,16 @@ import com.example.boardgameapp.repositories.dto.UpcomingGameNight
  */
 class UpcomingEventsViewModel(private val repository: BoardGameRepository) : ViewModel() {
 
-    val upcomingGameNights: LiveData<List<UpcomingGameNight?>> = repository.getUpcomingEventsStream().asLiveData()
+    val upcomingGameNights: LiveData<List<UpcomingGameNight?>> =
+        repository.getUpcomingEvents().asLiveData()
 
 }
 
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
-class UpcomingEventsViewModelFactory(private val repository: BoardGameRepository) : ViewModelProvider.Factory {
+class UpcomingEventsViewModelFactory(private val repository: BoardGameRepository) :
+    ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
