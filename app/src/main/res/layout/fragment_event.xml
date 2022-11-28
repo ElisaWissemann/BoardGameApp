@@ -53,7 +53,7 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/choose_games"
+                android:text="@string/suggest_game"
                 app:layout_constraintBottom_toTopOf="@+id/games_voting_button"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"

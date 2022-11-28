@@ -88,6 +88,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     /**
      * Function that combines events and user to a UpcomingGameNight Object
      * */
+    //TODO: change to https://developer.android.com/training/data-storage/room/relationships
     fun getUpcomingEvents(): Flow<List<UpcomingGameNight?>> {
 
         val upcomingGameNightsList = combine(
