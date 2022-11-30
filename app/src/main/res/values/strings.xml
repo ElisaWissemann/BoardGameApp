@@ -42,7 +42,7 @@
     <string name="cancelledAttendence">%1s</string>
     <string name="please_suggest_a_game">Please suggest a game</string>
     <string name="confirm">Confirm</string>
-    <string name="what_do_you_want_to_play">What do you want to play</string>
+    <string name="what_do_you_want_to_play">What do you want to play?</string>
     <string name="go_to_profile_button">Go to profile Button</string>
     <string name="refuse_event">refuse event</string>
     <string name="close_dialog">Close Dialog</string>
@@ -56,6 +56,7 @@
     <string name="event_details">Event details</string>
     <string name="date">Date: %1s</string>
     <string name="vote_for_a_game">Vote for a game</string>
+    <string name="what_do_you_want_to_eat">What do you want to eat?</string>
     />
 
 </resources>

@@ -15,9 +15,9 @@
     </fragment>
     <fragment
         android:id="@+id/chooseGamesFragment"
-        android:name="com.example.boardgameapp.ui.choosegames.ChooseGamesFragment"
+        android:name="com.example.boardgameapp.ui.choosegames.SuggestGamesFragment"
         android:label="Choose a Game"
-        tools:layout="@layout/fragment_choose_games" >
+        tools:layout="@layout/fragment_suggest_games" >
         <argument
             android:name="eventId"
             app:argType="integer" />
@@ -34,24 +34,14 @@
             android:id="@+id/action_eventFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_eventFragment_to_gameFragment"
-            app:destination="@id/gameFragment" />
-        <action
             android:id="@+id/action_eventFragment_to_chooseGamesFragment4"
             app:destination="@id/chooseGamesFragment" />
         <argument android:name="hostId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_eventFragment_to_foodStylesFragment"
+            app:destination="@id/foodStylesFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/foodFragment"
-        android:name="com.example.boardgameapp.ui.food.FoodFragment"
-        android:label="fragment_food"
-        tools:layout="@layout/fragment_food" />
-    <fragment
-        android:id="@+id/gameFragment"
-        android:name="com.example.boardgameapp.ui.game.GameFragment"
-        android:label="fragment_game"
-        tools:layout="@layout/fragment_game" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.boardgameapp.ui.profile.ProfileFragment"
@@ -82,4 +72,12 @@
     <action
         android:id="@+id/action_global_profileFragment"
         app:destination="@id/profileFragment" />
+    <fragment
+        android:id="@+id/foodStylesFragment"
+        android:name="com.example.boardgameapp.ui.foodstyles.FoodStylesFragment"
+        android:label="FoodStylesFragment" >
+        <argument
+            android:name="eventId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

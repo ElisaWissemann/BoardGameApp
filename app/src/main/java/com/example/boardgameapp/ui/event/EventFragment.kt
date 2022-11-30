@@ -114,10 +114,18 @@ class EventFragment : Fragment() {
         }
 
         /**
-         * Navigates to the ChooseGamesFragment
+         * Navigates to the SuggestGamesFragment
          * */
         binding.suggestGameButton.setOnClickListener {
             val action = EventFragmentDirections.actionEventFragmentToChooseGamesFragment4(eventId = args.eventId)
+            navController.navigate(action)
+        }
+
+        /**
+         * Navigates to the FoodStyles Fragment
+         * */
+        binding.selectAFoodstyle.setOnClickListener {
+            val action = EventFragmentDirections.actionEventFragmentToFoodStylesFragment(eventId = args.eventId)
             navController.navigate(action)
         }
     }

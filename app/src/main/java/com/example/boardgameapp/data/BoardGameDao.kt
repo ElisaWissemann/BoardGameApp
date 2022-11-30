@@ -1,10 +1,7 @@
 package com.example.boardgameapp.data
 
 import androidx.room.*
-import com.example.boardgameapp.data.entities.Event
-import com.example.boardgameapp.data.entities.Game
-import com.example.boardgameapp.data.entities.User
-import com.example.boardgameapp.data.entities.LoggedInUser
+import com.example.boardgameapp.data.entities.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -67,8 +64,20 @@ interface BoardGameDao {
     @Query("SELECT name FROM games")
     fun getGamesArray(): Flow<Array<String>>
 
-//    @Insert(onConflict = OnConflictStrategy.IGNORE)
-//    suspend fun insertGame(game: Game): Long
+    @Query("SELECT gameId FROM games WHERE name = :game")
+    fun getGameId(game: String): Int
+
+    /*-----------------FoodStyles-----------------*/
+
+    @Query("SELECT * FROM foodStyles")
+    fun getFoodStyles(): Flow<List<FoodStyles>>
+
+    @Query("SELECT foodStyle FROM foodStyles")
+    fun getFoodStylesArray(): Flow<Array<String>>
+
+    /*-----------------EventGameCrossRef-----------------*/
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertEventGameCrossRef(eventGameCrossRef: EventGameCrossRef)
 //
 //    @Delete
 //    fun deleteGame(game: Game): Int

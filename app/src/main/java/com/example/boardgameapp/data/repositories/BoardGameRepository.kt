@@ -29,9 +29,10 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     /**
      * Function to get UserName
      * */
-    fun getUserName(id:Int):String{
+    fun getUserName(id: Int): String {
         return dao.getUserName(id)
     }
+
     /**
      * Function to update the existing User in the DB
      * */
@@ -44,7 +45,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.getEvents()
     }
 
-     fun getEventStream(id: Int): Flow<Event> {
+    fun getEventStream(id: Int): Flow<Event> {
         return dao.getEvent(id)
     }
 
@@ -55,7 +56,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     /**
      * Function to update the existing Event in the DB
      * */
-    suspend fun updateEvent(event:Event) {
+    suspend fun updateEvent(event: Event) {
         return dao.updateEvent(event)
     }
 
@@ -110,29 +111,12 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return upcomingGameNightsList
     }
 
-    /*------------Games-----------------*/
 
-     fun getGamesArray(): Flow<Array<String>>{
-         return  dao.getGamesArray()
-     }
-//
-//    suspend inline fun <reified T> Flow<List<T>>.flattenToArrayList() =
-//        flatMapConcat { it.asFlow() }.toList().toTypedArray()
-//
-//    suspend fun getGamesArrayList(): ArrayList<Game>{
-//        val games = dao.getGames()
-//        val new =  games.flattenToArrayList()
-//        val array = arrayListOf<String>()
-//        new.onEach { array.plus(it.name)
-//
-//        }
-//    }
-//    suspend fun getGamesArrayList(): ArrayList<Game>{
-//       val games =  dao.getGames()
-//        games
-//       val newGames = games.collect{ game ->
-//            game.map { it.name }.toTypedArray()
-//        }
-//        return newGames
-//    }
+
+    /*------------FoodStyles-----------------*/
+
+    fun getFoodStylesArray(): Flow<Array<String>> {
+        return dao.getFoodStylesArray()
+    }
+
 }

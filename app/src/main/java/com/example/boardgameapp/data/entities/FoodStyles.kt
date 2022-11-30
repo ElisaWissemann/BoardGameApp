@@ -11,8 +11,8 @@ import com.example.boardgameapp.data.converters.IntArrayListConverter
  * A data class to hold a List of all kind of FoodStyles which the user can choose of*/
 @Entity (tableName = "foodStyles")
 data class FoodStyles(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "foodId") @NonNull val id: Int,
-    @ColumnInfo(name = "foodStyle")  val foodStyle: String,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "foodId")  @NonNull val id: Int,
+    @ColumnInfo(name = "foodStyle")  @NonNull val foodStyle: String,
 )
 
 
