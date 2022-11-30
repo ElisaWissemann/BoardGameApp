@@ -8,6 +8,6 @@ import androidx.room.PrimaryKey
 /** A data class that represents the GamesList*/
 @Entity(tableName = "games")
 data class Game(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") @NonNull val id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "gameId") @NonNull val id: Int,
     @ColumnInfo(name = "name") @NonNull val name: String
 )

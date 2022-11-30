@@ -25,7 +25,8 @@
     <string name="attendies">Attendies</string>
     <string name="game_night">Game Night</string>
     <string name="food">FOOD</string>
-    <string name="hostet_by">Hostet by: %1s</string>
+    <string name="hostet_by">Hosted by: %1s</string>
+    <string name="host_and_night_details">Your host is %1s</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
     <string name="rate_the_host">RATE THE HOST</string>
@@ -50,6 +51,11 @@
     <string name="_45min">45min</string>
     <string name="_1h">1h</string>
     <string name="add_new_event">Add new Event</string>
+    <string name="select_a_foodstyle">Select a foodstyle</string>
+    <string name="eventScreen_explanation_text">Hey there, good to see you!\n\nPlease help the host to create a wonderful eventing, this for please select a game you want to play, choose some foodstyle for the night and provide the host some feedback if you will attend or not. Please also vote for your favourite game when the voting is open. After the event please rate the host.\n\nThank’s and have a wonderful game night!</string>
+    <string name="event_details">Event details</string>
+    <string name="date">Date: %1s</string>
+    <string name="vote_for_a_game">Vote for a game</string>
     />
 
 </resources>

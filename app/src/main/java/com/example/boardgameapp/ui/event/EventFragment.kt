@@ -54,8 +54,8 @@ class EventFragment : Fragment() {
 
     private fun bind(gameNight: GameNight) {
         binding.apply {
-            date.text = gameNight.date
-            host.text = getString(R.string.hostet_by, gameNight.host)
+            date.text = getString(R.string.date,gameNight.date)
+            host.text = getString(R.string.host_and_night_details,gameNight.host )
         }
     }
 
@@ -116,7 +116,7 @@ class EventFragment : Fragment() {
         /**
          * Navigates to the ChooseGamesFragment
          * */
-        binding.chooseGamesButton.setOnClickListener {
+        binding.suggestGameButton.setOnClickListener {
             val action = EventFragmentDirections.actionEventFragmentToChooseGamesFragment4(eventId = args.eventId)
             navController.navigate(action)
         }

@@ -11,7 +11,7 @@ import com.example.boardgameapp.data.converters.IntArrayListConverter
  * A data class to represent the information presented in the Event Screen*/
 @Entity(tableName = "events")
 data class Event(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") @NonNull val id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "eventId") @NonNull val id: Int,
     @ColumnInfo(name = "host")  val host: Int,
     //only for testing will be changed to Date
     @ColumnInfo(name = "date")  val date: String,

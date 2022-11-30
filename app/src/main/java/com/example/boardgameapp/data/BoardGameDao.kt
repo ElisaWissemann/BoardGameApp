@@ -18,10 +18,10 @@ interface BoardGameDao {
     @Query("SELECT * FROM users")
     fun getAllUsersNoFlow(): List<User>
 
-    @Query("SELECT * FROM users WHERE id= :id")
+    @Query("SELECT * FROM users WHERE userId= :id")
     fun getUser(id:Int): Flow<User>
 
-    @Query("SELECT name FROM users WHERE id= :id")
+    @Query("SELECT name FROM users WHERE userId= :id")
     fun getUserName(id:Int): String
 
     @Update
@@ -39,7 +39,7 @@ interface BoardGameDao {
     @Query("SELECT * FROM events")
     fun getAllEventsNoFlow(): List<Event>
 
-    @Query("SELECT * FROM events WHERE id= :id")
+    @Query("SELECT * FROM events WHERE eventId= :id")
     fun getEvent(id:Int): Flow<Event>
 
     @Update

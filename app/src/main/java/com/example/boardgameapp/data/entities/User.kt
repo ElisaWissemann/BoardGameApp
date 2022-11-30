@@ -10,7 +10,7 @@ import com.example.boardgameapp.data.converters.IntArrayListConverter
 
 @Entity(tableName = "users")
 data class User(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") @NonNull val id: Int,
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "userId") @NonNull val id: Int,
     @ColumnInfo(name = "name") @NonNull val name: String,
     @ColumnInfo(name = "surname") val surname: String?,
     @ColumnInfo (name="address")val address: String?,
