@@ -1,4 +1,4 @@
-package com.example.boardgameapp.ui.choosegames
+package com.example.boardgameapp.ui.event.suggestGame
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,29 +9,25 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.navArgs
+import androidx.lifecycle.lifecycleScope
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
-import com.example.boardgameapp.databinding.FragmentChooseGamesBinding
 import com.example.boardgameapp.data.repositories.BoardGameRepository
+import com.example.boardgameapp.databinding.FragmentSuggestGameDialogBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
+class SuggestGamesDialogFragment (private var eventId: Int)  : DialogFragment(),
+    OnItemSelectedListener {
 
-    companion object {
-        fun newInstance() = ChooseGamesFragment()
-    }
-
-    private var _binding: FragmentChooseGamesBinding? = null
+    private var _binding: FragmentSuggestGameDialogBinding? = null
     private val binding get() = _binding!!
 
-    private val args: ChooseGamesFragmentArgs by navArgs()
-
-    private val viewModel: ChooseGamesViewModel by activityViewModels {
-        ChooseGamesViewModelFactory(
+    private val viewModel: SuggestGamesDialogViewModel by activityViewModels {
+        SuggestGamesDialogViewModelFactory(
             BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
         )
     }
@@ -44,13 +40,9 @@ class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
+        _binding = FragmentSuggestGameDialogBinding.inflate(inflater, container, false)
 
-        _binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_choose_games,
-            container,
-            false
-        )
         return binding.root
     }
 
@@ -72,28 +64,38 @@ class ChooseGamesFragment : Fragment(), OnItemSelectedListener {
             adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
             )
-            val ad2: ArrayAdapter<*> = ArrayAdapter<Any?>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                games
-            )
+
 
             spinner.adapter = adapter
         }
 
         binding.chGConfirm.setOnClickListener {
             if(selectedItem1 !== ""){
-                //TODO: add selected game to DB
+                lifecycleScope.launch( Dispatchers.IO){
+                    viewModel.updateEventWithSelectedGame(selectedItem1, eventId)
+                }
+                dialog!!.dismiss()
             }else{
-                Toast.makeText(context, "please select a game",Toast.LENGTH_LONG).show()
-        }
+                Toast.makeText(context, "please select a game", Toast.LENGTH_LONG).show()
+            }
         }
     }
 
     override fun onItemSelected(p0: AdapterView<*>?, vw: View?, pos: Int, id: Long) {
-      selectedItem1 = games[pos]
+        selectedItem1 = games[pos]
     }
 
     override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+    override fun onStart() {
+        super.onStart()
+        val width = (resources.displayMetrics.widthPixels * 0.85).toInt()
+        dialog!!.window?.setLayout(width, ViewGroup.LayoutParams.WRAP_CONTENT)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }

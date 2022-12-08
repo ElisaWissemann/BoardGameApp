@@ -16,14 +16,13 @@ interface BoardGameDao {
     fun getAllUsersNoFlow(): List<User>
 
     @Query("SELECT * FROM users WHERE userId= :id")
-    fun getUser(id:Int): Flow<User>
+    fun getUser(id: Int): Flow<User>
 
     @Query("SELECT name FROM users WHERE userId= :id")
-    fun getUserName(id:Int): String
+    fun getUserName(id: Int): String
 
     @Update
-    suspend fun updateUser(user:User)
-
+    suspend fun updateUser(user: User)
 
 
     /*-----------------Events-----------------*/
@@ -37,7 +36,7 @@ interface BoardGameDao {
     fun getAllEventsNoFlow(): List<Event>
 
     @Query("SELECT * FROM events WHERE eventId= :id")
-    fun getEvent(id:Int): Flow<Event>
+    fun getEvent(id: Int): Flow<Event>
 
     @Update
     suspend fun updateEvent(event: Event)
@@ -78,8 +77,8 @@ interface BoardGameDao {
     /*-----------------EventGameCrossRef-----------------*/
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertEventGameCrossRef(eventGameCrossRef: EventGameCrossRef)
-//
-//    @Delete
-//    fun deleteGame(game: Game): Int
+
+    @Query("SELECT name FROM eventGameCrossRef INNER JOIN games ON games.gameId = eventGameCrossRef.gameId WHERE eventId = :id ")
+    fun getEventsSuggestedGameNames(id: Int): Flow<List<String>>
 
 }

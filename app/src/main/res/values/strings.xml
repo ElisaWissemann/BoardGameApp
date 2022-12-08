@@ -16,7 +16,9 @@
     <string name="login_failed">"Login failed"</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="suggest_game">SUGGEST GAME</string>
+
+    <!-- Strings related EventFragment -->
+    <string name="suggest_a_game">SUGGEST A GAME</string>
     <string name="games_voting">GAMES VOTING</string>
     <string name="attendence">ATTENDENCE</string>
     <string name="i_m_delayed">I\'M DELAYED</string>
@@ -34,14 +36,18 @@
     <string name="total_rating_1d">Total rating: (%.3s)</string>
     <string name="name" >%1s</string>
     <string name="address">%1s</string>
+    <string name="please_suggest_a_game">Please suggest a game</string>
+
+    <!-- Strings related UpcomingEventFragment -->
     <string name="upcoming_hosting_event_text">Upcoming hosting Event: %1s</string>
     <string name="favorite_game_text">Favorite Game: %1s</string>
     <string name="favorite_food_text">Favorite Food: %1s</string>
     <string name="username">%1s</string>
     <string name="acceptedAttendence">%1s</string>
     <string name="cancelledAttendence">%1s</string>
-    <string name="please_suggest_a_game">Please suggest a game</string>
     <string name="confirm">Confirm</string>
+
+    <!-- Strings related ChooseGame-->
     <string name="what_do_you_want_to_play">What do you want to play?</string>
     <string name="go_to_profile_button">Go to profile Button</string>
     <string name="refuse_event">refuse event</string>
@@ -52,11 +58,16 @@
     <string name="_1h">1h</string>
     <string name="add_new_event">Add new Event</string>
     <string name="select_a_foodstyle">Select a foodstyle</string>
-    <string name="eventScreen_explanation_text">Hey there, good to see you!\n\nPlease help the host to create a wonderful eventing, this for please select a game you want to play, choose some foodstyle for the night and provide the host some feedback if you will attend or not. Please also vote for your favourite game when the voting is open. After the event please rate the host.\n\nThank’s and have a wonderful game night!</string>
+    <string name="eventScreen_explanation_text">Hey there, good to see you!\n\nPlease select a game you want to play, choose some foodstyle for the night and provide the host some feedback if you will attend or not. Please also vote for your favourite game when the voting is open. After the event please rate the host.\n\nThank’s and have a wonderful game night!</string>
     <string name="event_details">Event details</string>
     <string name="date">Date: %1s</string>
     <string name="vote_for_a_game">Vote for a game</string>
     <string name="what_do_you_want_to_eat">What do you want to eat?</string>
+    <string name="suggested_games_1s">Suggested games:\n %1s</string>
+    <string name="suggested_games_empty">Please suggest a game</string>
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     />
 
 </resources>

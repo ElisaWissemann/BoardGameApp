@@ -1,17 +1,31 @@
 package com.example.boardgameapp.ui.event
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
+import android.util.Log
+import androidx.lifecycle.*
 import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.data.dto.GameNight
+import com.example.boardgameapp.data.entities.EventGameCrossRef
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 /*** EventViewModel - business logic for the EventScreen*/
 
 class EventViewModel(private val repository: BoardGameRepository) : ViewModel() {
 
+//    private var _games: MutableLiveData<ArrayList<String>> = MutableLiveData<ArrayList<String>>(
+//        arrayListOf()
+//    )
+//    val games: LiveData<ArrayList<String>> get() = _games
+
+//    suspend fun retrieveGamesList(eventId: Int): Flow<List<EventGameCrossRef>> {
+//        return repository.getSuggestedGamesList(eventId)
+//    }
+
+     fun retrieveEventGameNames(eventId: Int): LiveData<List<String>>{
+        return repository.getEventsSuggestedGameNames(eventId).asLiveData()
+    }
     /**
      * Retrieve a specific gameNight from the repository.
      */
@@ -26,7 +40,6 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
     private suspend fun updateUser(user: User) {
         repository.updateUser(user)
     }
-
 
     /**
      * Creates a new User object with the updated rating and hands it over to updateUser(user)

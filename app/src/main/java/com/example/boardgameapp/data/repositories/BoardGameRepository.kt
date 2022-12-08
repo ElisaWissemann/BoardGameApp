@@ -1,19 +1,18 @@
 package com.example.boardgameapp.data.repositories
 
+import android.util.Log
 import com.example.boardgameapp.data.BoardGameDao
 import com.example.boardgameapp.data.entities.Event
 import com.example.boardgameapp.data.entities.LoggedInUser
 import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.data.dto.UpcomingGameNight
+import com.example.boardgameapp.data.entities.EventGameCrossRef
 import kotlinx.coroutines.flow.*
 
 class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*------Users ------*/
-    fun getUsersStream(): Flow<List<User>> {
-        return dao.getUsers()
-    }
 
     fun getAllUsersNoFlow(): List<User> {
         return dao.getAllUsersNoFlow()
@@ -40,10 +39,8 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.updateUser(user)
     }
 
-    /*------Events------*/
-    fun getEventsStream(): Flow<List<Event>> {
-        return dao.getEvents()
-    }
+    /*--------*---------Events----------*-------*/
+
 
     fun getEventStream(id: Int): Flow<Event> {
         return dao.getEvent(id)
@@ -65,6 +62,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.loggedInUser(0)
     }
 
+    /*--------*---------GameNight----------*-------*/
     /**
      * Function that combines events and user to a specific GameNight Object
      * */
@@ -111,12 +109,30 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return upcomingGameNightsList
     }
 
+    /*------------Games-----------------*/
 
+    fun getGamesArray(): Flow<Array<String>> {
+        return dao.getGamesArray()
+    }
+
+    fun getGameId(game:String): Int{
+        return dao.getGameId(game)
+    }
+
+    suspend fun addEventGameCrossRef(eventGameCrossRef: EventGameCrossRef){
+        return dao.insertEventGameCrossRef(eventGameCrossRef )
+    }
+
+     fun getEventsSuggestedGameNames(eventId: Int): Flow<List<String>>{
+        return dao.getEventsSuggestedGameNames(eventId)
+    }
 
     /*------------FoodStyles-----------------*/
 
     fun getFoodStylesArray(): Flow<Array<String>> {
         return dao.getFoodStylesArray()
     }
+
+
 
 }

@@ -57,7 +57,6 @@ class DelayedDialogFragment(private var userId: Int) : DialogFragment() {
         //RefuseBtn
         binding.delRefuseBtn.setOnClickListener {
             val UserID = userId
-            Log.e("Anna", "User" + UserID)
         }
         return view
     }

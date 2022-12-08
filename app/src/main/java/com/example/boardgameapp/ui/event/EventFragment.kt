@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,6 +18,7 @@ import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.ui.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
+import com.example.boardgameapp.ui.event.suggestGame.SuggestGamesDialogFragment
 
 
 class EventFragment : Fragment() {
@@ -46,6 +48,17 @@ class EventFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentEventBinding.inflate(inflater, container, false)
 
+        /**observe if there are already suggested Games for this event*/
+        viewModel.retrieveEventGameNames(args.eventId).observe(this.viewLifecycleOwner) { names ->
+            // if there are no suggested games yet, show a text
+            if (names.isEmpty()) {
+                binding.suggestedGames.text = ""
+                // if there are already suggested games, add all suggested games to the display
+            } else {
+                binding.suggestedGames.text =
+                    getString(R.string.suggested_games_1s, names).replace("[", "").replace("]", "")
+            }
+        }
         /*Navigation*/
         navController = findNavController()
 
@@ -54,8 +67,8 @@ class EventFragment : Fragment() {
 
     private fun bind(gameNight: GameNight) {
         binding.apply {
-            date.text = getString(R.string.date,gameNight.date)
-            host.text = getString(R.string.host_and_night_details,gameNight.host )
+            date.text = getString(R.string.date, gameNight.date)
+            host.text = getString(R.string.host_and_night_details, gameNight.host)
         }
     }
 
@@ -74,6 +87,24 @@ class EventFragment : Fragment() {
         super.onStart()
         //Set AppBarTitle
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
+
+        /**
+         * Opens the SuggestGameDialog
+         */
+        binding.suggestGameButton.setOnClickListener {
+            SuggestGamesDialogFragment(args.eventId).show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "SuggestGameDialogFragment"
+            )
+        }
+//        /**
+//         * Navigates to the SuggestGamesFragment
+//         * */
+//        binding.suggestGameButton.setOnClickListener {
+//            val action =
+//                EventFragmentDirections.actionEventFragmentToChooseGamesFragment4(eventId = args.eventId)
+//            navController.navigate(action)
+//        }
 
         /**
          * Opens the HostRatingDialog
@@ -114,18 +145,11 @@ class EventFragment : Fragment() {
         }
 
         /**
-         * Navigates to the SuggestGamesFragment
-         * */
-        binding.suggestGameButton.setOnClickListener {
-            val action = EventFragmentDirections.actionEventFragmentToChooseGamesFragment4(eventId = args.eventId)
-            navController.navigate(action)
-        }
-
-        /**
          * Navigates to the FoodStyles Fragment
          * */
         binding.selectAFoodstyle.setOnClickListener {
-            val action = EventFragmentDirections.actionEventFragmentToFoodStylesFragment(eventId = args.eventId)
+            val action =
+                EventFragmentDirections.actionEventFragmentToFoodStylesFragment(eventId = args.eventId)
             navController.navigate(action)
         }
     }

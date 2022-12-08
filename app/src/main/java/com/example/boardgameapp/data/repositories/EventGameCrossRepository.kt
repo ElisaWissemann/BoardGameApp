@@ -18,4 +18,5 @@ class EventGameCrossRepository (private val dao: BoardGameDao)  {
     suspend fun addEventGameCrossRef(eventGameCrossRef: EventGameCrossRef){
         return dao.insertEventGameCrossRef(eventGameCrossRef )
     }
+
 }
