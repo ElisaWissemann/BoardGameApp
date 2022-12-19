@@ -9,112 +9,91 @@
         android:id="@+id/del_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/i_m_delayed"
+        android:layout_marginTop="20dp"
+        android:text="Notify others about your delay"
         android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/del_15min"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/delRefuseBtn"
         android:layout_width="157dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_marginBottom="8dp"
-        android:background="#2196F3"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/refuse_event"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/del_closeBtn"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/del_1h"
+        app:layout_constraintStart_toStartOf="@+id/del_15min"
         app:layout_constraintTop_toBottomOf="@+id/del_30min"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/del_closeBtn"
-        android:layout_width="157dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
-        android:background="#2196F3"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/close_dialog"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/delRefuseBtn"
-        app:layout_constraintTop_toBottomOf="@+id/del_45min"
         tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/del_15min"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/_15min"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/del_45min"
         app:layout_constraintEnd_toStartOf="@+id/del_30min"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/del_title" />
+        app:layout_constraintTop_toTopOf="@+id/del_45min" />
 
     <Button
         android:id="@+id/del_30min"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginTop="16dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/_30min"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/del_45min"
         app:layout_constraintEnd_toStartOf="@+id/del_45min"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/del_15min"
-        app:layout_constraintTop_toBottomOf="@+id/del_title" />
+        tools:layout_editor_absoluteY="59dp"
+        app:layout_constraintTop_toTopOf="@+id/del_45min"/>
 
     <Button
         android:id="@+id/del_45min"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/_45min"
         android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/delRefuseBtn"
         app:layout_constraintEnd_toStartOf="@+id/del_1h"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/del_30min"
-        app:layout_constraintTop_toBottomOf="@+id/del_title" />
+        app:layout_constraintTop_toBottomOf="@+id/del_title"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/del_1h"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/_1h"
         android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/del_45min"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/del_45min"
-        app:layout_constraintTop_toBottomOf="@+id/del_title" />
+        app:layout_constraintTop_toTopOf="@+id/del_45min"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

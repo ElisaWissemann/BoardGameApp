@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentDelayedDialogBinding
@@ -24,33 +25,29 @@ class DelayedDialogFragment(private var userId: Int) : DialogFragment() {
     ): View? {
         //Set a Background with rounded corners for the Dialog
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
-        //inflate the Layout
-        val view = inflater.inflate(R.layout.fragment_delayed_dialog, container, false)
-        //ViewBinding
-        _binding = FragmentDelayedDialogBinding.bind(view)
+        _binding = FragmentDelayedDialogBinding.bind(inflater.inflate(R.layout.fragment_delayed_dialog, container, false))
 
         //Creating minutes delayed Btn's
         binding.del15min.setOnClickListener {
-            Log.e("Anna", "15min")
+            Toast.makeText(context, "The other players have been notified about your delay of 15 min", Toast.LENGTH_LONG).show()
+            dialog!!.dismiss()
         }
 
         //Cancel Dialog Btn
         binding.del30min.setOnClickListener {
-            Log.e("Anna", "30min")
+            Toast.makeText(context, "The other players have been notified about your delay of 30 min", Toast.LENGTH_LONG).show()
+            dialog!!.dismiss()
         }
 
         //Cancel Dialog Btn
         binding.del45min.setOnClickListener {
-            Log.e("Anna", "45min")
+            Toast.makeText(context, "The other players have been notified about your delay of 45 min", Toast.LENGTH_LONG).show()
+            dialog!!.dismiss()
         }
 
         //Cancel Dialog Btn
         binding.del1h.setOnClickListener {
-            Log.e("Anna", "1h")
-        }
-
-        //Cancel Dialog Btn
-        binding.delCloseBtn.setOnClickListener {
+            Toast.makeText(context, "The other players have been notified about your delay of 60 min", Toast.LENGTH_LONG).show()
             dialog!!.dismiss()
         }
 

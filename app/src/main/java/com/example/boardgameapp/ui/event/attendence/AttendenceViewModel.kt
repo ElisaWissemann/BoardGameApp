@@ -21,11 +21,6 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
     private var loggedInUser: LoggedInUser = repository.loggedInUser()
 
 
-    init {
-
-    }
-
-
     /*---------------Update Event---------------------*/
 
     /**
@@ -158,9 +153,10 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
 
 }
 
-/**
- * ViewModelFactory for EventScreen
- */
+ /**
+ * Factory class to instantiate the [ViewModel] instance.
+*/
+
 class AttendenceViewModelFactory(
     private val repository: BoardGameRepository
 ) : ViewModelProvider.Factory {

@@ -27,14 +27,14 @@
     <string name="attendies">Attendies</string>
     <string name="game_night">Game Night</string>
     <string name="food">FOOD</string>
-    <string name="hostet_by">Hosted by: %1s</string>
+    <string name="hostet_by">Hosted by %1s</string>
     <string name="host_and_night_details">Your host is %1s</string>
     <string name="profile">Profile</string>
     <string name="logout">Logout</string>
     <string name="rate_the_host">RATE THE HOST</string>
     <string name="submit">Submit</string>
     <string name="total_rating_1d">Total rating: (%.3s)</string>
-    <string name="name" >%1s</string>
+    <string name="name">%1s</string>
     <string name="address">%1s</string>
     <string name="please_suggest_a_game">Please suggest a game</string>
 
@@ -65,8 +65,9 @@
     <string name="what_do_you_want_to_eat">What do you want to eat?</string>
     <string name="suggested_games_1s">Suggested games:\n %1s</string>
     <string name="suggested_games_empty">Please suggest a game</string>
-<!-- TODO: Remove or change this placeholder text -->
+    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="X">X</string>
 
     />
 

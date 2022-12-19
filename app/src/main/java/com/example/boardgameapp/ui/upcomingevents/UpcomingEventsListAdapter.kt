@@ -16,6 +16,7 @@
 package com.example.inventory
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
@@ -30,6 +31,8 @@ import com.example.boardgameapp.ui.upcomingevents.UpcomingEventsFragmentDirectio
 
 /**
  * [ListAdapter] implementation for the recyclerview.
+ * The difference between a usual Adapter and a ListAdapter is, that the ListAdapter will
+ * updated if new data is available
  */
 
 class UpcomingEventsListAdapter() :
@@ -40,6 +43,7 @@ class UpcomingEventsListAdapter() :
 
     class ItemViewHolder(var binding: UpcomingEventsItemViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
 
         fun bind(upcomingGameNight: UpcomingGameNight) {
             binding.apply {
@@ -78,10 +82,11 @@ class UpcomingEventsListAdapter() :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        Log.i("ELISA", "here:" + parent.context.toString())
         return ItemViewHolder(
             UpcomingEventsItemViewBinding.inflate(
                 LayoutInflater.from(
-                    parent.context
+                   parent.context
                 )
             )
         )

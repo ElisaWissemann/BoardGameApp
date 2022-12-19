@@ -53,7 +53,7 @@
         android:id="@+id/refuse_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="20dp"
         android:text="Refuse"
         app:layout_constraintBottom_toBottomOf="@+id/accept_button"
         app:layout_constraintStart_toEndOf="@+id/accept_button"

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Lifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,6 +16,7 @@ import com.example.boardgameapp.databinding.FragmentEventBinding
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.ui.event.attendence.AttendenceDialogFragment
+import com.example.boardgameapp.ui.event.foodStyles.FoodStylesDialogFragment
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
 import com.example.boardgameapp.ui.event.suggestGame.SuggestGamesDialogFragment
 
@@ -89,6 +89,16 @@ class EventFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.title = "Event"
 
         /**
+         * Navigates to the ProfileScreen of the Host
+         * */
+        binding.profileButton.setOnClickListener {
+            navController.navigate(
+                EventFragmentDirections.actionEventFragmentToProfileFragment(
+                    pUserId = gameNight.hostId
+                )
+            )
+        }
+        /**
          * Opens the SuggestGameDialog
          */
         binding.suggestGameButton.setOnClickListener {
@@ -105,6 +115,42 @@ class EventFragment : Fragment() {
 //                EventFragmentDirections.actionEventFragmentToChooseGamesFragment4(eventId = args.eventId)
 //            navController.navigate(action)
 //        }
+        /**
+         * Navigates to the FoodStyles Fragment
+         * */
+        binding.selectAFoodstyle.setOnClickListener {
+            FoodStylesDialogFragment(args.eventId).show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "FoodStyleDialogFragment"
+            )
+        }
+
+//        /**
+//         * Navigates to the FoodStyles Fragment
+//         * */
+//        binding.selectAFoodstyle.setOnClickListener {
+//            val action =
+//                EventFragmentDirections.actionEventFragmentToFoodStylesFragment(eventId = args.eventId)
+//            navController.navigate(action)
+//        }
+
+        /**
+         * Opens the AttendenceDialog
+         * */
+        binding.attendenceButton.setOnClickListener {
+            AttendenceDialogFragment(args.eventId).show(
+                (activity as AppCompatActivity).supportFragmentManager, "AttendenceDialogFragment"
+            )
+        }
+
+        /**
+         * Opens the DelayedDialog
+         * */
+        binding.delayedButton.setOnClickListener {
+            DelayedDialogFragment(gameNight.hostId).show(
+                (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
+            )
+        }
 
         /**
          * Opens the HostRatingDialog
@@ -116,42 +162,7 @@ class EventFragment : Fragment() {
             )
         }
 
-        /**
-         * Opens the AttendenceDialog
-         * */
-        binding.attendenceButton.setOnClickListener {
-            AttendenceDialogFragment(args.eventId).show(
-                (activity as AppCompatActivity).supportFragmentManager, "AttendenceDialogFragment"
-            )
-        }
-        /**
-         * Opens the DelayedDialog
-         * */
-        binding.delayedButton.setOnClickListener {
-            DelayedDialogFragment(gameNight.hostId).show(
-                (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
-            )
-        }
 
-        /**
-         * Navigates to the ProfileScreen of the Host
-         * */
-        binding.profileButton.setOnClickListener {
-            navController.navigate(
-                EventFragmentDirections.actionEventFragmentToProfileFragment(
-                    pUserId = gameNight.hostId
-                )
-            )
-        }
-
-        /**
-         * Navigates to the FoodStyles Fragment
-         * */
-        binding.selectAFoodstyle.setOnClickListener {
-            val action =
-                EventFragmentDirections.actionEventFragmentToFoodStylesFragment(eventId = args.eventId)
-            navController.navigate(action)
-        }
     }
 
     /**

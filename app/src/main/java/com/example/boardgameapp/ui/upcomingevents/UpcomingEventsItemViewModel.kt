@@ -7,6 +7,9 @@ class UpcomingEventsItemViewModel(private val repository: BoardGameRepository): 
 
     }
 
+/**
+ * Factory class to instantiate the [ViewModel] instance.
+ */
 class UpcomingEventsItemViewModelFactory(private val repository: BoardGameRepository): ViewModelProvider.Factory{
 
     @Suppress("unchecked_cast")

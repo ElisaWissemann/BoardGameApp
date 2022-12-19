@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.boardgameapp.BoardGameApplication
+import com.example.boardgameapp.R
 import com.example.boardgameapp.databinding.FragmentUpcomingEventsBinding
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.inventory.UpcomingEventsListAdapter
+import kotlinx.coroutines.NonDisposableHandle.parent
 
 
 class UpcomingEventsFragment : Fragment() {
@@ -37,6 +39,7 @@ class UpcomingEventsFragment : Fragment() {
         /*DataBinding*/
             _binding = FragmentUpcomingEventsBinding
                 .inflate(inflater, container, false)
+
 
         //return view
         return binding.root
@@ -67,7 +70,7 @@ class UpcomingEventsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         //setTitle in ActionBar
-        (activity as AppCompatActivity).supportActionBar?.title = "Next"
+        (activity as AppCompatActivity).supportActionBar?.title = "Upcoming Events"
     }
 
 }

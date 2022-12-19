@@ -1,6 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.BoardGameApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.BoardGameApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.BoardGameApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.BoardGameApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="Theme.BoardGameApp" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/black</item>
@@ -14,13 +24,5 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="Theme.BoardGameApp.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="Theme.BoardGameApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.BoardGameApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

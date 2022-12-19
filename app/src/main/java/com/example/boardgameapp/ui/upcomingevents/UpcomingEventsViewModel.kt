@@ -15,7 +15,6 @@ class UpcomingEventsViewModel(private val repository: BoardGameRepository) : Vie
 
     val upcomingGameNights: LiveData<List<UpcomingGameNight?>> =
         repository.getUpcomingEvents().asLiveData()
-
 }
 
 /**

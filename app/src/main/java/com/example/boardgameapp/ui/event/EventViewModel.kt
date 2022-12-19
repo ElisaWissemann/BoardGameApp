@@ -93,7 +93,7 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
 }
 
 /**
- * ViewModelFactory for EventScreen
+ * Factory class to instantiate the [ViewModel] instance.
  */
 class EventViewModelFactory(
     private val repository: BoardGameRepository
