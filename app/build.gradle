@@ -73,13 +73,12 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
 
     // Jetpack Compose Integration
-    implementation("androidx.navigation:navigation-compose:2.5.2")
+//    implementation("androidx.navigation:navigation-compose:2.5.2")
     implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
-    // Feature module Support
-    //implementation("androidx.navigation:navigation-dynamic-features-fragment:2.5.2")
 
     // Room dependencies
     implementation "androidx.room:room-runtime:$version_room"
+    testImplementation 'junit:junit:4.12'
     kapt "androidx.room:room-compiler:$version_room"
     // Kotlin Extensions and Coroutines support for Room
     implementation "androidx.room:room-ktx:$version_room"
@@ -91,7 +90,24 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_coroutine"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
+    //Testing
+    // local unit tests
+//    testImplementation "junit:junit:$jUnitVersion"
+//    testImplementation "org.jetbrains.kotlinx.kotlinx-coroutines-test:1.5.1"
+//    testImplementation "com.google.truth:truth:1.1.3"
+//    androidTestImplementation "androidx.test.ext:junit:$junit"
+//    androidTestImplementation('androidx.test.espresso:espresso-core:3.4.0')
+//    androidTestImplementation('androidx.test:runner:1.4.0')
+//    androidTestImplementation('androidx.test:rules:1.4.0')
 
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.arch.core:core-testing:2.0.1'
+
+    androidTestImplementation 'androidx.test:rules:1.5.0'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.1'
     debugImplementation "androidx.fragment:fragment-testing:1.5.3"
 
 }

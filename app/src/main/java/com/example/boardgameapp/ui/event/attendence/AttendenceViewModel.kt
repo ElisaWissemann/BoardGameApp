@@ -24,7 +24,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
     /*---------------Update Event---------------------*/
 
     /**
-     * Launching a new coroutine to update an item in a non-blocking way
+     * Launching a new coroutine to update an item in a non-blocking way // TODO Bodo is this really launching a new coroutine
      */
     private suspend fun updateEvent(event: Event) {
         repository.updateEvent(event)
@@ -38,7 +38,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
         when (flag) {
 
             //check if this user already cancelled or accepted the event prior
-            // if he did he will be deleted from the db before his new descision is saved to the DB
+            // if he did he will be deleted from the db before his new decision is saved to the DB
             // 0 = accepted, 1/else = cancelled
 
             //accepted
@@ -74,6 +74,30 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
             }
         }
     }
+
+    // TODO Bodo
+    /*
+        private suspend fun doUpdate(
+            currentEvent: Flow<Event>,
+            flag: Int
+        ): Event {
+            lateinit var event: Event
+            currentEvent.collect {
+                val number = if (flag == 0) 0 else 1
+                val newEntry = checkUserAlreadyAcceptedOrCancelledAndRemove(it, loggedInUser.userId, number)
+                event =  getUpdatedEventEntry(
+                    it.id,
+                    it.host,
+                    it.date,
+                    newEntry.accepted,
+                    newEntry.cancelled
+                ).also { event ->
+                    updateEvent(event)
+                }
+            }
+            return event
+        }
+    */
 
     /**Function to create new event Object that holds new user attendence*/
     private fun checkUserAlreadyAcceptedOrCancelledAndRemove(

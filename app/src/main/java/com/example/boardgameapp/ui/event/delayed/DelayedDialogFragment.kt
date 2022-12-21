@@ -53,7 +53,7 @@ class DelayedDialogFragment(private var userId: Int) : DialogFragment() {
 
         //RefuseBtn
         binding.delRefuseBtn.setOnClickListener {
-            val UserID = userId
+            val UserID = userId // TODO Bodo whats missing here?
         }
         return view
     }

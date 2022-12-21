@@ -20,6 +20,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+//TODO fix configuration chagnes by adding companion object https://developer.android.com/guide/fragments/dialogs
 class SuggestGamesDialogFragment (private var eventId: Int)  : DialogFragment(),
     OnItemSelectedListener {
 

@@ -14,15 +14,6 @@ import kotlinx.coroutines.launch
 
 class EventViewModel(private val repository: BoardGameRepository) : ViewModel() {
 
-//    private var _games: MutableLiveData<ArrayList<String>> = MutableLiveData<ArrayList<String>>(
-//        arrayListOf()
-//    )
-//    val games: LiveData<ArrayList<String>> get() = _games
-
-//    suspend fun retrieveGamesList(eventId: Int): Flow<List<EventGameCrossRef>> {
-//        return repository.getSuggestedGamesList(eventId)
-//    }
-
      fun retrieveEventGameNames(eventId: Int): LiveData<List<String>>{
         return repository.getEventsSuggestedGameNames(eventId).asLiveData()
     }
@@ -63,6 +54,10 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
             )
             updateUser(updatedItem)
         }
+        // TODO Bodo could be:
+        //repository.getUserStream(hostId).collect {
+        //    it.copy(rating = it.rating?.plus(rating) as ArrayList<Double>?)
+        //}
     }
 
     /**

@@ -18,7 +18,7 @@ import com.example.boardgameapp.databinding.FragmentProfileBinding
 class ProfileFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ProfileFragment()
+        fun newInstance() = ProfileFragment()  // TODO Bodo delete?
     }
 
     private var _binding: FragmentProfileBinding? = null
@@ -51,7 +51,7 @@ class ProfileFragment : Fragment() {
         val name = user.name + " " + user.surname
         _binding!!.nameText.text = getString(R.string.name, name)
         _binding!!.adressText.text = getString(R.string.address, user.address)
-        var userRating = user.rating
+        val userRating = user.rating
 
         _binding!!.favoriteGameText.text = getString(R.string.favorite_game_text, user.favorite_game)
         _binding!!.favoriteFoodText.text = getString(R.string.favorite_food_text, user.favorite_food)

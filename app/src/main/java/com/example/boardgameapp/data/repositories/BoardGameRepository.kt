@@ -1,6 +1,5 @@
 package com.example.boardgameapp.data.repositories
 
-import android.util.Log
 import com.example.boardgameapp.data.BoardGameDao
 import com.example.boardgameapp.data.entities.Event
 import com.example.boardgameapp.data.entities.LoggedInUser
@@ -66,6 +65,8 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     /**
      * Function that combines events and user to a specific GameNight Object
      * */
+    //Todo: Don't pass userId it can be accessed via eventId
+    //change to Join
     fun retriveGameNight(eventId: Int, userId: Int): Flow<GameNight> {
 
         val event = dao.getEvent(eventId)
@@ -74,7 +75,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         val gameNight = event.combine(user) { event, user ->
             GameNight(
                 gameNightId = event.id,
-                hostId = user.id,
+                hostId = user.id,  // TODO Bodo what if I pass another userid? Why do I need it, can't you store the hostId in the gameNight object?
                 host = user.name,
                 date = event.date,
                 hostRating = user.rating
@@ -132,7 +133,4 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     fun getFoodStylesArray(): Flow<Array<String>> {
         return dao.getFoodStylesArray()
     }
-
-
-
 }

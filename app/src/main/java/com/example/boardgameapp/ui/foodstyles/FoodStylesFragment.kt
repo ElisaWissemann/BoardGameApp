@@ -26,7 +26,7 @@ class FoodStylesFragment : Fragment(), OnItemSelectedListener {
     private var _binding: FragmentFoodBinding? = null
     private val binding get() = _binding!!
 
-    private val args: FoodStylesFragmentArgs by navArgs()
+    private val args: FoodStylesFragmentArgs by navArgs()  // TODO Bodo delete?
 
     private val viewModel: FoodStylesViewModel by activityViewModels {
         FoodStylesViewModelFactory(

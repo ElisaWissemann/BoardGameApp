@@ -11,6 +11,9 @@ buildscript {
         version_lifecycle = "2.2.0"
         version_navigation = '2.5.2'
         version_room = "2.4.3"
+        jUnitVersion = "4+"
+        junit="1.1.4"
+        espresso = "3.5.0"
 
     }
 

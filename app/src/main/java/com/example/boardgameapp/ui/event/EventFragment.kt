@@ -107,7 +107,7 @@ class EventFragment : Fragment() {
                 "SuggestGameDialogFragment"
             )
         }
-//        /**
+//        /** // TODO Bodo delete?
 //         * Navigates to the SuggestGamesFragment
 //         * */
 //        binding.suggestGameButton.setOnClickListener {
@@ -125,7 +125,7 @@ class EventFragment : Fragment() {
             )
         }
 
-//        /**
+//        /**  // TODO Bodo delete?
 //         * Navigates to the FoodStyles Fragment
 //         * */
 //        binding.selectAFoodstyle.setOnClickListener {

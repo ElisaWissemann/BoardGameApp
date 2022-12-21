@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.ui.event.attendence.AttendenceViewModel
 
-class FoodStylesDialogViewModel(): ViewModel() {
+class FoodStylesDialogViewModel(): ViewModel() { // TODO Bodo delete?
 
 }
 

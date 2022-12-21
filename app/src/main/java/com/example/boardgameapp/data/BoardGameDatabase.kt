@@ -24,7 +24,7 @@ abstract class BoardGameDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: BoardGameDatabase? = null
         fun getInstance(context: Context): BoardGameDatabase {
-            synchronized(this) {
+            synchronized(this) { // TODO Bodo does it make sense to have a synchronized database + suspend functions?
                 return INSTANCE ?: Room.databaseBuilder(
                         context,
                         BoardGameDatabase::class.java,
@@ -32,7 +32,6 @@ abstract class BoardGameDatabase : RoomDatabase() {
                     ).allowMainThreadQueries().createFromAsset("database/db_prepop.db").build().also {
                         INSTANCE = it
                 }
-
             }
         }
     }

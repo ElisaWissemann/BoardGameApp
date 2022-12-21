@@ -14,6 +14,7 @@ import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.ui.event.EventViewModel
 import com.example.boardgameapp.ui.event.EventViewModelFactory
 import com.example.boardgameapp.data.usecases.FormatRatingUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,private var hostId: Int) : DialogFragment() {
@@ -32,7 +33,7 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         //Set a Background with rounded corners for the Dialog
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = FragmentHostRatingDialogBinding.bind(inflater.inflate(R.layout.fragment_host_rating_dialog, container, false))
@@ -52,8 +53,8 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
          * start coroutine to update the rating in the user
          * */
         binding.hrSubmit.setOnClickListener {
-            //execute the corouting on I/O Thread
-            lifecycleScope.launch {
+            //execute the corouting on I/O Thread // TODO Bodo where is the IO thread?
+            lifecycleScope.launch (Dispatchers.IO){
                 viewModel.buildUserWithNewRating(binding.ratingBar.rating,hostId)
 
             }
@@ -68,7 +69,7 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
     }
 
 
-//    companion object {
+//    companion object { // TODO Bodo delete??
 //        @JvmStatic
 //        fun newInstance(rating: ArrayList<Double>) =
 //            HostRatingDialog(rating).apply {

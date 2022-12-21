@@ -15,7 +15,7 @@ data class User(
     @ColumnInfo(name = "surname") val surname: String?,
     @ColumnInfo (name="address")val address: String?,
     @TypeConverters(IntArrayListConverter::class)
-    @ColumnInfo(name ="hosted_events") val hosted_events: ArrayList<Int>?,
+    @ColumnInfo(name ="hosted_events") val hosted_events: ArrayList<Int>?,  // TODO Bodo can be ArrayList<Int> = listOf()
     @ColumnInfo(name ="favorite_game") val favorite_game: String?,
     @ColumnInfo(name = "favorite_food") val favorite_food: String?,
     @TypeConverters(DoubleArrayListConverter::class)

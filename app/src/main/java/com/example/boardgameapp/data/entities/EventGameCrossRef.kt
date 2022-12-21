@@ -12,5 +12,5 @@ data class EventGameCrossRef(
     @ColumnInfo(name ="gameId")
     val gameId: Int,
     @TypeConverters(IntArrayListConverter::class)
-    @ColumnInfo(name = "rating")val voting: ArrayList<Int>
+    @ColumnInfo(name = "rating") val voting: ArrayList<Int>
 )

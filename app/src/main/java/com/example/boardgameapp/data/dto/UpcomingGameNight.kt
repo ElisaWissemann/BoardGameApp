@@ -6,6 +6,6 @@ data class UpcomingGameNight (
     val hostId: Int,
     val host: String,
     val date: String,
-    val accepted: ArrayList<Int>?,
+    val accepted: ArrayList<Int>?, // TODO Bodo could be ArrayList<Int> = listOf()
     val cancelled: ArrayList<Int>?
         )

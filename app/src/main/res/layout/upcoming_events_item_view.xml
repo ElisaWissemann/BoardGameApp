@@ -112,25 +112,6 @@
             app:layout_constraintStart_toStartOf="@+id/ue_title"
             app:layout_constraintTop_toBottomOf="@+id/ue_title" />
 
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="ue_host,ue_title,attendies,ue_accepted,ue_slash,ue_cancelled"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/group3"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:constraint_referenced_ids="ue_date,ue_enter_event_button"
-            app:layout_constraintEnd_toStartOf="@+id/group"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="16dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
