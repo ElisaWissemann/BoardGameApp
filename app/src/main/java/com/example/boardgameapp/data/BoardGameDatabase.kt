@@ -19,6 +19,7 @@ import com.example.boardgameapp.data.entities.*
 abstract class BoardGameDatabase : RoomDatabase() {
     abstract val boardGameDao: BoardGameDao
 
+    //TODO: DO not allowMainThreadQueries
     companion object {
         //Add Default data https://medium.com/@hrithik481/roomdb-in-android-with-kotlin-coroutines-bdb11ae37acb
         @Volatile

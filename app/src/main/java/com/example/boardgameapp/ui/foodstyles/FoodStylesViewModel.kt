@@ -12,9 +12,6 @@ class FoodStylesViewModel (private val repository: BoardGameRepository)  : ViewM
     val foodStyles: LiveData<Array<String>> = repository.getFoodStylesArray().asLiveData()
 
 }
-
-
-
 /**
  * Factory class to instantiate the [ViewModel] instance.
  */
