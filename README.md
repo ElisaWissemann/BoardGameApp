@@ -1,31 +1,37 @@
 #Courseproject for Mobile Software Engineering @ IU Hochschule
 
-Dieses Projekt entstand als Gruppenprojekt im Rahmen des Kurses Mobile Software Engineering IWMB2 an der IU Hochschule
+Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 an der IU Hochschule
 
 Projektstart: 12.09.2022 
-Gruppenprojektende:14.11.2022
-Elisa Wissemann wird zu Schulungszwecken die weitere implementation alleine vornehmen
 
-Team:
-Christian Fritz (Projektleiter, Bachelorstudent)
-Elisa Wissemann (Entwicklung, Weiterbildung)
-Anna Schumacher (Entwicklung, Weiterbildung)
+Bearbeitete Themen:
+- Android Architecture (MVVM) 
+- SingleActivityApplication
+- Android Lifecycles
+- RecyclerView, AdapterPattern and ListAdapterPattern
+- RoomDB
+- Coroutines
+- Testing
 
+Offen:
+Material Design
+Animations
+FirebaseDB
+Login/Registration
+Upload to AppStore
 
 
 Aktueller Stand:
-ui/upcomingevents - inProgress (Elisa)
-
-ui/event/hostrating - DONE (Elisa)
+ui/upcomingevents - inProgress 
+ui/event/hostrating - inProgress
 nach dem Übermitteln des votings kann durch erneutes öffnen des Dialogfeldes das neu berechnete rating eingesehen werden.
-
-ui/event/attendence - InProgress (Elisa)
-ui/event/delayed - InProgress (Anna)
-ui/event - InProgress (Elisa)
-ui/choosegames - InProgress (Elisa)
-ui/food - inProgrss (Anna)
-ui/profile - inProgress (Christian)
-database, model, repository und usecases - inProgress (Elisa)
+ui/event/attendence - InProgress 
+ui/event/delayed - InProgress 
+ui/event - InProgress 
+ui/choosegames - InProgress 
+ui/food - inProgrss 
+ui/profile - inProgress 
+database, model, repository und usecases - inProgress 
 ui/register & login wurden automatisch generiert und werden am ende bearbeitet
 
 Aufgabenstellung:
