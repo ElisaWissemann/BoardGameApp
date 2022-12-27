@@ -56,4 +56,3 @@ erinnert werden, meine Lieblingsessensrichtung zu wählen (Italienisch, Griechis
 informiert werden, um einen passenden lokalen Lieferdienst auszusuchen.
 – Optional: Als Spieler:in möchte ich rechtzeitig das Menü des ausgewählten Lieferdienstes sehen können,
 um rechtzeitig meine Bestellung an den/die Gastgeber:in übermitteln zu können.
-

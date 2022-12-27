@@ -1,20 +1,17 @@
 package com.example.boardgameapp.ui.event
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.data.dto.GameNight
-import com.example.boardgameapp.data.entities.EventGameCrossRef
-import kotlinx.coroutines.flow.Flow
+import com.example.boardgameapp.data.repositories.BoardGameRepositoryInterface
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 
 /*** EventViewModel - business logic for the EventScreen*/
 
-class EventViewModel(private val repository: BoardGameRepository) : ViewModel() {
+class EventViewModel(private val repository: BoardGameRepositoryInterface) : ViewModel() {
 
-     fun retrieveEventGameNames(eventId: Int): LiveData<List<String>>{
+     fun retrieveEventGameNames(eventId: Int): LiveData<List<String>> {
         return repository.getEventsSuggestedGameNames(eventId).asLiveData()
     }
     /**

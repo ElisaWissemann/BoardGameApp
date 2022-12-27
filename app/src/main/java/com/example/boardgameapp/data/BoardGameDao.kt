@@ -26,8 +26,14 @@ interface BoardGameDao {
     suspend fun updateUser(user: User)
 
 
-    /*-----------------Events-----------------*/
+    /*--------*---------Events----------*-------*/
+    /*Insert*/
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertEvent(event: Event): Long
 
+    /*Delete*/
+    @Delete
+    fun deleteEvent(event: Event): Int
 
     /*GET*/
     @Query("SELECT * FROM events")
@@ -42,14 +48,6 @@ interface BoardGameDao {
     @Update
     suspend fun updateEvent(event: Event)
 
-
-    /*Insert*/
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertEvent(event: Event): Long
-
-    /*Delete*/
-    @Delete
-    fun deleteEvent(event: Event): Int
 
     /*-----------------LoggedInUser-----------------*/
 
