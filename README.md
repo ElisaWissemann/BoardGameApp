@@ -4,16 +4,29 @@ Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 
 
 Projektstart: 12.09.2022 
 
-Bearbeitete Themen:
+Lesson learned: 
 - Android Architecture (MVVM) 
 - SingleActivityApplication
 - Android Lifecycles
+- DataBinding, ViewBinding
+- LiveData 
+- ConstraintLayout 
+- 
+- Navigation with NavArgs
+- Fragments 
+- DialogFragment
+- Spinner
 - RecyclerView, AdapterPattern and ListAdapterPattern
-- RoomDB
-- Coroutines
-- Testing
+- Toast 
 
-Offen:
+- RoomDB
+- Coroutines, Flows
+- JoinQueries
+- Testing (UnitTest (Coroutines) with Mockk, InstrumentedTest RoomDB)
+
+Open:
+Statehandling 
+Notifications 
 Material Design
 Animations
 FirebaseDB
