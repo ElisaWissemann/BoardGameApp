@@ -10,6 +10,13 @@ import kotlinx.coroutines.flow.Flow
 interface BoardGameDao {
 
     /*-----------------Users-----------------*/
+
+    @Insert
+    suspend fun insertUser(user:User)
+
+    @Update
+    suspend fun updateUser(user: User)
+
     @Query("SELECT * FROM users")
     fun getUsers(): Flow<List<User>>
 
@@ -22,16 +29,17 @@ interface BoardGameDao {
     @Query("SELECT name FROM users WHERE userId= :id")
     fun getUserName(id: Int): String
 
-    @Update
-    suspend fun updateUser(user: User)
+
 
 
     /*--------*---------Events----------*-------*/
-    /*Insert*/
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertEvent(event: Event): Long
 
-    /*Delete*/
+    @Update
+    suspend fun updateEvent(event: Event)
+
     @Delete
     fun deleteEvent(event: Event): Int
 
@@ -45,13 +53,10 @@ interface BoardGameDao {
     @Query("SELECT * FROM events WHERE eventId= :id")
     fun getEvent(id: Int): Flow<Event>
 
-    @Update
-    suspend fun updateEvent(event: Event)
-
 
     /*-----------------LoggedInUser-----------------*/
-
-    @Query("SELECT * FROM loggedInUser WHERE rowId= :id")  //TODO Bodo is it always id=0? then you don't have to pass it
+    //TODO Bodo is it always id=0? then you don't have to pass it
+    @Query("SELECT * FROM loggedInUser WHERE rowId= :id")
     fun loggedInUser(id: Int): LoggedInUser
 
     /*-----------------Games-----------------*/
@@ -80,5 +85,4 @@ interface BoardGameDao {
     @Query("SELECT name FROM eventGameCrossRef INNER JOIN games ON games.gameId = eventGameCrossRef.gameId WHERE eventId = :id ")
     fun getEventsSuggestedGameNames(id: Int): Flow<List<String>>
 
-    // TODO Bodo Add a README.md with explanation of the app + (database-)diagrams and explanations of the entities (eventGameCrossRef is not clear just from reading
 }

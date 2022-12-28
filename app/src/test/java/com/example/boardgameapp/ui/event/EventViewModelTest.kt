@@ -44,7 +44,7 @@ class EventViewModelTest() {
     }
 
     @Test
-    fun `retrieves eventGameNames`() {
+    fun `test to retrievesEventGameNames`() {
         //assign - save dummy data in repo
         // act - function call
         //assert - verify everything is correct
@@ -57,7 +57,7 @@ class EventViewModelTest() {
     }
 
     @Test
-    fun `retrieve GameNights`(){
+    fun `test to retrieveGameNights`(){
         val eventId = 666
         val hostId = 1
         every {
@@ -66,6 +66,16 @@ class EventViewModelTest() {
 
         val result = viewModel.retrieveGameNight(eventId, hostId).getOrAwaitValueTest()
         assertThat(result).isEqualTo(gameNight)
+    }
+
+    @Test
+    fun `test to buildUserWithNewRating`(){
+        val rating = 1.0f
+        val hostId = 1
+
+        every {
+            repoMock.getUserStream(hostId)
+        }
     }
 
 

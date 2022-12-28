@@ -21,7 +21,7 @@ Lesson learned:
 
 - RoomDB
 - Coroutines, Flows
-- JoinQueries
+- JoinQueries, CrossReferences
 - Testing (UnitTest (Coroutines) with Mockk, InstrumentedTest RoomDB)
 
 Open:

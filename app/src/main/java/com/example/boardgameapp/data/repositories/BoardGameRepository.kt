@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.*
 
 
 //TODO: Get rid of NoFlow requests
-class BoardGameRepository(private val dao: BoardGameDao): BoardGameRepositoryInterface {
+class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*--------*---------Users----------*-------*/
 
@@ -23,44 +23,50 @@ class BoardGameRepository(private val dao: BoardGameDao): BoardGameRepositoryInt
     /**
      * Function to get an existing User from the DB
      **/
-    override fun getUserStream(id: Int): Flow<User> {
+     fun getUserStream(id: Int): Flow<User> {
         return dao.getUser(id)
     }
 
     /**
      * Function to get UserName
      * */
-    override fun getUserName(id: Int): String {
+     fun getUserName(id: Int): String {
         return dao.getUserName(id)
     }
 
     /**
      * Function to update the existing User in the DB
      * */
-    override suspend fun updateUser(user: User) {
+     suspend fun updateUser(user: User) {
         return dao.updateUser(user)
+    }
+    /**
+     * Function to insert a User in the DB
+     */
+    suspend fun insertUser(user: User){
+        return dao.insertUser(user)
     }
 
     /*--------*---------Events----------*-------*/
 
-    override fun getEventStream(id: Int): Flow<Event> {
+     fun getEventStream(id: Int): Flow<Event> {
         return dao.getEvent(id)
     }
 
     //ONLY USED IN PROFILE- CLEANUP
-    override fun getAllEventsNoFlow(): List<Event> {
+     fun getAllEventsNoFlow(): List<Event> {
         return dao.getAllEventsNoFlow()
     }
 
     /**
      * Function to update the existing Event in the DB
      * */
-    override suspend fun updateEvent(event: Event) {
+     suspend fun updateEvent(event: Event) {
         return dao.updateEvent(event)
     }
 
     /*--------*---------LoggedIn----------*-------*/
-    override fun loggedInUser(): LoggedInUser {
+     fun loggedInUser(): LoggedInUser {
         return dao.loggedInUser(0)
     }
 
@@ -70,7 +76,7 @@ class BoardGameRepository(private val dao: BoardGameDao): BoardGameRepositoryInt
      * */
     //Todo: Don't pass userId it can be accessed via eventId
     //change to Join
-    override fun retriveGameNight(eventId: Int, userId: Int): Flow<GameNight> {
+     fun retriveGameNight(eventId: Int, userId: Int): Flow<GameNight> {
 
         val event = dao.getEvent(eventId)
         val user = dao.getUser(userId)
@@ -78,7 +84,7 @@ class BoardGameRepository(private val dao: BoardGameDao): BoardGameRepositoryInt
         val gameNight = event.combine(user) { event, user ->
             GameNight(
                 gameNightId = event.id,
-                hostId = user.id,  // TODO Bodo what if I pass another userid? Why do I need it, can't you store the hostId in the gameNight object?
+                hostId = user.id,
                 host = user.name,
                 date = event.date,
                 hostRating = user.rating
@@ -92,7 +98,7 @@ class BoardGameRepository(private val dao: BoardGameDao): BoardGameRepositoryInt
      * Function that combines events and user to a UpcomingGameNight Object
      * */
     //TODO: change to https://developer.android.com/training/data-storage/room/relationships
-    override fun getUpcomingEvents(): Flow<List<UpcomingGameNight?>> {
+     fun getUpcomingEvents(): Flow<List<UpcomingGameNight?>> {
 
         val upcomingGameNightsList = combine(
             dao.getEvents(), dao.getUsers()
@@ -114,24 +120,24 @@ class BoardGameRepository(private val dao: BoardGameDao): BoardGameRepositoryInt
     }
 
     /*--------*---------Games----------*-------*/
-    override fun getGamesArray(): Flow<Array<String>> {
+     fun getGamesArray(): Flow<Array<String>> {
         return dao.getGamesArray()
     }
 
-    override fun getGameId(game:String): Int{
+     fun getGameId(game:String): Int{
         return dao.getGameId(game)
     }
 
-    override suspend fun addEventGameCrossRef(eventGameCrossRef: EventGameCrossRef){
+     suspend fun addEventGameCrossRef(eventGameCrossRef: EventGameCrossRef){
         return dao.insertEventGameCrossRef(eventGameCrossRef )
     }
 
-     override fun getEventsSuggestedGameNames(eventId: Int): Flow<List<String>>{
+      fun getEventsSuggestedGameNames(eventId: Int): Flow<List<String>>{
         return dao.getEventsSuggestedGameNames(eventId)
     }
 
     /*--------*---------FoodStyles----------*-------*/
-    override fun getFoodStylesArray(): Flow<Array<String>> {
+     fun getFoodStylesArray(): Flow<Array<String>> {
         return dao.getFoodStylesArray()
     }
 }
