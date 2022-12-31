@@ -4,13 +4,19 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
+import com.example.boardgameapp.data.BoardGameDao_Impl
 import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.repositories.BoardGameRepository
+import kotlinx.coroutines.flow.*
 
 /*** EventViewModel - business logic for the EventScreen*/
 
 class EventViewModel(private val repository: BoardGameRepository) : ViewModel() {
+
+
+    private var _eventId = MutableStateFlow(0)
+    val eventId: StateFlow<Int> = _eventId.asStateFlow()
 
      fun retrieveEventGameNames(eventId: Int): LiveData<List<String>> {
         return repository.getEventsSuggestedGameNames(eventId).asLiveData()
@@ -28,6 +34,10 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
      */
     private suspend fun updateUser(user: User) {
         repository.updateUser(user)
+    }
+
+     fun setEventID(eventId: Int ){
+        _eventId.value = eventId
     }
 
     /**

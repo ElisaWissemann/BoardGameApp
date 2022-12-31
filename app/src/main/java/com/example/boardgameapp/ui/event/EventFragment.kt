@@ -1,12 +1,17 @@
 package com.example.boardgameapp.ui.event
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleCoroutineScope
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -19,6 +24,10 @@ import com.example.boardgameapp.ui.event.attendence.AttendenceDialogFragment
 import com.example.boardgameapp.ui.event.foodStyles.FoodStylesDialogFragment
 import com.example.boardgameapp.ui.event.hostrating.HostRatingDialog
 import com.example.boardgameapp.ui.event.suggestGame.SuggestGamesDialogFragment
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class EventFragment : Fragment() {
@@ -29,6 +38,7 @@ class EventFragment : Fragment() {
 
     private val args: EventFragmentArgs by navArgs()
     lateinit var gameNight: GameNight
+
 
     private val viewModel: EventViewModel by activityViewModels {
         EventViewModelFactory(
@@ -61,9 +71,11 @@ class EventFragment : Fragment() {
         }
         /*Navigation*/
         navController = findNavController()
+        viewModel.setEventID(args.eventId)
 
         return binding.root
     }
+
 
     private fun bind(gameNight: GameNight) {
         binding.apply {
@@ -72,6 +84,7 @@ class EventFragment : Fragment() {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -102,7 +115,11 @@ class EventFragment : Fragment() {
          * Opens the SuggestGameDialog
          */
         binding.suggestGameButton.setOnClickListener {
-            SuggestGamesDialogFragment(args.eventId).show(
+            val fragment = SuggestGamesDialogFragment()
+            val bundleArgs = Bundle()
+            bundleArgs.putInt("eventId", args.eventId)
+            fragment.setArguments(bundleArgs)
+            SuggestGamesDialogFragment().show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "SuggestGameDialogFragment"
             )

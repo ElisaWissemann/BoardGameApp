@@ -1,6 +1,7 @@
 package com.example.boardgameapp.ui.event.suggestGame
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,16 +18,26 @@ import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentSuggestGameDialogBinding
+import com.example.boardgameapp.ui.event.EventViewModel
+import com.example.boardgameapp.ui.event.EventViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-//TODO fix configuration chagnes by adding companion object https://developer.android.com/guide/fragments/dialogs
-class SuggestGamesDialogFragment (private var eventId: Int)  : DialogFragment(),
+class SuggestGamesDialogFragment ()  : DialogFragment(),
     OnItemSelectedListener {
 
     private var _binding: FragmentSuggestGameDialogBinding? = null
     private val binding get() = _binding!!
+    private var eventId:Int = 0
+
+
+    private val eventViewModel: EventViewModel by activityViewModels {
+        EventViewModelFactory(
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
+    }
 
     private val viewModel: SuggestGamesDialogViewModel by activityViewModels {
         SuggestGamesDialogViewModelFactory(
@@ -43,7 +55,12 @@ class SuggestGamesDialogFragment (private var eventId: Int)  : DialogFragment(),
     ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = FragmentSuggestGameDialogBinding.inflate(inflater, container, false)
-
+        //Get Current EventId from StateFlow of EventViewModel
+        lifecycleScope.launch {
+            eventViewModel.eventId.collectLatest {
+                eventId = it
+            }
+        }
         return binding.root
     }
 
