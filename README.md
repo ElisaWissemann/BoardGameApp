@@ -9,9 +9,9 @@ Lesson learned:
 - SingleActivityApplication
 - Android Lifecycles
 - DataBinding, ViewBinding
-- LiveData 
+- LiveData, StateFlow 
 - ConstraintLayout 
-- 
+
 - Navigation with NavArgs
 - Fragments 
 - DialogFragment
@@ -22,9 +22,9 @@ Lesson learned:
 - RoomDB
 - Coroutines, Flows
 - JoinQueries, CrossReferences
-- Testing (UnitTest (Coroutines) with Mockk, InstrumentedTest RoomDB)
+- Testing coroutines and DAO (UnitTest with Mockk, InstrumentedTest RoomDB)
 
-Open:
+Open lessons:
 Statehandling 
 Notifications 
 Material Design
@@ -33,19 +33,49 @@ FirebaseDB
 Login/Registration
 Upload to AppStore
 
+ScreenFlow:
+NavBar -> MyProfile
+Upcoming Events (HomeScreen) -->EventFragment
+EventFragment: -> (suggestGamesDialog, foodStyleDialog, hostratingDialog, delayedDialog, attendenceDialog, ProfileScreen (Host))
 
-Aktueller Stand:
-ui/upcomingevents - inProgress 
-ui/event/hostrating - inProgress
-nach dem Übermitteln des votings kann durch erneutes öffnen des Dialogfeldes das neu berechnete rating eingesehen werden.
-ui/event/attendence - InProgress 
-ui/event/delayed - InProgress 
-ui/event - InProgress 
-ui/choosegames - InProgress 
-ui/food - inProgrss 
-ui/profile - inProgress 
-database, model, repository und usecases - inProgress 
-ui/register & login wurden automatisch generiert und werden am ende bearbeitet
+Open Todo's: 
+Navigation:
+- delete logout-Button
+- fix glitch in title
+- 
+HomeScreen/UpcomingEvents:
+- implement AddEvent
+
+EventFragment: 
+- Show chosen Foodstyles
+- Show who comes to late
+- Show attendence
+
+EventFragment/SuggestGameDialog: 
+- handle UI-state, when choosing a game and rotating the screen the state is lost
+- fix button, it is cropped on the right side
+- Add chosen FoodStyles to the View 
+  
+EventFragment/FoodStyleDialog:
+- change fontColor to Material color (see SuggestGameDialog)
+- handle UI-state, when choosing a foodStyle and rotating the screen the state is lost
+- Save selected Foodstyle in the DB and add it to the EventScreen
+  
+EventFragment/AttendenceDialog:
+- Fix it - app crashes
+
+EventFragment/DelayedDialog:
+- Fix it - it doesn't show anything
+- handle UI-State
+
+EventFragment/HostRatingDialog:
+done
+
+ProfileScreen: 
+- fix it app crashes
+- Make edit-button visible if the User overlooks his own profile
+- Make edit-button invisible if the user overlooks the profile of the host of an event
+
 
 Aufgabenstellung:
 1.2. Aufgabenstellung 2: Board Gamer App
@@ -53,16 +83,10 @@ Eine Gruppe von Brettspielfans möchte ihren regelmäßigen abendlichen Spielter
 haben die Spieler:innen folgende User Stories entwickelt:
 – Als Spieler:in möchte ich immer wissen, wann und wo der nächste Spieltermin stattfindet, um ihn nicht
 zu verpassen.
-– Als Spieler:in möchte ich, dass sich die Gruppe immer turnusmäßig bei einem/einer anderen Spieler:in
-zu Hause trifft, damit die mit der Einladung verbundenen Aufwände gleich verteilt sind.
 – Als Spieler:in möchte ich ein oder mehrere Spiele vorschlagen können, um den Spieleabend mitgestalten
 zu können.
-– Als Spieler:in möchte ich im Vorfeld des Termins über die vorgeschlagenen Spiele abstimmen können,
-um den Spieleabend mitgestalten zu können.
-– Als Spieler:in möchte ich den/die Gastgeber:in, das Essen und den Abend allgemein im Anschluss an den
-Termin bewerten können.
-– Als Spieler:in möchte ich allen anderen Spieler:innen schnell eine Nachricht zukommen lassen können,
-um mich entschuldigen zu können, falls ich mich verspäten sollte.
+– Als Spieler:in möchte ich den/die Gastgeber:in, bewerten können.
+– Als Spieler:in möchte ich meine Verspätung mitteilen können.
 – Optional: Als Spieler:in möchte ich in Vorbereitung des Fast-Food-Bestellprozesses rechtzeitig daran
 erinnert werden, meine Lieblingsessensrichtung zu wählen (Italienisch, Griechisch, Türkisch, usw.).
 – Optional: Als Gastgeber:in möchte ich rechtzeitig über die mehrheitlich gewünschte Essensrichtung
