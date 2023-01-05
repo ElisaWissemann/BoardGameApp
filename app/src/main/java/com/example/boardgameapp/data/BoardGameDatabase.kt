@@ -28,7 +28,7 @@ abstract class BoardGameDatabase : RoomDatabase() {
                         context,
                         BoardGameDatabase::class.java,
                         "board_game_database"
-                    ).createFromAsset("database/db_prepop.db").build().also {
+                    ).createFromAsset("database/db_prepop.db").allowMainThreadQueries().build().also {
                         INSTANCE = it
                 }
             }

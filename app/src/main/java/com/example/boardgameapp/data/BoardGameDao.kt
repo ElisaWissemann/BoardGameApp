@@ -55,9 +55,8 @@ interface BoardGameDao {
 
 
     /*-----------------LoggedInUser-----------------*/
-    //TODO Bodo is it always id=0? then you don't have to pass it
-    @Query("SELECT * FROM loggedInUser WHERE rowId= :id")
-    fun loggedInUser(id: Int): LoggedInUser
+    @Query("SELECT * FROM loggedInUser WHERE rowId= 0")
+    fun loggedInUser(): LoggedInUser
 
     /*-----------------Games-----------------*/
 

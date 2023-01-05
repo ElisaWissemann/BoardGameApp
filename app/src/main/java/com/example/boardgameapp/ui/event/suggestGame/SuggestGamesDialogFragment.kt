@@ -1,7 +1,6 @@
 package com.example.boardgameapp.ui.event.suggestGame
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -25,20 +23,24 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class SuggestGamesDialogFragment ()  : DialogFragment(),
+class SuggestGamesDialogFragment() : DialogFragment(),
     OnItemSelectedListener {
 
     private var _binding: FragmentSuggestGameDialogBinding? = null
     private val binding get() = _binding!!
-    private var eventId:Int = 0
+    private var eventId: Int = 0
 
-
+    /**
+     * Get instance of EventViewModel
+     **/
     private val eventViewModel: EventViewModel by activityViewModels {
         EventViewModelFactory(
             BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
         )
     }
-
+    /**
+     * Get instance of SuggestGamesDialogViewModel
+     **/
     private val viewModel: SuggestGamesDialogViewModel by activityViewModels {
         SuggestGamesDialogViewModelFactory(
             BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
@@ -55,6 +57,7 @@ class SuggestGamesDialogFragment ()  : DialogFragment(),
     ): View {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = FragmentSuggestGameDialogBinding.inflate(inflater, container, false)
+
         //Get Current EventId from StateFlow of EventViewModel
         lifecycleScope.launch {
             eventViewModel.eventId.collectLatest {
@@ -70,30 +73,31 @@ class SuggestGamesDialogFragment ()  : DialogFragment(),
         spinner = binding.chGSpinner
         spinner.onItemSelectedListener = this
 
+        /**
+         * Get List of Games and retrieve to spinner
+         * */
         viewModel.games.observe(this.viewLifecycleOwner) {
             games = it
-
             val adapter: ArrayAdapter<*> = ArrayAdapter<Any?>(
                 requireContext(),
                 android.R.layout.simple_spinner_item,
                 games
             )
-
             adapter.setDropDownViewResource(
                 android.R.layout.simple_spinner_dropdown_item
             )
-
-
             spinner.adapter = adapter
         }
 
+        /**
+         * Logic to confirm games selection*/
         binding.chGConfirm.setOnClickListener {
-            if(selectedItem1 !== ""){
-                lifecycleScope.launch( Dispatchers.IO){
+            if (selectedItem1 !== "") {
+                lifecycleScope.launch(Dispatchers.IO) {
                     viewModel.updateEventWithSelectedGame(selectedItem1, eventId)
                 }
                 dialog!!.dismiss()
-            }else{
+            } else {
                 Toast.makeText(context, "please select a game", Toast.LENGTH_LONG).show()
             }
         }
@@ -103,7 +107,9 @@ class SuggestGamesDialogFragment ()  : DialogFragment(),
         selectedItem1 = games[pos]
     }
 
-    override fun onNothingSelected(parent: AdapterView<*>?) {}
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        Toast.makeText(context, "please select a game", Toast.LENGTH_LONG).show()
+    }
 
     override fun onStart() {
         super.onStart()
@@ -115,5 +121,4 @@ class SuggestGamesDialogFragment ()  : DialogFragment(),
         super.onDestroyView()
         _binding = null
     }
-
 }

@@ -7,9 +7,4 @@
         android:title="@string/profile"
         android:icon="@drawable/profile_white"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_logout_button"
-        android:title="@string/logout"
-        android:icon="@drawable/ic_baseline_logout_24"
-        app:showAsAction="ifRoom" />
 </menu>

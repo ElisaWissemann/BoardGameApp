@@ -12,17 +12,32 @@ import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.example.boardgameapp.databinding.FragmentAttendenceDialogBinding
+import com.example.boardgameapp.ui.event.EventViewModel
+import com.example.boardgameapp.ui.event.EventViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
+class AttendenceDialogFragment() : DialogFragment() {
 
     private var _binding: FragmentAttendenceDialogBinding? = null
-
-    //This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
 
+    private var eventId: Int = 0
+
+
+    /**
+     * Get instance of EventViewModel
+     **/
+    private val eventViewModel: EventViewModel by activityViewModels {
+        EventViewModelFactory(
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
+    }
+
+    /**
+     * Get instance of Attendence ViewModel**/
     private val viewModel: AttendenceViewModel by activityViewModels {
         AttendenceViewModelFactory(
             BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
@@ -36,15 +51,23 @@ class AttendenceDialogFragment(private var eventId: Int) : DialogFragment() {
     ): View? {
         //Set a Background with rounded corners for the Dialog
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
-        _binding = FragmentAttendenceDialogBinding.bind(
-            inflater.inflate(
-                R.layout.fragment_attendence_dialog,
-                container,
-                false
-            )
-        )
 
-        lifecycleScope.launch { viewModel.setAttendies(eventId) }
+        // Get current eventId from eventViewModel
+        lifecycleScope.launch  {
+            eventViewModel.eventId.collectLatest {
+                eventId = it
+            }
+        }
+        _binding = FragmentAttendenceDialogBinding.inflate(inflater, container, false)
+//        _binding = FragmentAttendenceDialogBinding.bind(
+//            inflater.inflate(
+//                R.layout.fragment_attendence_dialog,
+//                container,
+//                false
+//            )
+//        )
+
+        lifecycleScope.launch{ viewModel.setAttendies(eventId) }
 
         viewModel.accepted.observe(this.viewLifecycleOwner) { data ->
             _binding!!.acceptedText.text =

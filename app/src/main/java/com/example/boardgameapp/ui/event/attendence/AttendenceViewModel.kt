@@ -24,7 +24,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
     /*---------------Update Event---------------------*/
 
     /**
-     * Launching a new coroutine to update an item in a non-blocking way // TODO Bodo is this really launching a new coroutine
+     *  update an item in a non-blocking way
      */
     private suspend fun updateEvent(event: Event) {
         repository.updateEvent(event)
@@ -172,7 +172,6 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
             }
             _cancelled.value = tempCancelledArray
         }
-
     }
 
 }

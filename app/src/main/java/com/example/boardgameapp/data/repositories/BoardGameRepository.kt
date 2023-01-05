@@ -67,7 +67,7 @@ class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*--------*---------LoggedIn----------*-------*/
      fun loggedInUser(): LoggedInUser {
-        return dao.loggedInUser(0)
+        return dao.loggedInUser()
     }
 
     /*--------*---------GameNight----------*-------*/

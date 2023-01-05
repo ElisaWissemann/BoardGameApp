@@ -24,6 +24,10 @@ Lesson learned:
 - JoinQueries, CrossReferences
 - Testing coroutines and DAO (UnitTest with Mockk, InstrumentedTest RoomDB)
 
+- Emulator, Physical Device
+- Gradle
+- Git
+
 Open lessons:
 Statehandling 
 Notifications 
@@ -32,29 +36,27 @@ Animations
 FirebaseDB
 Login/Registration
 Upload to AppStore
+Compose
 
 ScreenFlow:
-NavBar -> MyProfile
-Upcoming Events (HomeScreen) -->EventFragment
-EventFragment: -> (suggestGamesDialog, foodStyleDialog, hostratingDialog, delayedDialog, attendenceDialog, ProfileScreen (Host))
+NavBar -> ProfileScreen (User)
+Upcoming Events (HomeScreen) --> EventFragment
+EventFragment: -> (SuggestGamesDialog, FoodStyleDialog, HostratingDialog, DelayedDialog, AttendenceDialog, ProfileScreen (host of the event))
 
 Open Todo's: 
 Navigation:
-- delete logout-Button
 - fix glitch in title
-- 
+
 HomeScreen/UpcomingEvents:
 - implement AddEvent
 
 EventFragment: 
 - Show chosen Foodstyles
 - Show who comes to late
-- Show attendence
+- Show who attends
 
 EventFragment/SuggestGameDialog: 
 - handle UI-state, when choosing a game and rotating the screen the state is lost
-- fix button, it is cropped on the right side
-- Add chosen FoodStyles to the View 
   
 EventFragment/FoodStyleDialog:
 - change fontColor to Material color (see SuggestGameDialog)

@@ -84,11 +84,12 @@ class EventFragment : Fragment() {
         }
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        /**Retrieves an GameNight Object with the given eventId and hostIde*/
+        /**
+         * Retrieves an GameNight Object with the given eventId and hostIde
+         **/
         viewModel.retrieveGameNight(args.eventId, args.hostId)
             .observe(this.viewLifecycleOwner) { thisGameNight ->
                 gameNight = thisGameNight
@@ -115,23 +116,12 @@ class EventFragment : Fragment() {
          * Opens the SuggestGameDialog
          */
         binding.suggestGameButton.setOnClickListener {
-            val fragment = SuggestGamesDialogFragment()
-            val bundleArgs = Bundle()
-            bundleArgs.putInt("eventId", args.eventId)
-            fragment.setArguments(bundleArgs)
             SuggestGamesDialogFragment().show(
                 (activity as AppCompatActivity).supportFragmentManager,
                 "SuggestGameDialogFragment"
             )
         }
-//        /** // TODO Bodo delete?
-//         * Navigates to the SuggestGamesFragment
-//         * */
-//        binding.suggestGameButton.setOnClickListener {
-//            val action =
-//                EventFragmentDirections.actionEventFragmentToChooseGamesFragment4(eventId = args.eventId)
-//            navController.navigate(action)
-//        }
+
         /**
          * Navigates to the FoodStyles Fragment
          * */
@@ -142,21 +132,13 @@ class EventFragment : Fragment() {
             )
         }
 
-//        /**  // TODO Bodo delete?
-//         * Navigates to the FoodStyles Fragment
-//         * */
-//        binding.selectAFoodstyle.setOnClickListener {
-//            val action =
-//                EventFragmentDirections.actionEventFragmentToFoodStylesFragment(eventId = args.eventId)
-//            navController.navigate(action)
-//        }
-
         /**
          * Opens the AttendenceDialog
          * */
         binding.attendenceButton.setOnClickListener {
-            AttendenceDialogFragment(args.eventId).show(
-                (activity as AppCompatActivity).supportFragmentManager, "AttendenceDialogFragment"
+            AttendenceDialogFragment().show(
+                (activity as AppCompatActivity).supportFragmentManager,
+                "AttendenceDialogFragment"
             )
         }
 
