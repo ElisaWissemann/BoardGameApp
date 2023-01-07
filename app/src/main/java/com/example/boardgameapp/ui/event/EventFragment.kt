@@ -146,7 +146,7 @@ class EventFragment : Fragment() {
          * Opens the DelayedDialog
          * */
         binding.delayedButton.setOnClickListener {
-            DelayedDialogFragment(gameNight.hostId).show(
+            DelayedDialogFragment().show(
                 (activity as AppCompatActivity).supportFragmentManager, "DelayedDialogFragment"
             )
         }

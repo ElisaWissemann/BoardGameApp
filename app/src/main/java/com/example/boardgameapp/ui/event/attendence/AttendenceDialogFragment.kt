@@ -26,7 +26,6 @@ class AttendenceDialogFragment() : DialogFragment() {
 
     private var eventId: Int = 0
 
-
     /**
      * Get instance of EventViewModel
      **/
@@ -59,13 +58,6 @@ class AttendenceDialogFragment() : DialogFragment() {
             }
         }
         _binding = FragmentAttendenceDialogBinding.inflate(inflater, container, false)
-//        _binding = FragmentAttendenceDialogBinding.bind(
-//            inflater.inflate(
-//                R.layout.fragment_attendence_dialog,
-//                container,
-//                false
-//            )
-//        )
 
         lifecycleScope.launch{ viewModel.setAttendies(eventId) }
 

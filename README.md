@@ -29,7 +29,7 @@ Lesson learned:
 - Git
 
 Open lessons:
-Statehandling 
+State-handling 
 Notifications 
 Material Design
 Animations
@@ -43,7 +43,21 @@ NavBar -> ProfileScreen (User)
 Upcoming Events (HomeScreen) --> EventFragment
 EventFragment: -> (SuggestGamesDialog, FoodStyleDialog, HostratingDialog, DelayedDialog, AttendenceDialog, ProfileScreen (host of the event))
 
-Open Todo's: 
+How to use the App:
+When you start the app your User's name is Steve. Choose an event on the startscreen. 
+In the event click:
+1st Button: Suggest a game
+--> Choose a game and click confirm, you will get back to the Eventscreen, there you can see all suggested events
+2nd Button: select a foodstyle
+--> choose a foodstyle and click confirm, you will get back to the Eventscreen, there all selected Foodstyles will be displayed
+3rd Button: attendence
+--> If you click accept or refuse, the dialog will be closed and you ll be back on the Eventscreen, if you reopen the attendenceDialog you can see that Steve was added or deleted at the field attend/cancelled
+4th Button: I'm delayed
+--> inProgress
+5th Button: HostRating
+--> If you add a rating to the HostRatingDialog and submit it, the dialog will be closed again. Opening it again shows you the new rating
+
+Open Todo's:
 Navigation:
 - fix glitch in title
 
@@ -64,7 +78,7 @@ EventFragment/FoodStyleDialog:
 - Save selected Foodstyle in the DB and add it to the EventScreen
   
 EventFragment/AttendenceDialog:
-- Fix it - app crashes
+- Implement logic
 
 EventFragment/DelayedDialog:
 - Fix it - it doesn't show anything

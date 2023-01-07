@@ -65,6 +65,11 @@
     <string name="what_do_you_want_to_eat">What do you want to eat?</string>
     <string name="suggested_games_1s">Suggested games:\n %1s</string>
     <string name="suggested_games_empty">Please suggest a game</string>
+    <string name="cancelled">Cancelled:</string>
+    <string name="confirmed">Confirmed:</string>
+    <string name="refuse">Refuse</string>
+    <string name="accept">Accept</string>
+    <string name="notify_others_about_your_delay">Notify others about your delay</string>
 
     />
 
