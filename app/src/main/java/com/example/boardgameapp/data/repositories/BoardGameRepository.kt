@@ -1,12 +1,9 @@
 package com.example.boardgameapp.data.repositories
 
 import com.example.boardgameapp.data.BoardGameDao
-import com.example.boardgameapp.data.entities.Event
-import com.example.boardgameapp.data.entities.LoggedInUser
-import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.data.dto.UpcomingGameNight
-import com.example.boardgameapp.data.entities.EventGameCrossRef
+import com.example.boardgameapp.data.entities.*
 import kotlinx.coroutines.flow.*
 
 
@@ -137,7 +134,16 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     }
 
     /*--------*---------FoodStyles----------*-------*/
+    fun getFoodStyleId(foodstyle:String): Int{
+        return dao.getFoodStyleId(foodstyle)
+    }
      fun getFoodStylesArray(): Flow<Array<String>> {
         return dao.getFoodStylesArray()
     }
+
+    suspend fun addEventFoodCrossRef(eventFoodCrossRef: EventFoodCrossRef) {
+        return dao.insertEventFoodCrossRef(eventFoodCrossRef)
+    }
+
+
 }

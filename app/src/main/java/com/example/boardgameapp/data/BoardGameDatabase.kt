@@ -14,7 +14,18 @@ import com.example.boardgameapp.data.entities.*
 //Codelab:
 //https://developer.android.com/codelabs/basic-android-kotlin-training-intro-room-flow?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-5-pathway-1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-intro-room-flow#8
 
-@Database(entities = [User::class, Event::class, LoggedInUser::class, Game::class, FoodStyles::class, EventGameCrossRef::class], version = 1, exportSchema = false)
+@Database(
+    entities = [
+        User::class,
+        Event::class,
+        LoggedInUser::class,
+        Game::class,
+        FoodStyles::class,
+        EventGameCrossRef::class,
+        EventFoodCrossRef::class],
+    version = 1,
+    exportSchema = false
+)
 @TypeConverters(IntArrayListConverter::class, DoubleArrayListConverter::class)
 abstract class BoardGameDatabase : RoomDatabase() {
     abstract val boardGameDao: BoardGameDao
@@ -25,11 +36,11 @@ abstract class BoardGameDatabase : RoomDatabase() {
         fun getInstance(context: Context): BoardGameDatabase {
             synchronized(this) {
                 return INSTANCE ?: Room.databaseBuilder(
-                        context,
-                        BoardGameDatabase::class.java,
-                        "board_game_database"
-                    ).createFromAsset("database/db_prepop.db").allowMainThreadQueries().build().also {
-                        INSTANCE = it
+                    context,
+                    BoardGameDatabase::class.java,
+                    "board_game_database"
+                ).createFromAsset("database/db_prepop.db").allowMainThreadQueries().build().also {
+                    INSTANCE = it
                 }
             }
         }

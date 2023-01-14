@@ -1,7 +1,6 @@
 package com.example.boardgameapp.data.usecases
 
 import com.example.boardgameapp.data.entities.Event
-import com.example.boardgameapp.data.entities.LoggedInUser
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 
 class UpdateEventWithAttendenceUseCase(var repository: BoardGameRepository, var loggedInUserId: Int) {
@@ -14,7 +13,6 @@ class UpdateEventWithAttendenceUseCase(var repository: BoardGameRepository, var 
         repository.updateEvent(event)
     }
 
-    //TODO: Check if id is already in DB & check if it is already in the other filed e.g. if user accepted the event if his id was already in cancelled and if so do delete it from there an update the new filed
     /**
      * Creates a new Event object with the updated attendence information
      **/

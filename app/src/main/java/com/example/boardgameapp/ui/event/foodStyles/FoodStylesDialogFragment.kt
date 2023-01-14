@@ -8,14 +8,15 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import com.example.boardgameapp.R
-import com.example.boardgameapp.databinding.FragmentFoodStylesDialogBinding
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.boardgameapp.BoardGameApplication
+import com.example.boardgameapp.R
 import com.example.boardgameapp.data.repositories.BoardGameRepository
-import com.example.boardgameapp.ui.foodstyles.FoodStylesViewModel
-import com.example.boardgameapp.ui.foodstyles.FoodStylesViewModelFactory
+import com.example.boardgameapp.databinding.FragmentFoodStylesDialogBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 /**
@@ -28,8 +29,8 @@ class FoodStylesDialogFragment (private var eventId:Int)  : DialogFragment(),
     //This property is only valid between onCreateView and onDestroyView
     private val binding get() = _binding!!
 
-    private val viewModel: FoodStylesViewModel by activityViewModels {
-        FoodStylesViewModelFactory(
+    private val viewModel: FoodStylesDialogViewModel by activityViewModels {
+        FoodStylesDialogViewModelFactory(
             BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
         )
     }
@@ -48,7 +49,6 @@ class FoodStylesDialogFragment (private var eventId:Int)  : DialogFragment(),
         _binding = FragmentFoodStylesDialogBinding.bind(inflater.inflate(R.layout.fragment_food_styles_dialog, container, false))
 
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,7 +75,10 @@ class FoodStylesDialogFragment (private var eventId:Int)  : DialogFragment(),
 
         binding.foodConfirm.setOnClickListener {
             if (selectedItem1 !== "") {
-                //TODO: add selected game to DB
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewModel.updateEventWithSelectedFoodStyle(selectedItem1, eventId)
+                }
+                dialog!!.dismiss()
             } else {
                 Toast.makeText(context, "please select a foodstyle", Toast.LENGTH_LONG).show()
             }

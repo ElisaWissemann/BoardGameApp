@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.boardgameapp.data.entities.LoggedInUser
 import com.example.boardgameapp.data.repositories.BoardGameRepository
+import com.example.boardgameapp.data.usecases.UpdateEventWithAttendenceUseCase
 import com.example.boardgameapp.ui.event.attendence.AttendenceViewModel
 
 class DelayedViewModel (private val repository: BoardGameRepository) : ViewModel(){
@@ -12,6 +13,10 @@ class DelayedViewModel (private val repository: BoardGameRepository) : ViewModel
 
     fun getUserName(userId: Int): String{
         return repository.getUserName(userId)
+    }
+
+    suspend fun updatedEventWithAttendence(flag: Int, eventId:Int){
+        UpdateEventWithAttendenceUseCase(repository, loggedInUserId).updatedEventWithAttendence(flag,eventId)
     }
 }
 

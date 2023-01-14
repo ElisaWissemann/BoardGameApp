@@ -29,9 +29,6 @@ interface BoardGameDao {
     @Query("SELECT name FROM users WHERE userId= :id")
     fun getUserName(id: Int): String
 
-
-
-
     /*--------*---------Events----------*-------*/
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
@@ -83,5 +80,16 @@ interface BoardGameDao {
 
     @Query("SELECT name FROM eventGameCrossRef INNER JOIN games ON games.gameId = eventGameCrossRef.gameId WHERE eventId = :id ")
     fun getEventsSuggestedGameNames(id: Int): Flow<List<String>>
+
+    /*-----------------EventFoodCrossRef-----------------*/
+
+    @Query("SELECT foodId FROM foodStyles WHERE foodStyle = :foodstyle")
+    fun getFoodStyleId(foodstyle: String): Int
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertEventFoodCrossRef(eventFoodCrossRef: EventFoodCrossRef)
+
+//    @Query("SELECT name FROM eventFoodCrossRef INNER JOIN games ON games.gameId = eventGameCrossRef.gameId WHERE eventId = :id ")
+//    fun getEventsSuggestedGameNames(id: Int): Flow<List<String>>
 
 }

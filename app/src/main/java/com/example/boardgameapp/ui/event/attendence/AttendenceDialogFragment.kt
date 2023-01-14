@@ -1,10 +1,10 @@
 package com.example.boardgameapp.ui.event.attendence
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -59,8 +59,10 @@ class AttendenceDialogFragment() : DialogFragment() {
         }
         _binding = FragmentAttendenceDialogBinding.inflate(inflater, container, false)
 
+        /**This coroutine makes the attendies available as LiveData to the Fragment*/
         lifecycleScope.launch{ viewModel.setAttendies(eventId) }
 
+        /**Obersving if  accepted users change*/
         viewModel.accepted.observe(this.viewLifecycleOwner) { data ->
             _binding!!.acceptedText.text =
                 getString(R.string.acceptedAttendence, data).replace("[", "").replace("]", "")
@@ -79,20 +81,22 @@ class AttendenceDialogFragment() : DialogFragment() {
         binding.acceptButton.setOnClickListener {
             //execute the corouting on I/O Thread
             lifecycleScope.launch (Dispatchers.IO){
+                //flag: 0 accept event / 1 refuse event
                 viewModel.updatedEventWithAttendence(0, eventId)
             }
-
+            Toast.makeText(context, "Please reopen the attendence dialog, now steve should be listed as confirmed", Toast.LENGTH_LONG).show()
             dialog?.dismiss()
         }
 
         binding.refuseButton.setOnClickListener {
             lifecycleScope.launch (Dispatchers.IO){
+                // flag: 0 accept event / 1 refuse event
                 viewModel.updatedEventWithAttendence(1, eventId)
             }
+            Toast.makeText(context, "Please reopen the attendence dialog, now steve should be listed as cancelled", Toast.LENGTH_LONG).show()
             dialog?.dismiss()
         }
     }
-
 
     override fun onStart() {
         super.onStart()

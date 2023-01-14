@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.BoardGameNotification
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
@@ -21,6 +22,9 @@ import com.example.boardgameapp.ui.event.attendence.AttendenceViewModel
 import com.example.boardgameapp.ui.event.attendence.AttendenceViewModelFactory
 import com.example.boardgameapp.ui.event.delayed.DelayedViewModel
 import com.example.boardgameapp.ui.event.delayed.DelayedViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 class DelayedDialogFragment() : DialogFragment() {
@@ -28,8 +32,19 @@ class DelayedDialogFragment() : DialogFragment() {
     private var _binding: FragmentDelayedDialogBinding? = null
     private val binding get() = _binding!!
 
-    private var userId : Int = 0
-    private var userName:String = ""
+    private var userId: Int = 0
+    private var userName: String = ""
+
+    private var eventId: Int = 0
+
+    /**
+     * Get instance of EventViewModel
+     **/
+    private val eventViewModel: EventViewModel by activityViewModels {
+        EventViewModelFactory(
+            BoardGameRepository((activity?.application as BoardGameApplication).database.boardGameDao)
+        )
+    }
 
     /**
      * Get instance of Attendence ViewModel**/
@@ -50,7 +65,12 @@ class DelayedDialogFragment() : DialogFragment() {
         userId = viewModel.loggedInUserId
         // get the usersName
         userName = viewModel.getUserName(userId)
-        // get Instance of the notificationService
+        // Get current eventId from eventViewModel
+        lifecycleScope.launch {
+            eventViewModel.eventId.collectLatest {
+                eventId = it
+            }
+        }        // get Instance of the notificationService
         val notificationService = activity?.let { BoardGameNotification(it.applicationContext) }
 
         //_binding = FragmentDelayedDialogBinding.bind(inflater.inflate(R.layout.fragment_delayed_dialog, container, false))
@@ -87,13 +107,17 @@ class DelayedDialogFragment() : DialogFragment() {
         }
 
         binding.refuse.setOnClickListener {
-            val UserID = userId // TODO Bodo whats missing here?
+            //execute the corouting on I/O Thread
+            lifecycleScope.launch(Dispatchers.IO) {
+                //flag: 0 accept event / 1 refuse event
+                viewModel.updatedEventWithAttendence(1, eventId)
+            }
+            Toast.makeText(context, "Go to Attendence if steve cancelled the event it worked", Toast.LENGTH_LONG).show()
+            dialog!!.dismiss()
         }
 
         return binding.root
     }
-
-
 
 
     override fun onStart() {
