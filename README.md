@@ -78,10 +78,14 @@ EventFragment/FoodStyleDialog:
 - Save selected Foodstyle in the DB and add it to the EventScreen
   
 EventFragment/AttendenceDialog:
-- Implement logic
+- handle UI-state
+
+AttendenceViewModel:
+- overwork updatedEventWithAttendence Method
+
 
 EventFragment/DelayedDialog:
-- Fix it - it doesn't show anything
+- implementLogic
 - handle UI-State
 
 EventFragment/HostRatingDialog:
@@ -91,6 +95,9 @@ ProfileScreen:
 - fix it app crashes
 - Make edit-button visible if the User overlooks his own profile
 - Make edit-button invisible if the user overlooks the profile of the host of an event
+
+Repository: 
+- overwork namingconvention
 
 
 Aufgabenstellung:

@@ -9,6 +9,10 @@ import com.example.boardgameapp.ui.event.attendence.AttendenceViewModel
 class DelayedViewModel (private val repository: BoardGameRepository) : ViewModel(){
 
      val loggedInUserId: Int = repository.loggedInUser().userId
+
+    fun getUserName(userId: Int): String{
+        return repository.getUserName(userId)
+    }
 }
 
 /**

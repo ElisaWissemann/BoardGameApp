@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/delRefuseBtn"
+        android:id="@+id/refuse"
         android:layout_width="157dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -27,7 +27,7 @@
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/delay_1h"
+        app:layout_constraintEnd_toEndOf="@+id/delay_60min"
         app:layout_constraintStart_toStartOf="@+id/delay_15min"
         app:layout_constraintTop_toBottomOf="@+id/delay_30min"
         tools:ignore="TextContrastCheck" />
@@ -36,16 +36,15 @@
         android:id="@+id/delay_15min"
         android:layout_width="65dp"
         android:layout_height="49dp"
+        android:layout_marginTop="16dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/_15min"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/delay_45min"
-        app:layout_constraintEnd_toStartOf="@+id/delay_30min"
+        app:layout_constraintEnd_toStartOf="@+id/delay_45min"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/delay_45min" />
+        app:layout_constraintTop_toBottomOf="@+id/delay_title" />
 
     <Button
         android:id="@+id/delay_30min"
@@ -55,45 +54,36 @@
         android:paddingRight="10dp"
         android:text="@string/_30min"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/delay_45min"
-        app:layout_constraintEnd_toStartOf="@+id/delay_45min"
+        app:layout_constraintEnd_toStartOf="@+id/delay_60min"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/delay_15min"
-        tools:layout_editor_absoluteY="59dp"
-        app:layout_constraintTop_toTopOf="@+id/delay_45min"/>
+        app:layout_constraintStart_toEndOf="@+id/delay_45min"
+        app:layout_constraintTop_toTopOf="@+id/delay_45min" />
 
     <Button
         android:id="@+id/delay_45min"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/_45min"
         android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/delRefuseBtn"
-        app:layout_constraintEnd_toStartOf="@+id/delay_1h"
+        app:layout_constraintEnd_toStartOf="@+id/delay_30min"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/delay_30min"
-        app:layout_constraintTop_toBottomOf="@+id/delay_title"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/delay_15min"
+        app:layout_constraintTop_toTopOf="@+id/delay_15min" />
 
     <Button
-        android:id="@+id/delay_1h"
+        android:id="@+id/delay_60min"
         android:layout_width="65dp"
         android:layout_height="49dp"
-        android:layout_marginEnd="16dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="@string/_1h"
+        android:text="@string/_60min"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/delay_45min"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/delay_45min"
-        app:layout_constraintTop_toTopOf="@+id/delay_45min"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/delay_30min"
+        app:layout_constraintTop_toTopOf="@+id/delay_30min" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -18,7 +18,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
         MutableLiveData<ArrayList<String>>(arrayListOf())
     val cancelled: LiveData<ArrayList<String>> get() = _cancelled
 
-    private var loggedInUser: LoggedInUser = repository.loggedInUser()
+    private var loggedInUserId: Int = repository.loggedInUser().userId
 
 
     /*---------------Update Event---------------------*/
@@ -31,7 +31,9 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
     }
 
     //TODO: Check if id is already in DB & check if it is already in the other filed e.g. if user accepted the event if his id was already in cancelled and if so do delete it from there an update the new filed
-    /**Creates a new Event object with the updated attendence information*/
+    /**
+     * Creates a new Event object with the updated attendence information
+     **/
     suspend fun updatedEventWithAttendence(flag: Int, eventId: Int) {
         val currentEvent = repository.getEventStream(eventId)
         var updatedItem: Event
@@ -45,7 +47,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
             0 -> {
                 currentEvent.collect {
                     val newEntry =
-                        checkUserAlreadyAcceptedOrCancelledAndRemove(it, loggedInUser.userId, 0)
+                        checkUserAlreadyAcceptedOrCancelledAndRemove(it, loggedInUserId, 0)
                     updatedItem =
                         getUpdatedEventEntry(
                             it.id,
@@ -60,7 +62,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
             else -> {
                 currentEvent.collect {
                     val newEntry =
-                        checkUserAlreadyAcceptedOrCancelledAndRemove(it, loggedInUser.userId, 1)
+                        checkUserAlreadyAcceptedOrCancelledAndRemove(it, loggedInUserId, 1)
                     updatedItem =
                         getUpdatedEventEntry(
                             it.id,
@@ -75,7 +77,7 @@ class AttendenceViewModel(private val repository: BoardGameRepository) : ViewMod
         }
     }
 
-    // TODO Bodo
+    // TODO
     /*
         private suspend fun doUpdate(
             currentEvent: Flow<Event>,

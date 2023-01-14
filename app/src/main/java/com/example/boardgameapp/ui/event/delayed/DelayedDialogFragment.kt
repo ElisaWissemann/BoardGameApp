@@ -1,5 +1,9 @@
 package com.example.boardgameapp.ui.event
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -8,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import com.BoardGameNotification
 import com.example.boardgameapp.BoardGameApplication
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.repositories.BoardGameRepository
@@ -24,6 +29,7 @@ class DelayedDialogFragment() : DialogFragment() {
     private val binding get() = _binding!!
 
     private var userId : Int = 0
+    private var userName:String = ""
 
     /**
      * Get instance of Attendence ViewModel**/
@@ -42,41 +48,53 @@ class DelayedDialogFragment() : DialogFragment() {
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         //get Id of the current User
         userId = viewModel.loggedInUserId
+        // get the usersName
+        userName = viewModel.getUserName(userId)
+        // get Instance of the notificationService
+        val notificationService = activity?.let { BoardGameNotification(it.applicationContext) }
 
         //_binding = FragmentDelayedDialogBinding.bind(inflater.inflate(R.layout.fragment_delayed_dialog, container, false))
         _binding = FragmentDelayedDialogBinding.inflate(inflater, container, false)
 
-        //Creating minutes delayed Btn's
+
+        /**
+         * Delayed Buttons
+         * */
+
+
         binding.delay15min.setOnClickListener {
-            Toast.makeText(context, "The other players have been notified about your delay of 15 min", Toast.LENGTH_LONG).show()
+            notificationService?.showNotification(userName, "15")
+            Toast.makeText(context, "Please check the notifications", Toast.LENGTH_LONG).show()
             dialog!!.dismiss()
         }
 
-        //Cancel Dialog Btn
         binding.delay30min.setOnClickListener {
-            Toast.makeText(context, "The other players have been notified about your delay of 30 min", Toast.LENGTH_LONG).show()
+            notificationService?.showNotification(userName, "30")
+            Toast.makeText(context, "Please check the notifications", Toast.LENGTH_LONG).show()
             dialog!!.dismiss()
         }
 
-        //Cancel Dialog Btn
         binding.delay45min.setOnClickListener {
-            Toast.makeText(context, "The other players have been notified about your delay of 45 min", Toast.LENGTH_LONG).show()
+            notificationService?.showNotification(userName, "45")
+            Toast.makeText(context, "Please check the notifications", Toast.LENGTH_LONG).show()
             dialog!!.dismiss()
         }
 
-        //Cancel Dialog Btn
-        binding.delay1h.setOnClickListener {
-            Toast.makeText(context, "The other players have been notified about your delay of 60 min", Toast.LENGTH_LONG).show()
+        binding.delay60min.setOnClickListener {
+            notificationService?.showNotification(userName, "60")
+            Toast.makeText(context, "Please check the notifications", Toast.LENGTH_LONG).show()
             dialog!!.dismiss()
         }
 
-        //RefuseBtn
-        binding.delRefuseBtn.setOnClickListener {
+        binding.refuse.setOnClickListener {
             val UserID = userId // TODO Bodo whats missing here?
         }
 
         return binding.root
     }
+
+
+
 
     override fun onStart() {
         super.onStart()
