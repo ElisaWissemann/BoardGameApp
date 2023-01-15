@@ -146,9 +146,9 @@ class BoardGameRepository(private val dao: BoardGameDao) {
     }
 
     //TODO implement this
-//    fun getEventSuggestedFoodNames(eventId: Int): StateFlow<List<String>> {
-//
-//    }
+    fun getEventSuggestedFoodNames(eventId: Int): Flow<List<String>> {
+        return dao.getEventsSuggestedFoodNames(eventId)
+    }
 
 
 }

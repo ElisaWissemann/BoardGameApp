@@ -3,6 +3,7 @@ package com.example.boardgameapp.data
 import androidx.room.*
 import com.example.boardgameapp.data.entities.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.StateFlow
 
 // TODO Bodo is it a good practice to have all here? What if there are 1000 methods?
 
@@ -89,7 +90,7 @@ interface BoardGameDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertEventFoodCrossRef(eventFoodCrossRef: EventFoodCrossRef)
 
-//    @Query("SELECT name FROM eventFoodCrossRef INNER JOIN games ON games.gameId = eventGameCrossRef.gameId WHERE eventId = :id ")
-//    fun getEventsSuggestedGameNames(id: Int): Flow<List<String>>
+    @Query("SELECT foodStyle FROM eventFoodCrossRef INNER JOIN foodStyles ON foodStyles.foodId = eventFoodCrossRef.foodId WHERE eventId = :id")
+    fun getEventsSuggestedFoodNames(id: Int): Flow<List<String>>
 
 }

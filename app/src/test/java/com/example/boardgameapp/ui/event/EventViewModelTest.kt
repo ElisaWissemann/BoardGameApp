@@ -3,13 +3,16 @@ package com.example.boardgameapp.ui.event
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.androiddevs.shoppinglisttestingyt.getOrAwaitValueTest
 import com.example.boardgameapp.data.dto.GameNight
+import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 import com.google.common.truth.Truth.assertThat
 import io.mockk.every
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.*
 import org.junit.After
 import org.junit.Before
@@ -64,14 +67,17 @@ class EventViewModelTest() {
         assertThat(result).isEqualTo(gameNight)
     }
 
+    //TODO integration test
     @Test
-    fun `test to buildUserWithNewRating`(){
+     fun `test to buildUserWithNewRating`(){
         val rating = 1.0f
         val hostId = 1
 
         every {
             repoMock.getUserStream(hostId)
-        }
+        } returns flow {emit(User(1, "Steve", "Jobs", "AlleeStraße 5, 10245 Berlin", null, null, null, null ))}
+        GlobalScope.launch {  viewModel.buildUserWithNewRating(rating, hostId) }
+
     }
 
 

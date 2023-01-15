@@ -1,18 +1,14 @@
 package com.example.boardgameapp.data
 
-import android.util.Log
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.room.Query
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.example.boardgameapp.data.entities.Event
-import com.example.boardgameapp.data.entities.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.asExecutor
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.*
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -21,11 +17,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
-//TODO: Add more tests
 
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class BoardGameDaoTest {
+class BoardGameDaoIT {
 
     // A JUnit Test Rule that swaps the background executor used by the Architecture Components with a different one which executes each task synchronously.
     @get:Rule

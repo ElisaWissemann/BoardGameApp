@@ -73,18 +73,19 @@ class EventFragment : Fragment() {
             }
         }
 
-        //TODO implement this
-//        /**observe if there are already suggested Games for this event*/
-//        viewModel.retrieveEventFoodNames(args.eventId).observe(this.viewLifecycleOwner) { foods ->
-//            // if there are no suggested games yet, show a text
-//            if (foods.isEmpty()) {
-//                binding.suggestedGames.text = ""
-//                // if there are already suggested games, add all suggested games to the display
-//            } else {
-//                binding.suggestedGames.text =
-//                    getString(R.string.suggested_games_1s, foods).replace("[", "").replace("]", "")
-//            }
-//        }
+        /**observe if there are already suggested Games for this event*/
+        lifecycleScope.launchWhenStarted {
+            viewModel.retrieveEventFoodNames(args.eventId).collectLatest { foods ->
+                if (foods.isEmpty()) {
+                    binding.suggestedFoodStyles.text = ""
+                    // if there are already suggested games, add all suggested games to the display
+                } else {
+                    binding.suggestedGames.text =
+                        getString(R.string.suggested_foodstyles_n_1s, foods).replace("[", "").replace("]", "")
+                }
+            }
+        }
+
         /*Navigation*/
         navController = findNavController()
         viewModel.setEventID(args.eventId)

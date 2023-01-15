@@ -23,6 +23,25 @@ object TestFixtures {
         favorite_food = favorite_food,
         rating = rating
     )
+    fun dummyUser2(
+        id: Int = 1,
+        name: String = "Stefan",
+        surname: String = "Meyer",
+        address: String = "Hasenweg 7",
+        hosted_events: ArrayList<Int> = arrayListOf(1),
+        favorite_game: String = "Siedler",
+        favorite_food: String = "Burer",
+        rating: ArrayList<Double> = arrayListOf(1.0,1.0)
+    ) = User(
+        id = id,
+        name = name,
+        surname = surname,
+        address = address,
+        hosted_events = hosted_events,
+        favorite_game = favorite_game,
+        favorite_food = favorite_food,
+        rating = rating
+    )
     fun dummyEvent1(
         id: Int = 5,
         host: Int = 3,

@@ -9,7 +9,10 @@ import com.example.boardgameapp.data.BoardGameDao_Impl
 import com.example.boardgameapp.data.dto.GameNight
 import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.data.repositories.BoardGameRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
+import kotlin.coroutines.CoroutineContext
 
 /*** EventViewModel - business logic for the EventScreen*/
 
@@ -39,10 +42,12 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
     }
 
     /*---------------FoodStyle---------------------*/
-    //TODO implement this
-//    fun retrieveEventFoodNames(eventId: Int): StateFlow<List<String>> {
-//        return repository.getEventSuggestedFoodNames(eventId)
-//    }
+
+    suspend fun retrieveEventFoodNames(eventId: Int): StateFlow<List<String>> {
+         val coroutineScope = CoroutineScope(Job())
+        val result = repository.getEventSuggestedFoodNames(eventId).stateIn(scope = coroutineScope)
+        return result
+    }
 
     /*---------------User---------------------*/
     /**
@@ -62,52 +67,9 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
     suspend fun buildUserWithNewRating(
         rating: Float, hostId: Int
     ) {
-        val currentUser = repository.getUserStream(hostId)
-        var updatedItem: User
-        currentUser.collect {
-            updatedItem = getUpdatedItemEntry(
-                it.id,
-                it.name,
-                it.surname!!,
-                it.address!!,
-                it.hosted_events!!,
-                it.favorite_game,
-                it.favorite_food,
-                it.rating?.plus(rating) as ArrayList<Double>
-                //addElementToArray(it.rating, rating.toDouble())
-            )
-            updateUser(updatedItem)
+        repository.getUserStream(hostId).collect {
+             updateUser(it.copy(rating = it.rating?.plus(rating) as ArrayList<Double>?))
         }
-        // TODO Bodo could be:
-        //repository.getUserStream(hostId).collect {
-        //    it.copy(rating = it.rating?.plus(rating) as ArrayList<Double>?)
-        //}
-    }
-
-    /**
-     * Called to update an existing entry in the BoardGame database.
-     * Returns an instance of the [User] entity class with the user info updated with rating by the user.
-     */
-    private fun getUpdatedItemEntry(
-        userId: Int,
-        userName: String,
-        userSurname: String,
-        userAddress: String,
-        userHosted_events: ArrayList<Int>?,
-        userFavorite_game: String?,
-        userFavorite_food: String?,
-        userRating: ArrayList<Double>
-    ): User {
-        return User(
-            id = userId,
-            name = userName,
-            surname = userSurname,
-            address = userAddress,
-            hosted_events = userHosted_events,
-            favorite_game = userFavorite_game,
-            favorite_food = userFavorite_food,
-            rating = userRating
-        )
     }
 
 }
