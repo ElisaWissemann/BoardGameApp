@@ -145,5 +145,10 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.insertEventFoodCrossRef(eventFoodCrossRef)
     }
 
+    //TODO implement this
+//    fun getEventSuggestedFoodNames(eventId: Int): StateFlow<List<String>> {
+//
+//    }
+
 
 }

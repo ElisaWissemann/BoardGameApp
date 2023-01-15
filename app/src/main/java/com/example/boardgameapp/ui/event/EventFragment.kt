@@ -58,6 +58,9 @@ class EventFragment : Fragment() {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentEventBinding.inflate(inflater, container, false)
 
+        /**SetEventId in EventViewModel*/
+        viewModel.setEventId(args.eventId)
+
         /**observe if there are already suggested Games for this event*/
         viewModel.retrieveEventGameNames(args.eventId).observe(this.viewLifecycleOwner) { names ->
             // if there are no suggested games yet, show a text
@@ -69,6 +72,19 @@ class EventFragment : Fragment() {
                     getString(R.string.suggested_games_1s, names).replace("[", "").replace("]", "")
             }
         }
+
+        //TODO implement this
+//        /**observe if there are already suggested Games for this event*/
+//        viewModel.retrieveEventFoodNames(args.eventId).observe(this.viewLifecycleOwner) { foods ->
+//            // if there are no suggested games yet, show a text
+//            if (foods.isEmpty()) {
+//                binding.suggestedGames.text = ""
+//                // if there are already suggested games, add all suggested games to the display
+//            } else {
+//                binding.suggestedGames.text =
+//                    getString(R.string.suggested_games_1s, foods).replace("[", "").replace("]", "")
+//            }
+//        }
         /*Navigation*/
         navController = findNavController()
         viewModel.setEventID(args.eventId)

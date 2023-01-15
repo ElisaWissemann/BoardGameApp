@@ -1,5 +1,6 @@
 package com.example.boardgameapp.ui.event
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +19,16 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
     private var _eventId = MutableStateFlow(0)
     val eventId: StateFlow<Int> = _eventId.asStateFlow()
 
-     fun retrieveEventGameNames(eventId: Int): LiveData<List<String>> {
+
+    /*---------------Event---------------------*/
+
+    fun setEventId(eventId:Int){
+        _eventId.value = eventId
+    }
+
+    /*---------------Game---------------------*/
+
+    fun retrieveEventGameNames(eventId: Int): LiveData<List<String>> {
         return repository.getEventsSuggestedGameNames(eventId).asLiveData()
     }
     /**
@@ -28,7 +38,13 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
         return repository.retriveGameNight(eventId, hostId).asLiveData()
     }
 
-/*---------------Update User---------------------*/
+    /*---------------FoodStyle---------------------*/
+    //TODO implement this
+//    fun retrieveEventFoodNames(eventId: Int): StateFlow<List<String>> {
+//        return repository.getEventSuggestedFoodNames(eventId)
+//    }
+
+    /*---------------User---------------------*/
     /**
      * Launching a new coroutine to update an item in a non-blocking way
      */
@@ -93,6 +109,7 @@ class EventViewModel(private val repository: BoardGameRepository) : ViewModel() 
             rating = userRating
         )
     }
+
 }
 
 /**

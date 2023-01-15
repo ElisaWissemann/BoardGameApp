@@ -1,6 +1,7 @@
-# Courseproject for Mobile Software Engineering @ IU Hochschule
+# Courseproject for Mobile Software Engineering 
+## @ IU Internationale University of applied science
 
-Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 an der IU Hochschule
+Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 an der IU Hochschule.
 
 Projektstart: 12.09.2022 
 
@@ -75,14 +76,13 @@ Navigation:
 #### EventFragment/FoodStyleDialog:
 - change fontColor to Material color (see SuggestGameDialog)
 - handle UI-state, when choosing a foodStyle and rotating the screen the state is lost
-- Save selected Foodstyle in the DB and add it to the EventScreen
+- show selected FoodStyle to the EventScreen
 
 #### EventFragment/AttendenceDialog:
 - handle UI-state
 
 #### AttendenceViewModel:
 - overwork updatedEventWithAttendence Method
-
 
 #### EventFragment/DelayedDialog:
 - implementLogic
