@@ -1,4 +1,4 @@
-#Courseproject for Mobile Software Engineering @ IU Hochschule
+# Courseproject for Mobile Software Engineering @ IU Hochschule
 
 Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 an der IU Hochschule
 
@@ -30,13 +30,13 @@ Projektstart: 12.09.2022
 - Git  
   
 ## Open lessons:
-State-handling     
-Material Design     
-Animations    
-FirebaseDB    
-Login/Registration    
-Upload to AppStore    
-Compose    
+- State-handling     
+- Material Design     
+- Animations    
+- FirebaseDB    
+- Login/Registration    
+- Upload to AppStore    
+- Compose    
 
 ## ScreenFlow:
 NavBar -> ProfileScreen (User)  
@@ -102,16 +102,16 @@ done
 
 ## Aufgabenstellung: Board Gamer App
 Eine Gruppe von Brettspielfans möchte ihren regelmäßigen abendlichen Spieltermin besser organisieren. Hierzu
-haben die Spieler:innen folgende User Stories entwickelt:
-– Als Spieler:in möchte ich immer wissen, wann und wo der nächste Spieltermin stattfindet, um ihn nicht
+haben die Spieler:innen folgende User Stories entwickelt:  
+- Als Spieler:in möchte ich immer wissen, wann und wo der nächste Spieltermin stattfindet, um ihn nicht
 zu verpassen.
-– Als Spieler:in möchte ich ein oder mehrere Spiele vorschlagen können, um den Spieleabend mitgestalten
+- Als Spieler:in möchte ich ein oder mehrere Spiele vorschlagen können, um den Spieleabend mitgestalten
 zu können.
-– Als Spieler:in möchte ich den/die Gastgeber:in, bewerten können.
-– Als Spieler:in möchte ich meine Verspätung mitteilen können.
-– Optional: Als Spieler:in möchte ich in Vorbereitung des Fast-Food-Bestellprozesses rechtzeitig daran
+- Als Spieler:in möchte ich den/die Gastgeber:in, bewerten können.
+- Als Spieler:in möchte ich meine Verspätung mitteilen können.
+- Optional: Als Spieler:in möchte ich in Vorbereitung des Fast-Food-Bestellprozesses rechtzeitig daran
 erinnert werden, meine Lieblingsessensrichtung zu wählen (Italienisch, Griechisch, Türkisch, usw.).
-– Optional: Als Gastgeber:in möchte ich rechtzeitig über die mehrheitlich gewünschte Essensrichtung
+- Optional: Als Gastgeber:in möchte ich rechtzeitig über die mehrheitlich gewünschte Essensrichtung
 informiert werden, um einen passenden lokalen Lieferdienst auszusuchen.
-– Optional: Als Spieler:in möchte ich rechtzeitig das Menü des ausgewählten Lieferdienstes sehen können,
+- Optional: Als Spieler:in möchte ich rechtzeitig das Menü des ausgewählten Lieferdienstes sehen können,
 um rechtzeitig meine Bestellung an den/die Gastgeber:in übermitteln zu können.
