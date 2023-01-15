@@ -4,104 +4,103 @@ Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 
 
 Projektstart: 12.09.2022 
 
-Lesson learned: 
-- Android Architecture (MVVM) 
-- SingleActivityApplication
-- Android Lifecycles
-- DataBinding, ViewBinding
-- LiveData, StateFlow 
-- ConstraintLayout 
+## Lesson learned: 
+- Android Architecture (MVVM)   
+- SingleActivityApplication  
+- Android Lifecycles  
+- DataBinding, ViewBinding  
+- LiveData, StateFlow   
+- ConstraintLayout  
+  
+- Navigation with NavArgs  
+- Fragments   
+- DialogFragment  
+- Spinner  
+- RecyclerView, AdapterPattern and ListAdapterPattern  
+- Toast   
+- Notifications  
+  
+- RoomDB  
+- Coroutines, Flows  
+- JoinQueries, CrossReferences  
+- Testing coroutines and DAO (UnitTest with Mockk, InstrumentedTest RoomDB)  
+  
+- Emulator, Physical Device  
+- Gradle  
+- Git  
+  
+## Open lessons:
+State-handling     
+Material Design     
+Animations    
+FirebaseDB    
+Login/Registration    
+Upload to AppStore    
+Compose    
 
-- Navigation with NavArgs
-- Fragments 
-- DialogFragment
-- Spinner
-- RecyclerView, AdapterPattern and ListAdapterPattern
-- Toast 
+## ScreenFlow:
+NavBar -> ProfileScreen (User)  
+Upcoming Events (HomeScreen) --> EventFragment  
+EventFragment: -> (SuggestGamesDialog, FoodStyleDialog, HostratingDialog, DelayedDialog, AttendenceDialog, ProfileScreen (host of the event))  
 
-- RoomDB
-- Coroutines, Flows
-- JoinQueries, CrossReferences
-- Testing coroutines and DAO (UnitTest with Mockk, InstrumentedTest RoomDB)
+## How to use the App:
+When you start the app your User's name is Steve. Choose an event on the startscreen.   
+In the event click:  
+#### 1st Button: Suggest a game
+--> Choose a game and click confirm, you will get back to the Eventscreen, there you can see all suggested events  
+#### 2nd Button: select a foodstyle
+--> choose a foodstyle and click confirm, you will get back to the Eventscreen, there all selected Foodstyles will be displayed  
+#### 3rd Button: attendence
+--> If you click accept or refuse, the dialog will be closed and you ll be back on the Eventscreen, if you reopen the attendenceDialog you can see that Steve was added or deleted at the field attend/cancelled  
+#### 4th Button: I'm delayed
+--> inProgress  
+#### 5th Button: HostRating
+--> If you add a rating to the HostRatingDialog and submit it, the dialog will be closed again. Opening it again shows you the new rating  
 
-- Emulator, Physical Device
-- Gradle
-- Git
-
-Open lessons:
-State-handling 
-Notifications 
-Material Design
-Animations
-FirebaseDB
-Login/Registration
-Upload to AppStore
-Compose
-
-ScreenFlow:
-NavBar -> ProfileScreen (User)
-Upcoming Events (HomeScreen) --> EventFragment
-EventFragment: -> (SuggestGamesDialog, FoodStyleDialog, HostratingDialog, DelayedDialog, AttendenceDialog, ProfileScreen (host of the event))
-
-How to use the App:
-When you start the app your User's name is Steve. Choose an event on the startscreen. 
-In the event click:
-1st Button: Suggest a game
---> Choose a game and click confirm, you will get back to the Eventscreen, there you can see all suggested events
-2nd Button: select a foodstyle
---> choose a foodstyle and click confirm, you will get back to the Eventscreen, there all selected Foodstyles will be displayed
-3rd Button: attendence
---> If you click accept or refuse, the dialog will be closed and you ll be back on the Eventscreen, if you reopen the attendenceDialog you can see that Steve was added or deleted at the field attend/cancelled
-4th Button: I'm delayed
---> inProgress
-5th Button: HostRating
---> If you add a rating to the HostRatingDialog and submit it, the dialog will be closed again. Opening it again shows you the new rating
-
-Open Todo's:
+## Open Todo's:
 Navigation:
 - fix glitch in title
 
-HomeScreen/UpcomingEvents:
+#### HomeScreen/UpcomingEvents:
 - implement AddEvent
 
-EventFragment: 
+#### EventFragment: 
 - Show chosen Foodstyles
 - Show who comes to late
 - Show who attends
 
-EventFragment/SuggestGameDialog: 
+#### EventFragment/SuggestGameDialog: 
 - handle UI-state, when choosing a game and rotating the screen the state is lost
-  
-EventFragment/FoodStyleDialog:
+
+#### EventFragment/FoodStyleDialog:
 - change fontColor to Material color (see SuggestGameDialog)
 - handle UI-state, when choosing a foodStyle and rotating the screen the state is lost
 - Save selected Foodstyle in the DB and add it to the EventScreen
-  
-EventFragment/AttendenceDialog:
+
+#### EventFragment/AttendenceDialog:
 - handle UI-state
 
-AttendenceViewModel:
+#### AttendenceViewModel:
 - overwork updatedEventWithAttendence Method
 
 
-EventFragment/DelayedDialog:
+#### EventFragment/DelayedDialog:
 - implementLogic
 - handle UI-State
 
-EventFragment/HostRatingDialog:
+#### EventFragment/HostRatingDialog:
 done
 
-ProfileScreen: 
+#### ProfileScreen: 
 - fix it app crashes
 - Make edit-button visible if the User overlooks his own profile
 - Make edit-button invisible if the user overlooks the profile of the host of an event
 
-Repository: 
+#### Repository: 
 - overwork namingconvention
 
 
-Aufgabenstellung:
-1.2. Aufgabenstellung 2: Board Gamer App
+## Aufgabenstellung: Board Gamer App
 Eine Gruppe von Brettspielfans möchte ihren regelmäßigen abendlichen Spieltermin besser organisieren. Hierzu
 haben die Spieler:innen folgende User Stories entwickelt:
 – Als Spieler:in möchte ich immer wissen, wann und wo der nächste Spieltermin stattfindet, um ihn nicht
