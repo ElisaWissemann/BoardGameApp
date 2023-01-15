@@ -5,15 +5,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.asLiveData
 import com.example.boardgameapp.data.entities.EventFoodCrossRef
-import com.example.boardgameapp.data.entities.EventGameCrossRef
 import com.example.boardgameapp.data.repositories.BoardGameRepository
 
-class FoodStylesDialogViewModel(private val repository: BoardGameRepository): ViewModel() {
+class FoodStylesDialogViewModel(private val repository: BoardGameRepository) : ViewModel() {
+
     val foodStyles: LiveData<Array<String>> = repository.getFoodStylesArray().asLiveData()
 
-    suspend fun updateEventWithSelectedFoodStyle(foodstyle: String, eventId: Int){
-        val foodstyleId = repository.getFoodStyleId(foodstyle)
-        repository.addEventFoodCrossRef(EventFoodCrossRef(eventId, foodstyleId))
+    /**Function that creates a new enty in the EventFoodCrossRef*/
+    suspend fun updateEventWithSelectedFoodStyle(foodStyle: String, eventId: Int) {
+        val foodStyleId = repository.getFoodStyleId(foodStyle)
+        repository.addEventFoodCrossRef(EventFoodCrossRef(eventId, foodStyleId))
     }
 }
 
