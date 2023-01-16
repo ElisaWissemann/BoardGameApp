@@ -1,13 +1,16 @@
 # Courseproject for Mobile Software Engineering 
 ## @ IU Internationale University of applied science
 
-Dieses Projekt entstand  im Rahmen des Kurses Mobile Software Engineering IWMB2 an der IU Hochschule.
+This project started within the course "Mobile Software Engineering IWMB2" at the IU-University.
+Projektstart: 12.09.2022
 
-Projektstart: 12.09.2022 
+## Implementation Details:
+This is a SingleActivityApplication, implemented in the MVVM-DesignPattern. I decided to only use one DAO and Repository because of the small size of the app.
+
 
 ## Lesson learned: 
 - Android Architecture (MVVM)   
-- SingleActivityApplication  
+- Single-Activity-Application  
 - Android Lifecycles  
 - DataBinding, ViewBinding  
 - LiveData, StateFlow   
@@ -39,6 +42,7 @@ Projektstart: 12.09.2022
 - Upload to AppStore    
 - Compose    
 
+
 ## ScreenFlow:
 NavBar -> ProfileScreen (User)  
 Upcoming Events (HomeScreen) --> EventFragment  
@@ -59,6 +63,13 @@ In the event click:
 --> If you add a rating to the HostRatingDialog and submit it, the dialog will be closed again. Opening it again shows you the new rating  
 
 ## Open Todo's:
+- Add same fontstyles to all components
+- Notification not working on some phones (check if it is a emulator issure or issue in the code)
+- Exception- and success-handling 
+- Dependency-injection with Dagger and Hilt
+- State-handling
+- UI-tests with espresso
+
 Navigation:
 - fix glitch in title
 
@@ -85,14 +96,14 @@ Navigation:
 - overwork updatedEventWithAttendence Method
 
 #### EventFragment/DelayedDialog:
-- implementLogic
+- Fix UI- it isn't responsive on small phones
 - handle UI-State
 
 #### EventFragment/HostRatingDialog:
 done
 
 #### ProfileScreen: 
-- fix it app crashes
+- Layout is an old implementation of Christian, -> change profile image, Fontstyle and spacing -> make it responsive
 - Make edit-button visible if the User overlooks his own profile
 - Make edit-button invisible if the user overlooks the profile of the host of an event
 

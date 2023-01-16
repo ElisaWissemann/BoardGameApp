@@ -17,6 +17,7 @@ import com.example.boardgameapp.data.usecases.FormatRatingUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+//TODO: get hostId and rating from eventId in the EventViewModel
 class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,private var hostId: Int) : DialogFragment() {
 
     private var currentRating: Float? = null
@@ -53,7 +54,7 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
          * start coroutine to update the rating in the user
          * */
         binding.hrSubmit.setOnClickListener {
-            //execute the corouting on I/O Thread // TODO Bodo where is the IO thread?
+            //execute the corouting on I/O Thread
             lifecycleScope.launch (Dispatchers.IO){
                 viewModel.buildUserWithNewRating(binding.ratingBar.rating,hostId)
 
@@ -67,14 +68,5 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
         super.onDestroyView()
         _binding = null
     }
-
-
-//    companion object { // TODO Bodo delete??
-//        @JvmStatic
-//        fun newInstance(rating: ArrayList<Double>) =
-//            HostRatingDialog(rating).apply {
-//
-//            }
-//    }
 
 }

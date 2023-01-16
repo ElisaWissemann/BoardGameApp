@@ -3,9 +3,6 @@ package com.example.boardgameapp.data
 import androidx.room.*
 import com.example.boardgameapp.data.entities.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
-
-// TODO Bodo is it a good practice to have all here? What if there are 1000 methods?
 
 @Dao
 interface BoardGameDao {

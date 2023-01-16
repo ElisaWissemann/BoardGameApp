@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 /**
  * A simple [DialogFragment] subclass.
  */
+//TODO get eventId from EventViewModel
 class FoodStylesDialogFragment (private var eventId:Int)  : DialogFragment(),
     AdapterView.OnItemSelectedListener {
     private var _binding: FragmentFoodStylesDialogBinding? = null

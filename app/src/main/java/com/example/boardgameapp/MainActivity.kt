@@ -11,9 +11,7 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.boardgameapp.databinding.ActivityMainBinding
 
-//TODO: Exception & success handling,
-//TODO: Update Profile Screen
-//TODO: Implement all Dialogs
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

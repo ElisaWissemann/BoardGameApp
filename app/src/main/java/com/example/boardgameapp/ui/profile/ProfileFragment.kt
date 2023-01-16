@@ -15,10 +15,11 @@ import com.example.boardgameapp.data.entities.User
 import com.example.boardgameapp.databinding.FragmentProfileBinding
 
 
+/**This Fragment ist not yet implemented well, it needs to be transfered to the MVVM Pattern */
 class ProfileFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ProfileFragment()  // TODO Bodo delete?
+        fun newInstance() = ProfileFragment()
     }
 
     private var _binding: FragmentProfileBinding? = null
@@ -38,7 +39,7 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //TODO extract to ViewModel and add dependency injection
+        //TODO this is an very old implementation -> make it MVVM conform
         /*DB*/
         val db = BoardGameDatabase
         val dao = db.getInstance(requireActivity().application).boardGameDao

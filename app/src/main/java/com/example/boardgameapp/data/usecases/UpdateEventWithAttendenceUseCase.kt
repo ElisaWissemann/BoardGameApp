@@ -13,6 +13,9 @@ class UpdateEventWithAttendenceUseCase(var repository: BoardGameRepository, var 
         repository.updateEvent(event)
     }
 
+    // TODO overwork this, I think there might be a smarter way
+
+
     /**
      * Creates a new Event object with the updated attendence information
      **/
@@ -28,6 +31,7 @@ class UpdateEventWithAttendenceUseCase(var repository: BoardGameRepository, var 
             //accepted
             0 -> {
                 currentEvent.collect {
+
                     val newEntry =
                         checkUserAlreadyAcceptedOrCancelledAndRemove(it, loggedInUserId, 0)
                     updatedItem =
@@ -59,7 +63,6 @@ class UpdateEventWithAttendenceUseCase(var repository: BoardGameRepository, var 
         }
     }
 
-    // TODO
     /*
         private suspend fun doUpdate(
             currentEvent: Flow<Event>,

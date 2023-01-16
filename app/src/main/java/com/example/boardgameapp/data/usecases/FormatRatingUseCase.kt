@@ -7,7 +7,7 @@ package com.example.boardgameapp.data.usecases
         return if (!rating.isNullOrEmpty()) {
             rating?.average()?.toFloat()
         } else {
-            0.0f // TODO Bodo if rating = null results in 0.0f, you dont need nullability and just could use 0.0f as default
+            0.0f // TODO if rating = null results in 0.0f, I dont need nullability and just could use 0.0f as default
             // TODO: Write 0 in the database as initial value
         }
     }
