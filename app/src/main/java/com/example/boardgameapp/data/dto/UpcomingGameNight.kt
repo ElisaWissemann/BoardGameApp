@@ -6,6 +6,7 @@ data class UpcomingGameNight (
     val hostId: Int,
     val host: String,
     val date: String,
-    val accepted: ArrayList<Int>?, // TODO Bodo could be ArrayList<Int> = listOf()
+    // TODO  could be ArrayList<Int> = listOf() -> DB schema and prepop.db must be changed
+    val accepted: ArrayList<Int>?,
     val cancelled: ArrayList<Int>?
         )

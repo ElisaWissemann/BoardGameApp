@@ -13,7 +13,7 @@ import com.example.boardgameapp.data.converters.IntArrayListConverter
 data class Event(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "eventId") @NonNull val id: Int,
     @ColumnInfo(name = "host")  val host: Int,
-    //only for testing will be changed to Date  // TODO Bodo can these be removed?
+    //TODO only for testing will be changed to Date
     @ColumnInfo(name = "date")  val date: String,
     //only for testing will be changed to an array/list
     @TypeConverters(IntArrayListConverter::class)

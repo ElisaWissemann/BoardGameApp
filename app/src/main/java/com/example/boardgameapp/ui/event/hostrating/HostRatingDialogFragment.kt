@@ -35,6 +35,8 @@ class HostRatingDialog(private var ratingFromDatabase: ArrayList<Double>?,privat
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        //TODO: This doesn't work properly, the new rating is written 4 times into the db. the First time it appears 5 times
+
         //Set a Background with rounded corners for the Dialog
         dialog!!.window?.setBackgroundDrawableResource(R.drawable.round_corner)
         _binding = FragmentHostRatingDialogBinding.bind(inflater.inflate(R.layout.fragment_host_rating_dialog, container, false))

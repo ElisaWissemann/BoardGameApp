@@ -7,7 +7,7 @@ import com.example.boardgameapp.data.entities.*
 import kotlinx.coroutines.flow.*
 
 
-//TODO: Get rid of NoFlow requests
+//TODO: Get rid of NoFlow requests it is still used in the very old Profile Fragment
 class BoardGameRepository(private val dao: BoardGameDao) {
 
     /*--------*---------Users----------*-------*/
@@ -145,7 +145,6 @@ class BoardGameRepository(private val dao: BoardGameDao) {
         return dao.insertEventFoodCrossRef(eventFoodCrossRef)
     }
 
-    //TODO implement this
     fun getEventSuggestedFoodNames(eventId: Int): Flow<List<String>> {
         return dao.getEventsSuggestedFoodNames(eventId)
     }
